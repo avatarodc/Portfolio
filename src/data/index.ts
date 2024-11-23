@@ -31,31 +31,114 @@ import {
   
   export const projectList: Project[] = [
     {
-      id: 'gestion-etudiants',
-      title: 'Gestion des étudiants',
-      description: 'Application de gestion des inscriptions, notes et absences avec système CRUD complet',
-      tech: ['Laravel', 'Java(API)', 'TypeScript', 'PostgreSQL', 'Firebase', 'MongoDB'],
-      link: 'https://github.com/avatarodc/gestion_odc',
-      category: 'Web App',
-      image: '/api/placeholder/400/300'
+      id: 'wave-senegal-flutter',
+      title: 'Wave Sénégal Mobile',
+      description: 'Version mobile de Wave Sénégal développée avec Flutter. Application cross-platform permettant les transferts d\'argent et paiements avec une expérience utilisateur native.',
+      tech: ['Flutter', 'Dart', 'Firebase', 'GetX', 'REST API', 'Google Maps API'],
+      link: 'https://github.com/avatarodc/Flutter-Transfert-App',
+      category: 'Mobile App',
+      image: '/api/placeholder/400/300',
+      date: 'Octobre 2024'
     },
     {
-      id: 'reseau-couture',
-      title: 'Réseau de couture',
-      description: 'Plateforme connectant couturiers et clients avec gestion de profils et boutiques en ligne',
-      tech: ['Node.js', 'React', 'Cloudinary', 'PostgreSQL', 'Prisma', 'MongoDB'],
+      id: 'wave-senegal-refonte',
+      title: 'Refonte Wave Sénégal',
+      description: 'Amélioration de la plateforme Wave Sénégal avec de nouvelles fonctionnalités innovantes incluant un système d\'envoi programmé et périodique automatique pour optimiser les transactions des utilisateurs.',
+      tech: [ 'Angular', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Swagger' ],
+      link: 'https://github.com/avatarodc/money_transfert_angular',
+      category: 'Full Stack',
+      image: '/api/placeholder/400/300',
+      date: 'Novembre 2024'
+    },
+    {
+      id: 'gestion-tailleurs-react',
+      title: 'Gestion des Tailleurs',
+      description: 'Application web de gestion des tailleurs avec React JS. En tant que Chef de projet, direction de l\'équipe de développement et implémentation des meilleures pratiques pour une expérience utilisateur optimale.',
+      tech: ['React.js', 'Redux', 'Tailwind CSS', 'GitHub'],
       link: 'https://github.com/pousso2-0/Tailor',
-      category: 'E-commerce',
-      image: '/api/placeholder/400/300'
+      category: 'Frontend',
+      image: '/api/placeholder/400/300',
+      date: 'Octobre 2024'
     },
     {
       id: 'gestion-dettes',
-      title: 'Gestion des dettes',
-      description: 'Application de suivi des dettes et gestion des stocks avec notifications',
-      tech: ['JavaScript', 'Laravel', 'PostgreSQL', 'Neon'],
-      link: 'https://github.com/avatarodc/Getsion_DETTES-LARAVEL',
+      title: 'Gestion des Dettes Boutique',
+      description: 'Système de gestion des dettes avec authentification sécurisée, gestion des produits et utilisateurs. Application des principes SOLID et mise en place d\'une architecture robuste.',
+      tech: ['Java', 'Docker','Swagger', 'PostgreSQL' , 'GitHub' , 'Neon'],
+      link: 'https://github.com/avatarodc/JavaDette',
+      category: 'Backend',
+      image: '/api/placeholder/400/300',
+      date: 'Septembre 2024'
+    },
+    {
+      id: 'gestion-apprenants-spring',
+      title: 'Gestion des Apprenants',
+      description: 'Système de gestion de presence des apprenants  et des evenements de ODC . Application des principes SOLID et mise en place d\'une architecture robuste.',
+      tech: ['Java', 'Spring Boot', 'Spring Security', 'Docker', 'Render', 'Swagger', 'PostgreSQL' , 'GitHub' , 'Neon'],
+      link: 'https://github.com/3-mousquetaires/gestion_odc',
+      category: 'Backend',
+      image: '/api/placeholder/400/300',
+      date: 'Septembre 2024'
+    },
+    {
+      id: 'gestion-apprenants-avril',
+      title: 'Gestion des Apprenants',
+      description: 'Application de gestion des apprenants des emplois du temps et de leurs presences. développée en tant que Développeur FullStack',
+      tech: ['JavaScript', 'PHP', 'Tailwind CSS', 'MongoDB' , 'CSV' , 'Figma'],
+      link: 'https://github.com/avatarodc/E221',
       category: 'Web App',
-      image: '/api/placeholder/400/300'
+      image: '/api/placeholder/400/300',
+      date: 'Avril 2024'
+    },
+    {
+      id: 'gestion-cargaison',
+      title: 'Gestion de Cargaison Import/Export',
+      description: 'Application complète pour la gestion des cargaisons import/export',
+      tech: ['TypeScript', 'PHP', 'Tailwind CSS', 'MySQL', 'Prisma', 'Cloudinary', 'Figma'],
+      link: 'https://github.com/avatarodc/cargaisonsT',
+      category: 'Web App',
+      image: '/api/placeholder/400/300',
+      date: 'Juin 2024'
+    },
+    {
+      id: 'gestion-dettes-boutique',
+      title: 'Gestion des Dettes Boutique',
+      description: 'Application backend de gestion des dettes d\'une boutique avec notifications SMS',
+      tech: ['Laravel', 'Firebase', 'MongoDB', 'PostgreSQL', 'Infobip/Twilio', 'Swagger', 'Docker', 'Render' , 'Figma'],
+      link: '',
+      category: 'Backend',
+      image: '/api/placeholder/400/300',
+      date: 'Août 2024'
+    },
+    {
+      id: 'gestion-apprenants-oct',
+      title: 'Gestion des Apprenants React',
+      description: 'Application fullstack de gestion des apprenants avec stack moderne',
+      tech: ['React.js', 'Node.js', 'Firebase', 'PostgreSQL', 'Swagger', 'Docker', 'Render'],
+      link: '',
+      category: 'Full Stack',
+      image: '/api/placeholder/400/300',
+      date: 'Octobre 2024'
+    },
+    {
+      id: 'transfert-argent',
+      title: 'Application de Transfert d\'Argent',
+      description: 'Clone de Wave - Application de transfert d\'argent',
+      tech: ['Angular.js', 'MongoDB', 'Swagger', 'Docker', 'Render'],
+      link: 'https://github.com/avatarodc/money_transfert_angular',
+      category: 'Full Stack',
+      image: '/api/placeholder/400/300',
+      date: 'Octobre 2024'
+    },
+    {
+      id: 'gestion-apprenants-backend',
+      title: 'Backend Gestion Apprenants',
+      description: 'Application backend robuste pour la gestion des apprenants',
+      tech: ['Laravel', 'Firebase', 'PostgreSQL', 'Swagger', 'Docker', 'Render'],
+      link: '',
+      category: 'Backend',
+      image: '/api/placeholder/400/300',
+      date: 'Septembre 2024'
     }
   ];
   
@@ -69,13 +152,14 @@ import {
         "Angular",
         "TypeScript",
         "Tailwind CSS",
-        "Bootstrap"
+        "Bootstrap",
+        "Flutter"
       ]
     },
     {
       title: "Backend",
       icon: Server,
-      description: "Développement de serveurs et APIs robustes",
+      description: "Développement de serveurs et APIs robustes", 
       skills: [
         "Node.js (Express)",
         "Laravel",
@@ -131,21 +215,21 @@ import {
   
   export const experienceList: Experience[] = [
     {
-      id: 'orange-digital',
-      date: '2024',
+      id: 'orange-digital-center',
+      date: 'Fevrier 2024 / Décembre 2024',
       title: 'Stage développeur fullstack',
       company: 'Orange Digital Center',
       location: 'Dakar, Sénégal',
       role: 'Développeur Full Stack',
       achievements: [
-        'Développement d\'applications web modernes avec React et Node.js',
+        'Développement d\'applications web modernes ',
         'Travail en équipe avec méthodologie Agile/Scrum',
         'Participation à des projets innovants dans le domaine digital'
       ]
     },
     {
       id: 'lonase',
-      date: '2023',
+      date: 'Août 2023 / Novembre 2023',
       title: 'Administrateur Systèmes et Réseaux',
       company: 'LONASE',
       location: 'Dakar, Sénégal',

@@ -13,6 +13,7 @@ export interface Project {
   link: string;
   image?: string;
   category: string;
+  date: string;
 }
 
 export interface Category {
