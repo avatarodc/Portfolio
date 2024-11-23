@@ -37,17 +37,17 @@ import {
       tech: ['Flutter', 'Dart', 'Firebase', 'GetX', 'REST API', 'Google Maps API'],
       link: 'https://github.com/avatarodc/Flutter-Transfert-App',
       category: 'Mobile App',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/wave.png',
       date: 'Octobre 2024'
     },
     {
       id: 'wave-senegal-refonte',
       title: 'Refonte Wave Sénégal',
       description: 'Amélioration de la plateforme Wave Sénégal avec de nouvelles fonctionnalités innovantes incluant un système d\'envoi programmé et périodique automatique pour optimiser les transactions des utilisateurs.',
-      tech: [ 'Angular', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Swagger' ],
+      tech: ['Angular', 'TypeScript', 'PostgreSQL', 'Docker', 'Redis', 'Swagger'],
       link: 'https://github.com/avatarodc/money_transfert_angular',
       category: 'Full Stack',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/wave1.png',
       date: 'Novembre 2024'
     },
     {
@@ -57,37 +57,37 @@ import {
       tech: ['React.js', 'Redux', 'Tailwind CSS', 'GitHub'],
       link: 'https://github.com/pousso2-0/Tailor',
       category: 'Frontend',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/tailor.png',
       date: 'Octobre 2024'
     },
     {
       id: 'gestion-dettes',
       title: 'Gestion des Dettes Boutique',
       description: 'Système de gestion des dettes avec authentification sécurisée, gestion des produits et utilisateurs. Application des principes SOLID et mise en place d\'une architecture robuste.',
-      tech: ['Java', 'Docker','Swagger', 'PostgreSQL' , 'GitHub' , 'Neon'],
+      tech: ['Java', 'Docker', 'Swagger', 'PostgreSQL', 'GitHub', 'Neon'],
       link: 'https://github.com/avatarodc/JavaDette',
       category: 'Backend',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/Finance.png',
       date: 'Septembre 2024'
     },
     {
       id: 'gestion-apprenants-spring',
       title: 'Gestion des Apprenants',
-      description: 'Système de gestion de presence des apprenants  et des evenements de ODC . Application des principes SOLID et mise en place d\'une architecture robuste.',
-      tech: ['Java', 'Spring Boot', 'Spring Security', 'Docker', 'Render', 'Swagger', 'PostgreSQL' , 'GitHub' , 'Neon'],
+      description: 'Système de gestion de presence des apprenants et des evenements de ODC. Application des principes SOLID et mise en place d\'une architecture robuste.',
+      tech: ['Java', 'Spring Boot', 'Spring Security', 'Docker', 'Render', 'Swagger', 'PostgreSQL', 'GitHub', 'Neon'],
       link: 'https://github.com/3-mousquetaires/gestion_odc',
       category: 'Backend',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/odc.png',
       date: 'Septembre 2024'
     },
     {
       id: 'gestion-apprenants-avril',
       title: 'Gestion des Apprenants',
       description: 'Application de gestion des apprenants des emplois du temps et de leurs presences. développée en tant que Développeur FullStack',
-      tech: ['JavaScript', 'PHP', 'Tailwind CSS', 'MongoDB' , 'CSV' , 'Figma'],
+      tech: ['JavaScript', 'PHP', 'Tailwind CSS', 'MongoDB', 'CSV', 'Figma'],
       link: 'https://github.com/avatarodc/E221',
       category: 'Web App',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/odc.png',
       date: 'Avril 2024'
     },
     {
@@ -97,27 +97,27 @@ import {
       tech: ['TypeScript', 'PHP', 'Tailwind CSS', 'MySQL', 'Prisma', 'Cloudinary', 'Figma'],
       link: 'https://github.com/avatarodc/cargaisonsT',
       category: 'Web App',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/cargaison.png',
       date: 'Juin 2024'
     },
     {
       id: 'gestion-dettes-boutique',
       title: 'Gestion des Dettes Boutique',
       description: 'Application backend de gestion des dettes d\'une boutique avec notifications SMS',
-      tech: ['Laravel', 'Firebase', 'MongoDB', 'PostgreSQL', 'Infobip/Twilio', 'Swagger', 'Docker', 'Render' , 'Figma'],
+      tech: ['Laravel', 'Firebase', 'MongoDB', 'PostgreSQL', 'Infobip/Twilio', 'Swagger', 'Docker', 'Render', 'Figma'],
       link: '',
       category: 'Backend',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/Finance.png',
       date: 'Août 2024'
     },
     {
-      id: 'gestion-apprenants-oct',
+      id: 'gestion-apprenants-odc',
       title: 'Gestion des Apprenants React',
       description: 'Application fullstack de gestion des apprenants avec stack moderne',
       tech: ['React.js', 'Node.js', 'Firebase', 'PostgreSQL', 'Swagger', 'Docker', 'Render'],
       link: '',
       category: 'Full Stack',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/odc.png',
       date: 'Octobre 2024'
     },
     {
@@ -127,7 +127,7 @@ import {
       tech: ['Angular.js', 'MongoDB', 'Swagger', 'Docker', 'Render'],
       link: 'https://github.com/avatarodc/money_transfert_angular',
       category: 'Full Stack',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/Finance.png',
       date: 'Octobre 2024'
     },
     {
@@ -137,7 +137,7 @@ import {
       tech: ['Laravel', 'Firebase', 'PostgreSQL', 'Swagger', 'Docker', 'Render'],
       link: '',
       category: 'Backend',
-      image: '/api/placeholder/400/300',
+      image: 'images/projects/odc.png',
       date: 'Septembre 2024'
     }
   ];
