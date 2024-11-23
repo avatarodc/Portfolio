@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Personnalisation de la barre de défilement */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Style de la barre de défilement personnalisée */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.blue.600') transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: theme('colors.blue.600');
+    border-radius: 20px;
+    border: 2px solid transparent;
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: theme('colors.blue.400');
+  }
+}
+
+/* Animations de base */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes matrix {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0.3;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+  75% {
+    transform: translateY(10px) rotate(-3deg);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+}
+
+/* Classes d'animation */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.animate-matrix {
+  animation: matrix 20s linear infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-scroll {
+  animation: scroll 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* Styles pour les effets visuels */
+@layer components {
+  /* Effet de verre */
+  .glass-effect {
+    @apply backdrop-blur-md border;
+  }
+  
+  .dark .glass-effect {
+    @apply bg-slate-900/70 border-slate-700/50;
+  }
+  
+  .light .glass-effect {
+    @apply bg-white/70 border-slate-200/50;
+  }
+
+  /* Effet de terminal */
+  .terminal-window {
+    @apply rounded-lg overflow-hidden border;
+  }
+  
+  .dark .terminal-window {
+    @apply bg-slate-900/90 border-slate-700;
+  }
+  
+  .light .terminal-window {
+    @apply bg-slate-100/90 border-slate-300;
+  }
+
+  /* Icônes flottantes */
+  .tech-icon {
+    @apply rounded-lg p-3 backdrop-blur-md transition-all duration-300;
+  }
+  
+  .dark .tech-icon {
+    @apply bg-slate-900/80 border-slate-700 text-blue-400;
+  }
+  
+  .light .tech-icon {
+    @apply bg-white/80 border-slate-200 text-blue-600;
+  }
+
+  /* Texte avec gradient */
+  .gradient-text {
+    @apply text-transparent bg-clip-text;
+  }
+  
+  .dark .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400;
+  }
+  
+  .light .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600;
+  }
+}
+
+/* Styles spécifiques au thème sombre */
+.dark {
+  .matrix-text {
+    @apply text-emerald-400/60;
+  }
+
+  .highlight-text {
+    @apply text-blue-400;
+  }
+}
+
+/* Styles spécifiques au thème clair */
+.light {
+  .matrix-text {
+    @apply text-emerald-600/40; 
+  }
+
+  .highlight-text {
+    @apply text-blue-600;
+  }
+}
