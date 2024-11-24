@@ -228,6 +228,18 @@ import {
       ]
     },
     {
+      id: 'teqlab',
+      date: 'Janvier 2023 / Juillet 2023',
+      title: 'Analyste Concepteur',
+      company: 'TEQLAB',
+      location: 'Thiès, Sénégal',
+      role: 'Analyste Concepteur',
+      achievements: [
+        'Analyse des besoins utilisateurs et rédaction des spécifications',
+        'Modélisation UML et création de diagrammes de conception',
+      ]
+    },
+    {
       id: 'lonase',
       date: 'Août 2023 / Novembre 2023',
       title: 'Administrateur Systèmes et Réseaux',
