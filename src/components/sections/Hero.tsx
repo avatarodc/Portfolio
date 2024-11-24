@@ -66,41 +66,41 @@ function welcome() {
         </div>
       </div>
 
-      {/* Floating Tech Icons */}
+      {/* Floating Tech Icons with reduced opacity */}
       {techIcons.map((item, index) => (
-        <div
-          key={index}
-          className="group absolute"
-          style={{
-            animation: `float ${item.duration} linear infinite`,
-            animationDelay: item.delay,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`
-          }}
-        >
+      <div
+        key={index}
+        className="group absolute"
+        style={{
+          animation: `float ${item.duration} linear infinite`,
+          animationDelay: item.delay,
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`
+        }}
+      >
+        <div className={cn(
+          "relative p-3 rounded-lg backdrop-blur-sm border",
+          "transform transition-all duration-300",
+          "bg-white/20 border-gray-200/50", 
+          "dark:bg-gray-800/20 dark:border-gray-700/30"
+        )}>
           <div className={cn(
-            "relative p-3 rounded-lg backdrop-blur-sm border",
-            "transform transition-all duration-300 hover:scale-110",
-            "bg-white/80 border-gray-200 hover:bg-gray-50/80",
-            "dark:bg-gray-800/80 dark:border-gray-700 dark:hover:bg-gray-700/80"
+            "text-blue-600/40 dark:text-blue-400/50" 
           )}>
-            <div className={cn(
-              "text-blue-600 dark:text-blue-400"
-            )}>
-              {item.icon}
-            </div>
-            <span className={cn(
-              "absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs",
-              "opacity-0 group-hover:opacity-100 transition-opacity",
-              "text-gray-700 dark:text-gray-300",
-              "px-2 py-1 rounded bg-white/90 dark:bg-gray-800/90",
-              "shadow-lg"
-            )}>
-              {item.label}
-            </span>
+            {item.icon}
           </div>
+          <span className={cn(
+            "absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs",
+            "opacity-0 group-hover:opacity-100 transition-opacity",
+            "text-gray-700/30 dark:text-gray-300/50", 
+            "px-2 py-1 rounded bg-white/20 dark:bg-gray-800/20", 
+            "shadow-lg"
+          )}>
+            {item.label}
+          </span>
         </div>
-      ))}
+      </div>
+    ))}
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
