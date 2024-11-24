@@ -8,7 +8,8 @@ import {
   Education,
   Experience,
   Certifications,
-  Contact
+  Contact,
+  References
 } from './sections';
 
 import {
@@ -29,6 +30,7 @@ const Portfolio = () => {
       <Education items={educationList} />
       <Experience items={experienceList} />
       <Certifications items={certificationList} />
+      <References />
       <Contact />
     </Layout>
   );

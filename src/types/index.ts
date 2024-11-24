@@ -66,3 +66,12 @@ export interface Contact {
   address: string;
   availability: string;
 }
+
+export interface Reference {
+  id: string;
+  name: string;
+  title: string;
+  email: string;
+  linkedin: string;
+  phone: string;
+}
