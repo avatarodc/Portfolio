@@ -148,12 +148,21 @@ import {
       icon: Layout,
       description: "Développement d'interfaces utilisateur modernes et réactives",
       skills: [
-        "React",
+        // Frameworks JavaScript
+        "React.js",
         "Angular",
+        // Languages
         "TypeScript",
+        // Frameworks CSS
         "Tailwind CSS",
         "Bootstrap",
-        "Flutter"
+        // Mobile
+        "Flutter",
+        // État & Performance
+        "Redux",
+        // Build Tools
+        "Vite",
+        "Webpack"
       ]
     },
     {
@@ -161,11 +170,17 @@ import {
       icon: Server,
       description: "Développement de serveurs et APIs robustes", 
       skills: [
+        // Node.js
         "Node.js (Express)",
+        // PHP
         "Laravel",
+        "PHP",
+        // Java
         "Spring Boot",
         "Java",
-        "PHP"
+        // API & Sécurité
+        "REST API",
+        "JWT Auth",
       ]
     },
     {
@@ -173,23 +188,36 @@ import {
       icon: Database,
       description: "Gestion et optimisation des données",
       skills: [
+        // SQL
         "PostgreSQL",
         "MySQL",
+        // NoSQL
         "MongoDB",
+        // Cloud Databases
         "Firebase",
-        "Neon"
+        "Neon",
+        // ORM
+        "Prisma",
+        
       ]
     },
     {
-      title: "DevOps & Autres",
+      title: "DevOps & Architecture",
       icon: Code,
       description: "Outils et méthodologies de développement",
       skills: [
+        // Version Control
         "Git & GitHub",
+        // Containerization
         "Docker",
-        "API REST",
+        // Architecture
+        "Architecture MVC",
+        "Architecture distribuée",
+        "Architecture monolithique",
+        // Méthodologies
         "Méthodologie Agile",
-        "Architecture distribuée"
+        // API Design
+        "API REST"
       ]
     }
   ];
