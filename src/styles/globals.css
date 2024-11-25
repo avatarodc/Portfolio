@@ -8,7 +8,6 @@
     display: none;
   }
 
-  /* Style de la barre de défilement personnalisée */
   .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: theme('colors.blue.600') transparent;
@@ -33,7 +32,7 @@
   }
 }
 
-/* Animations de base */
+/* Animations */
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -57,7 +56,6 @@
   }
 }
 
-/* Nouvelle animation améliorée pour les techIcons */
 @keyframes floatWithPath {
   0% {
     transform: translate(0, 0) rotate(0deg);
@@ -93,6 +91,24 @@
   }
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-slower {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Classes d'animation */
 .animate-gradient {
   background-size: 200% 200%;
@@ -112,63 +128,51 @@
   animation: scroll 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
-/* Styles pour les effets visuels */
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spin-slower 20s linear infinite;
+}
+
+/* Composants */
 @layer components {
-  /* Effet de verre */
   .glass-effect {
     @apply backdrop-blur-md border;
   }
   
-  .dark .glass-effect {
-    @apply bg-slate-900/70 border-slate-700/50;
-  }
-  
-  .light .glass-effect {
-    @apply bg-white/70 border-slate-200/50;
-  }
-
-  /* Effet de terminal */
   .terminal-window {
     @apply rounded-lg overflow-hidden border;
   }
   
-  .dark .terminal-window {
-    @apply bg-slate-900/90 border-slate-700;
-  }
-  
-  .light .terminal-window {
-    @apply bg-slate-100/90 border-slate-300;
-  }
-
-  /* Icônes flottantes */
   .tech-icon {
     @apply rounded-lg p-3 backdrop-blur-md transition-all duration-300;
   }
   
-  .dark .tech-icon {
-    @apply bg-slate-900/80 border-slate-700 text-blue-400;
-  }
-  
-  .light .tech-icon {
-    @apply bg-white/80 border-slate-200 text-blue-600;
-  }
-
-  /* Texte avec gradient */
   .gradient-text {
     @apply text-transparent bg-clip-text;
   }
+}
+
+/* Variantes sombres */
+.dark {
+  .glass-effect {
+    @apply bg-slate-900/70 border-slate-700/50;
+  }
   
-  .dark .gradient-text {
+  .terminal-window {
+    @apply bg-slate-900/90 border-slate-700;
+  }
+  
+  .tech-icon {
+    @apply bg-slate-900/80 border-slate-700 text-blue-400;
+  }
+  
+  .gradient-text {
     @apply bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400;
   }
   
-  .light .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600;
-  }
-}
-
-/* Styles spécifiques au thème sombre */
-.dark {
   .matrix-text {
     @apply text-emerald-400/60;
   }
@@ -178,13 +182,34 @@
   }
 }
 
-/* Styles spécifiques au thème clair */
+/* Variantes claires */
 .light {
+  .glass-effect {
+    @apply bg-white/70 border-slate-200/50;
+  }
+  
+  .terminal-window {
+    @apply bg-slate-100/90 border-slate-300;
+  }
+  
+  .tech-icon {
+    @apply bg-white/80 border-slate-200 text-blue-600;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600;
+  }
+  
   .matrix-text {
-    @apply text-emerald-600/40; 
+    @apply text-emerald-600/40;
   }
 
   .highlight-text {
     @apply text-blue-600;
   }
+}
+
+/* Gradient conique */
+.bg-gradient-conic {
+  background-image: conic-gradient(var(--tw-gradient-stops));
 }
