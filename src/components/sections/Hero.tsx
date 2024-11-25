@@ -299,7 +299,7 @@ function welcome() {
                         "after:bg-gradient-to-br after:from-white/5 after:to-transparent"
                       )}>
                         <QRCodeSVG
-                          value="https://votre-url-cv.com"
+                          value="https://drive.google.com/file/d/1bIoDtJjuILsZgQuLmkK4Xl17ZaycUIfA/view?usp=sharing"
                           size={115}
                           level="H"
                           bgColor="transparent"
