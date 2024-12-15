@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { cn } from '@/lib/utils';
+import CV from './CV';
 
 const HeroSection = () => {
   const codeSnippet = `
@@ -106,7 +107,7 @@ function welcome() {
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-3 gap-12 items-center">
           {/* Left Column */}
           <div className="space-y-8">
             <div className="space-y-4">
@@ -342,6 +343,8 @@ function welcome() {
               </div>
             </div>
           </div>
+      <CV />
+
         </div>
       </div>
 

@@ -9,7 +9,8 @@ import {
   Experience,
   Certifications,
   Contact,
-  References
+  References,
+  CV
 } from './sections';
 
 import {
