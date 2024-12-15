@@ -20,7 +20,7 @@ const CV = () => {
   };
 
   return (
-    <Section id="cv" title="Mon CV" subtitle="Découvrez mon parcours professionnel">
+    <Section id="cv" title="" subtitle="">
       <div className="max-w-4xl mx-auto">
         {/* Glassmorphism container avec gradient effect */}
         <div className={cn(
