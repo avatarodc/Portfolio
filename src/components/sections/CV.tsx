@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Section } from '../ui/Section';
 
 const CV = () => {
-  const cvPath = '/src/assets/cv/MAMADOU_GUEYE_CV.pdf';
+  const cvPath = 'https://drive.google.com/file/d/1bIoDtJjuILsZgQuLmkK4Xl17ZaycUIfA/view';
 
   const handleViewCV = () => {
     window.open(cvPath, '_blank');
