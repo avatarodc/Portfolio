@@ -1,4 +1,3 @@
-// src/data/index.ts
 import {
     NavItem,
     Project,
@@ -17,7 +16,6 @@ import {
     Server,
     Database,
     Code,
-
   } from 'lucide-react';
   
   export const navItems: NavItem[] = [
@@ -30,6 +28,28 @@ import {
   ];
   
   export const projectList: Project[] = [
+    // ─── Projets WBCC (2024-2025) ───
+    {
+      id: 'rym-holding',
+      title: 'RYMHOLDING - Plateforme IA',
+      description: 'Application web avec intégration IA (ChatGPT) pour RYMHOLDING. Développement fullstack avec interface React et backend PHP, incluant un assistant intelligent pour améliorer l\'expérience utilisateur.',
+      tech: ['PHP', 'JavaScript', 'React.js', 'MySQL', 'ChatGPT API'],
+      link: '',
+      category: 'Full Stack',
+      image: 'images/projects/rymholding.png',
+      date: 'Décembre 2024 - Novembre 2025'
+    },
+    {
+      id: 'rym-partners',
+      title: 'RYM PARTNERS',
+      description: 'Application web complète pour RYM PARTNERS développée au sein du WBCC (World Business Contact Center). Gestion de contenu et interface professionnelle.',
+      tech: ['PHP', 'JavaScript', 'MySQL'],
+      link: '',
+      category: 'Web App',
+      image: 'images/projects/rympartners.png',
+      date: 'Décembre 2024 - Novembre 2025'
+    },
+    // ─── Projets Sonatel Académie (2024) ───
     {
       id: 'wave-senegal-flutter',
       title: 'Wave Sénégal Mobile',
@@ -38,6 +58,16 @@ import {
       link: 'https://github.com/avatarodc/Flutter-Transfert-App',
       category: 'Mobile App',
       image: 'images/projects/wave.png',
+      date: 'Octobre 2024'
+    },
+    {
+      id: 'reseau-social-frontend',
+      title: 'Réseau Social - Frontend',
+      description: 'Application frontend d\'un réseau social avec interface moderne et réactive. Communication avec l\'API backend via Axios.',
+      tech: ['React.js', 'Axios', 'MongoDB', 'Docker', 'Render', 'Cloudinary'],
+      link: '',
+      category: 'Frontend',
+      image: 'images/projects/social.png',
       date: 'Octobre 2024'
     },
     {
@@ -61,6 +91,16 @@ import {
       date: 'Octobre 2024'
     },
     {
+      id: 'maquettage-gestion-scolaire',
+      title: 'Maquettage Application Gestion Scolaire',
+      description: 'Conception UI/UX complète d\'une application de gestion scolaire. Wireframes, maquettes et prototypes interactifs.',
+      tech: ['Figma'],
+      link: '',
+      category: 'UI/UX Design',
+      image: 'images/projects/figma.png',
+      date: 'Septembre 2024'
+    },
+    {
       id: 'gestion-dettes',
       title: 'Gestion des Dettes Boutique',
       description: 'Système de gestion des dettes avec authentification sécurisée, gestion des produits et utilisateurs. Application des principes SOLID et mise en place d\'une architecture robuste.',
@@ -71,75 +111,45 @@ import {
       date: 'Septembre 2024'
     },
     {
-      id: 'gestion-apprenants-spring',
-      title: 'Gestion des Apprenants',
-      description: 'Système de gestion de presence des apprenants et des evenements de ODC. Application des principes SOLID et mise en place d\'une architecture robuste.',
-      tech: ['Java', 'Spring Boot', 'Spring Security', 'Docker', 'Render', 'Swagger', 'PostgreSQL', 'GitHub', 'Neon'],
-      link: 'https://github.com/3-mousquetaires/gestion_odc',
+      id: 'reseau-social-backend',
+      title: 'API Réseau Social - Backend',
+      description: 'Conception d\'une API backend complète pour un réseau social. Architecture RESTful avec Node.js et TypeScript.',
+      tech: ['Node.js', 'Express.js', 'TypeScript', 'MongoDB', 'Docker', 'Render', 'Cloudinary'],
+      link: '',
       category: 'Backend',
-      image: 'images/projects/odc.png',
-      date: 'Septembre 2024'
+      image: 'images/projects/social.png',
+      date: 'Août 2024'
     },
     {
-      id: 'gestion-apprenants-avril',
-      title: 'Gestion des Apprenants',
-      description: 'Application de gestion des apprenants des emplois du temps et de leurs presences. développée en tant que Développeur FullStack',
-      tech: ['JavaScript', 'PHP', 'Tailwind CSS', 'MongoDB', 'CSV', 'Figma'],
-      link: 'https://github.com/avatarodc/E221',
-      category: 'Web App',
-      image: 'images/projects/odc.png',
-      date: 'Avril 2024'
-    },
-    {
-      id: 'gestion-cargaison',
-      title: 'Gestion de Cargaison Import/Export',
-      description: 'Application complète pour la gestion des cargaisons import/export',
-      tech: ['TypeScript', 'PHP', 'Tailwind CSS', 'MySQL', 'Prisma', 'Cloudinary', 'Figma'],
-      link: 'https://github.com/avatarodc/cargaisonsT',
-      category: 'Web App',
-      image: 'images/projects/cargaison.png',
-      date: 'Juin 2024'
-    },
-    {
-      id: 'gestion-dettes-boutique',
-      title: 'Gestion des Dettes Boutique',
-      description: 'Application backend de gestion des dettes d\'une boutique avec notifications SMS',
-      tech: ['Laravel', 'Firebase', 'MongoDB', 'PostgreSQL', 'Infobip/Twilio', 'Swagger', 'Docker', 'Render', 'Figma'],
+      id: 'gestion-dettes-boutique-laravel',
+      title: 'Gestion des Dettes Boutique - Laravel',
+      description: 'Application backend de gestion des dettes d\'une boutique avec notifications SMS via Infobip/Twilio.',
+      tech: ['Laravel', 'Firebase', 'MongoDB', 'PostgreSQL', 'Infobip/Twilio', 'Swagger', 'Docker', 'Render'],
       link: '',
       category: 'Backend',
       image: 'images/projects/Finance.png',
       date: 'Août 2024'
     },
     {
-      id: 'gestion-apprenants-odc',
-      title: 'Gestion des Apprenants React',
-      description: 'Application fullstack de gestion des apprenants avec stack moderne',
-      tech: ['React.js', 'Node.js', 'Firebase', 'PostgreSQL', 'Swagger', 'Docker', 'Render'],
-      link: '',
-      category: 'Full Stack',
-      image: 'images/projects/odc.png',
-      date: 'Octobre 2024'
-    },
-    {
-      id: 'transfert-argent',
-      title: 'Application de Transfert d\'Argent',
-      description: 'Clone de Wave - Application de transfert d\'argent',
-      tech: ['Angular.js', 'MongoDB', 'Swagger', 'Docker', 'Render'],
-      link: 'https://github.com/avatarodc/money_transfert_angular',
-      category: 'Full Stack',
-      image: 'images/projects/Finance.png',
-      date: 'Octobre 2024'
-    },
-    {
-      id: 'gestion-apprenants-backend',
-      title: 'Backend Gestion Apprenants',
-      description: 'Application backend robuste pour la gestion des apprenants',
-      tech: ['Laravel', 'Firebase', 'PostgreSQL', 'Swagger', 'Docker', 'Render'],
-      link: '',
+      id: 'gestion-apprenants-spring',
+      title: 'Gestion des Apprenants - API',
+      description: 'Application API de gestion des apprenants et des événements de l\'ODC. Authentification sécurisée avec Spring Security.',
+      tech: ['Java', 'Spring Boot', 'Spring Security', 'Docker', 'Render', 'Swagger', 'PostgreSQL', 'Firebase', 'Neon'],
+      link: 'https://github.com/3-mousquetaires/gestion_odc',
       category: 'Backend',
       image: 'images/projects/odc.png',
-      date: 'Septembre 2024'
-    }
+      date: 'Juillet 2024'
+    },
+    {
+      id: 'gestion-cargaison',
+      title: 'Gestion de Cargaison Import/Export',
+      description: 'Application complète pour la gestion des cargaisons import/export.',
+      tech: ['TypeScript', 'PHP', 'Tailwind CSS', 'HTML', 'PostgreSQL'],
+      link: 'https://github.com/avatarodc/cargaisonsT',
+      category: 'Web App',
+      image: 'images/projects/cargaison.png',
+      date: 'Avril 2024'
+    },
   ];
   
   export const skillCategories: Category[] = [
@@ -148,19 +158,14 @@ import {
       icon: Layout,
       description: "Développement d'interfaces utilisateur modernes et réactives",
       skills: [
-        // Frameworks JavaScript
         "React.js",
         "Angular",
-        // Languages
         "TypeScript",
-        // Frameworks CSS
+        "JavaScript",
         "Tailwind CSS",
         "Bootstrap",
-        // Mobile
         "Flutter",
-        // État & Performance
         "Redux",
-        // Build Tools
         "Vite",
         "Webpack"
       ]
@@ -170,15 +175,13 @@ import {
       icon: Server,
       description: "Développement de serveurs et APIs robustes", 
       skills: [
-        // Node.js
+        "Java",
+        "Spring Boot",
+        "Spring Security",
         "Node.js (Express)",
-        // PHP
         "Laravel",
         "PHP",
-        // Java
-        "Spring Boot",
-        "Java",
-        // API & Sécurité
+        "Python",
         "REST API",
         "JWT Auth",
       ]
@@ -188,98 +191,148 @@ import {
       icon: Database,
       description: "Gestion et optimisation des données",
       skills: [
-        // SQL
         "PostgreSQL",
         "MySQL",
-        // NoSQL
         "MongoDB",
-        // Cloud Databases
         "Firebase",
         "Neon",
-        // ORM
         "Prisma",
-        
       ]
     },
     {
-      title: "DevOps & Architecture",
+      title: "DevOps & Cloud",
       icon: Code,
-      description: "Outils et méthodologies de développement",
+      description: "Déploiement, conteneurisation et infrastructure cloud",
       skills: [
-        // Version Control
-        "Git & GitHub",
-        // Containerization
         "Docker",
-        // Architecture
+        "AWS (S3, Lambda, EC2)",
+        "Git & GitHub",
+        "Render",
+        "Cloudinary",
         "Architecture MVC",
         "Architecture distribuée",
-        "Architecture monolithique",
-        // Méthodologies
-        "Méthodologie Agile",
-        // API Design
-        "API REST"
+        "Méthodologie Agile / Scrum",
+        "Swagger",
       ]
     }
   ];
   
   export const educationList: Education[] = [
     {
+      id: 'isi-master',
+      date: 'Octobre 2024 - Aujourd\'hui',
+      title: 'Master en Génie Logiciel',
+      institution: 'Institut Supérieur d\'Informatique (ISI)',
+      description: 'Formation avancée en génie logiciel, architecture des systèmes et management de projets.',
+      location: 'Dakar, Sénégal'
+    },
+    {
       id: 'sonatel-academy',
-      date: '2023-2024',
-      title: 'Formation Développement Web',
-      institution: 'École du code Sonatel Academy',
+      date: 'Février 2024 - Novembre 2024',
+      title: 'Formation Développement Web & Mobile',
+      institution: 'Sonatel Academy (Orange Digital Center)',
       description: 'Formation intensive en développement web et mobile, pratiques agiles, et architecture logicielle.',
       location: 'Dakar, Sénégal'
     },
     {
       id: 'isi-licence',
-      date: '2021-2023',
+      date: '2021 - 2023',
       title: 'Licence en Génie Logiciel',
       institution: 'Institut Supérieur d\'Informatique (ISI)',
       description: 'Formation approfondie en génie logiciel, algorithmes et structures de données.',
       location: 'Dakar, Sénégal'
+    },
+    {
+      id: 'bac-s2',
+      date: '2018',
+      title: 'Baccalauréat S2',
+      institution: 'Lycée Cheikh Hamidou Kane (MBAO)',
+      description: 'Baccalauréat série scientifique S2.',
+      location: 'Mbao, Sénégal'
     }
   ];
   
   export const experienceList: Experience[] = [
     {
+      id: 'diotali',
+      date: 'Novembre 2025 - Aujourd\'hui',
+      title: 'Développeur Backend',
+      company: 'DIOTALI',
+      location: 'Sénégal',
+      role: 'Développeur Backend',
+      achievements: [
+        'Développement backend avec Java et Spring Boot',
+        'Développement frontend avec Angular',
+        'Gestion de bases de données MySQL et PostgreSQL',
+        'Déploiement sur AWS (S3, Lambda, EC2)',
+        'Conteneurisation avec Docker'
+      ]
+    },
+    {
+      id: 'telly-tech',
+      date: 'Avril 2025 - Octobre 2025',
+      title: 'Formateur en PHP',
+      company: 'Telly_Tech',
+      location: 'Sénégal',
+      role: 'Formateur PHP',
+      achievements: [
+        'Formation en PHP et bonnes pratiques de développement',
+        'Accompagnement des apprenants sur MySQL et PostgreSQL',
+        'Conception de supports pédagogiques et exercices pratiques'
+      ]
+    },
+    {
+      id: 'wbcc',
+      date: 'Décembre 2024 - Novembre 2025',
+      title: 'Développeur Web',
+      company: 'WBCC (World Business Contact Center)',
+      location: 'Sénégal',
+      role: 'Développeur Web',
+      achievements: [
+        'Réalisation de l\'application web RYM PARTNERS (PHP, JavaScript, MySQL)',
+        'Réalisation de l\'application web RYMHOLDING avec intégration IA ChatGPT',
+        'Développement frontend avec React.js',
+        'Gestion et optimisation des bases de données MySQL'
+      ]
+    },
+    {
       id: 'orange-digital-center',
-      date: 'Fevrier 2024 / Décembre 2024',
-      title: 'Stage développeur fullstack',
-      company: 'Orange Digital Center',
+      date: 'Février 2024 - Novembre 2024',
+      title: 'Développeur Fullstack',
+      company: 'Orange Digital Center (ODC)',
       location: 'Dakar, Sénégal',
       role: 'Développeur Full Stack',
       achievements: [
-        'Développement d\'applications web modernes ',
+        'Développement d\'applications web modernes',
         'Travail en équipe avec méthodologie Agile/Scrum',
         'Participation à des projets innovants dans le domaine digital'
       ]
     },
     {
+      id: 'lonase',
+      date: 'Août 2023 - Novembre 2023',
+      title: 'Développeur Web Front-End & Admin Systèmes',
+      company: 'LONASE',
+      location: 'Dakar, Sénégal',
+      role: 'Développeur Front-End & Admin Sys/Réseaux',
+      achievements: [
+        'Administration système et réseau',
+        'Développement ETL avec TALEND et Python',
+        'Maintenance et optimisation des systèmes'
+      ]
+    },
+    {
       id: 'teqlab',
-      date: 'Janvier 2023 / Juillet 2023',
+      date: 'Juillet 2023 - Septembre 2023',
       title: 'Analyste Concepteur',
       company: 'TEQLAB',
-      location: 'Thiès, Sénégal',
+      location: 'Sénégal',
       role: 'Analyste Concepteur',
       achievements: [
         'Analyse des besoins utilisateurs et rédaction des spécifications',
         'Modélisation UML et création de diagrammes de conception',
       ]
     },
-    {
-      id: 'lonase',
-      date: 'Août 2023 / Novembre 2023',
-      title: 'Administrateur Systèmes et Réseaux',
-      company: 'LONASE',
-      location: 'Dakar, Sénégal',
-      role: 'Admin Sys & Développeur ETL',
-      achievements: [
-        'Administration système et réseau',
-        'Développement ETL avec TALEND et Python',
-        'Maintenance et optimisation des systèmes'
-      ]
-    }
   ];
   
   export const certificationList: Certification[] = [
@@ -322,14 +375,14 @@ import {
       id: 'email',
       Icon: Mail,
       label: 'Email',
-      link: 'mailto:mamadougueye@groupeisi.com',
+      link: 'mailto:mamadougueyeoff1@gmail.com',
       color: 'hover:text-red-600'
     }
   ];
   
   export const contactInfo: Contact = {
-    email: 'mamadougueye@groupeisi.com',
+    email: 'mamadougueyeoff1@gmail.com',
     phone: '+221 78 311 66 55',
-    address: 'Dakar, Pikine, Mbao',
+    address: 'Mbao Pikine, Sénégal',
     availability: 'Disponible pour des opportunités'
   };

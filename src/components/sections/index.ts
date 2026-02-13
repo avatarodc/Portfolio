@@ -1,9 +1,9 @@
-export { default as Hero } from './Hero';
-export * from './Projects';
-export * from './Skills';
-export * from './Education';
-export * from './Experience';
-export * from './Certifications';
-export * from './Contact';  
+export { default as HeroSection } from './HeroSection';
+export { Projects } from './Projects';
+export { Skills } from './Skills';
+export { Experience } from './Experience';
+export { Education } from './Education';
+export { Contact } from './Contact';
+export { Certifications } from './Certifications';
 export { default as References } from './References';
-export { default as CV } from './CV';
+export { SectionHeader } from './SectionHeader';
