@@ -34,9 +34,9 @@ import {
       title: 'RYMHOLDING - Plateforme IA',
       description: 'Application web avec intégration IA (ChatGPT) pour RYMHOLDING. Développement fullstack avec interface React et backend PHP, incluant un assistant intelligent pour améliorer l\'expérience utilisateur.',
       tech: ['PHP', 'JavaScript', 'React.js', 'MySQL', 'ChatGPT API'],
-      link: '',
+      link: 'https://job.rymholding.com',
       category: 'Full Stack',
-      image: 'images/projects/rymholding.png',
+      image: 'images/projects/rymholding.jpg',
       date: 'Décembre 2024 - Novembre 2025'
     },
     {
@@ -44,9 +44,19 @@ import {
       title: 'RYM PARTNERS',
       description: 'Application web complète pour RYM PARTNERS développée au sein du WBCC (World Business Contact Center). Gestion de contenu et interface professionnelle.',
       tech: ['PHP', 'JavaScript', 'MySQL'],
-      link: '',
+      link: 'https://www.rympartners.com/',
       category: 'Web App',
-      image: 'images/projects/rympartners.png',
+      image: 'images/projects/rympartners.jpg',
+      date: 'Décembre 2024 - Novembre 2025'
+    },
+     {
+      id: 'hbassurance',
+      title: 'HB ASSURANCE',
+      description: 'Application web complète pour HB ASSURANCE développée au sein du WBCC (World Business Contact Center). Gestion d\'assurance.',
+      tech: ['WordPress'],
+      link: 'https://hbassurance.com/',
+      category: 'Web App',
+      image: 'images/projects/hbassurance.png',
       date: 'Décembre 2024 - Novembre 2025'
     },
     // ─── Projets Sonatel Académie (2024) ───
@@ -97,7 +107,7 @@ import {
       tech: ['Figma'],
       link: '',
       category: 'UI/UX Design',
-      image: 'images/projects/figma.png',
+      image: 'images/projects/social.png',
       date: 'Septembre 2024'
     },
     {
@@ -117,7 +127,7 @@ import {
       tech: ['Node.js', 'Express.js', 'TypeScript', 'MongoDB', 'Docker', 'Render', 'Cloudinary'],
       link: '',
       category: 'Backend',
-      image: 'images/projects/social.png',
+      image: 'images/projects/socialApi.png',
       date: 'Août 2024'
     },
     {
