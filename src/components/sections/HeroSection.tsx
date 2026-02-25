@@ -9,6 +9,7 @@ import {
   FileText,
   MapPin,
   Briefcase,
+  GitBranch,
 } from 'lucide-react';
 import { useTypewriter } from '@/hooks';
 
@@ -30,6 +31,11 @@ const HeroSection: React.FC = () => {
       href: 'https://github.com/avatarodc',
       icon: GithubIcon,
       label: 'GitHub',
+    },
+    {
+      href: 'https://gitlab.com/odcmamadougueye',
+      icon: GitBranch,
+      label: 'GitLab',
     },
     {
       href: 'https://linkedin.com/in/Mamadou_GUEYE',

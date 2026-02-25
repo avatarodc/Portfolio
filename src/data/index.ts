@@ -34,7 +34,7 @@ import {
       title: 'PDD Production - Site Vitrine',
       description: 'Site vitrine one-page pour PDD Production, agence de communication événementielle à Dakar. Animations au scroll, filtres portfolio, lightbox, carrousel de témoignages, formulaire de contact et déploiement GitLab Pages via CI/CD.',
       tech: ['HTML5', 'CSS3', 'JavaScript', 'GitLab CI/CD'],
-      link: 'https://gitlab.com/odcmamadougueye/pddproduction',
+      link: 'https://pddproduction-f5a5bd.gitlab.io',
       category: 'Site Vitrine',
       image: 'images/projects/pddproduction.png',
       date: 'Février 2025'
