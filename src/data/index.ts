@@ -37,7 +37,7 @@ import {
       link: 'https://pddproduction-f5a5bd.gitlab.io',
       category: 'Site Vitrine',
       image: 'images/projects/pddproduction.png',
-      date: 'Février 2025'
+      date: 'Février 2026'
     },
     // ─── Projets WBCC (2024-2025) ───
     {
