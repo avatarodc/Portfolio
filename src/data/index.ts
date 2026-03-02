@@ -30,6 +30,16 @@ import {
   export const projectList: Project[] = [
     // ─── Projets Freelance ───
     {
+      id: 'rimemba',
+      title: 'Rimemba — Albums Numériques d\'Événements',
+      description: 'Plateforme SaaS de création d\'albums numériques pour événements (mariage, baptême, anniversaire, remise de diplôme...). Galerie photos plein écran avec lightbox et swipe mobile, thèmes visuels personnalisés, protection PIN, livre d\'or invités, dashboard admin complet avec audit logs. Déploiement continu via Railway.',
+      tech: ['React.js', 'Vite', 'Node.js', 'Express.js', 'Supabase', 'PostgreSQL', 'Cloudinary', 'Railway', 'Vercel'],
+      link: 'https://rimemba.net',
+      category: 'Full Stack',
+      image: 'images/projects/rimemba.png',
+      date: 'Mars 2026'
+    },
+    {
       id: 'pdd-production',
       title: 'PDD Production - Site Vitrine',
       description: 'Site vitrine one-page pour PDD Production, agence de communication événementielle à Dakar. Animations au scroll, filtres portfolio, lightbox, carrousel de témoignages, formulaire de contact et déploiement GitLab Pages via CI/CD.',
@@ -216,6 +226,7 @@ import {
         "MySQL",
         "MongoDB",
         "Firebase",
+        "Supabase",
         "Neon",
         "Prisma",
       ]
@@ -228,6 +239,8 @@ import {
         "Docker",
         "AWS (S3, Lambda, EC2)",
         "Git & GitHub",
+        "Railway",
+        "Vercel",
         "Render",
         "Cloudinary",
         "Architecture MVC",
