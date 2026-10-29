@@ -26,6 +26,8 @@ export interface Project {
   id: string;
   group: ProjectGroup;
   title: string;
+  // titre court affiché dans la constellation (sinon : title)
+  shortTitle?: string;
   // cadre du projet : employeur, fondateur, freelance, école…
   context: string;
   // renvoi interne vers une autre section (ex. le poste correspondant)
@@ -210,6 +212,21 @@ export interface SectionsContent {
     contextLink: string;
   };
   skills: SectionText & { countLabel: string };
+  constellation: SectionText & {
+    // texte affiché tant que rien n'est sélectionné
+    hint: string;
+    loading: string;
+    graphLabel: string;
+    skillsTitle: string;
+    ownersTitle: string;
+    archivesLabel: string;
+    projectsLabel: string;
+    companiesLabel: string;
+    linkedSkillsLabel: string;
+    detailLink: string;
+    clearLabel: string;
+    legend: { skill: string; project: string; company: string; archives: string };
+  };
   about: SectionText;
   education: SectionText;
   experience: SectionText & { detailLabel: string; clientsLabel: string };

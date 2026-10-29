@@ -1,0 +1,119 @@
+/**
+ * Construit le graphe de la constellation à partir des données de profile.ts :
+ * compétences (section Compétences) reliées aux projets, postes et archives
+ * qui les utilisent. Aucune donnée n'est saisie deux fois.
+ */
+import { ArchiveProject, Category, Experience, Project } from '@/types';
+import { expandSkillLabel, techKey } from './skills';
+
+export type GraphNodeKind = 'skill' | 'project' | 'company' | 'archives';
+
+export interface GraphNode {
+  id: string;
+  kind: GraphNodeKind;
+  label: string;
+  // index de la catégorie de compétence (couleur)
+  category?: number;
+  // ancre vers la fiche détaillée sur la page
+  anchor?: string;
+  degree: number;
+}
+
+export interface GraphLink {
+  source: string;
+  target: string;
+}
+
+export interface SkillGraph {
+  nodes: GraphNode[];
+  links: GraphLink[];
+  neighbors: Map<string, Set<string>>;
+  // compétences de la liste sans aucun projet ni poste lié
+  unlinkedSkills: string[];
+}
+
+interface GraphInput {
+  skillCategories: Category[];
+  projects: Project[];
+  experiences: Experience[];
+  archives: ArchiveProject[];
+  archivesLabel: string;
+  aliases: Record<string, string[]>;
+}
+
+export const buildSkillGraph = ({
+  skillCategories,
+  projects,
+  experiences,
+  archives,
+  archivesLabel,
+  aliases,
+}: GraphInput): SkillGraph => {
+  // Nœuds compétences : les libellés de la section Compétences, décomposés
+  const skills = new Map<string, GraphNode>();
+  skillCategories.forEach((category, index) => {
+    category.skills.forEach((label) => {
+      expandSkillLabel(label).forEach((part) => {
+        const key = techKey(part);
+        if (!skills.has(key)) {
+          skills.set(key, { id: `skill:${key}`, kind: 'skill', label: part, category: index, degree: 0 });
+        }
+      });
+    });
+  });
+
+  const aliasMap = new Map(
+    Object.entries(aliases).map(([from, to]) => [techKey(from), to.map(techKey)])
+  );
+  // Une techno d'une stack compte pour elle-même et pour ses équivalences
+  const skillKeysOf = (stack: string[]) => {
+    const keys = new Set<string>();
+    stack.forEach((tech) => {
+      [techKey(tech), ...(aliasMap.get(techKey(tech)) || [])].forEach((key) => {
+        if (skills.has(key)) keys.add(key);
+      });
+    });
+    return keys;
+  };
+
+  const owners: { node: GraphNode; keys: Set<string> }[] = [
+    ...projects.map((p) => ({
+      node: { id: `project:${p.id}`, kind: 'project' as const, label: p.shortTitle ?? p.title, anchor: `#projet-${p.id}`, degree: 0 },
+      keys: skillKeysOf(p.stack),
+    })),
+    ...experiences.map((e) => ({
+      node: { id: `company:${e.id}`, kind: 'company' as const, label: e.company, anchor: '#experience', degree: 0 },
+      keys: skillKeysOf(e.stack || []),
+    })),
+    {
+      node: { id: 'archives', kind: 'archives' as const, label: archivesLabel, anchor: '#archives', degree: 0 },
+      keys: skillKeysOf(archives.flatMap((a) => a.tech)),
+    },
+  ].filter((owner) => owner.keys.size > 0);
+
+  const links: GraphLink[] = [];
+  owners.forEach(({ node, keys }) => {
+    keys.forEach((key) => {
+      const skill = skills.get(key)!;
+      links.push({ source: node.id, target: skill.id });
+      skill.degree += 1;
+      node.degree += 1;
+    });
+  });
+
+  const linkedSkills = [...skills.values()].filter((s) => s.degree > 0);
+  const nodes = [...linkedSkills, ...owners.map((o) => o.node)];
+
+  const neighbors = new Map<string, Set<string>>(nodes.map((n) => [n.id, new Set<string>()]));
+  links.forEach(({ source, target }) => {
+    neighbors.get(source)!.add(target);
+    neighbors.get(target)!.add(source);
+  });
+
+  return {
+    nodes,
+    links,
+    neighbors,
+    unlinkedSkills: [...skills.values()].filter((s) => s.degree === 0).map((s) => s.label),
+  };
+};

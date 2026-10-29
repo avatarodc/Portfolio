@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { skillCategories, sections } from '@/data/profile';
 import { Category } from '@/types';
 import { SectionHeader } from './SectionHeader';
+import { ConstellationSlot } from './ConstellationSlot';
 
 export const Skills: React.FC = () => {
   const cardColors = [
@@ -89,6 +90,8 @@ export const Skills: React.FC = () => {
             );
           })}
         </div>
+
+        <ConstellationSlot />
       </div>
     </section>
   );
