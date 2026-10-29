@@ -1,8 +1,7 @@
-// src/components/layout/Footer.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, ArrowUpRight } from 'lucide-react';
-import { socialLinks, navItems } from '@/data';
+import { socialLinks, navItems, identity, contactInfo, footer } from '@/data/profile';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -27,12 +26,12 @@ export const Footer: React.FC = () => {
           >
             <h3 className="text-2xl font-black mb-2">
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
-                MG
+                {identity.logo.main}
               </span>
-              <span className="text-white">.dev</span>
+              <span className="text-white">{identity.logo.suffix}</span>
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Développeur Full Stack passionné par l'innovation et les solutions digitales durables. Toujours en quête d'apprentissage.
+              {footer.bio}
             </p>
 
             {/* Social Links */}
@@ -60,7 +59,7 @@ export const Footer: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Navigation
+              {footer.navigationTitle}
             </h4>
             <nav className="grid grid-cols-2 gap-2">
               {navItems.map((item) => (
@@ -84,29 +83,29 @@ export const Footer: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-              Contact
+              {footer.contactTitle}
             </h4>
             <div className="space-y-3 text-sm text-gray-400">
               <a
-                href="mailto:mamadougueyeoff1@gmail.com"
+                href={`mailto:${contactInfo.email}`}
                 className="block hover:text-blue-400 transition-colors"
               >
-                mamadougueyeoff1@gmail.com
+                {contactInfo.email}
               </a>
               <a
-                href="tel:+221783116655"
+                href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
                 className="block hover:text-blue-400 transition-colors"
               >
-                +221 78 311 66 55
+                {contactInfo.phone}
               </a>
-              <p>Mbao Pikine, Sénégal</p>
+              <p>{contactInfo.address}</p>
             </div>
 
             <a
               href="#contact"
               className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors group"
             >
-              Me contacter
+              {footer.contactLabel}
               <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </motion.div>
@@ -116,10 +115,10 @@ export const Footer: React.FC = () => {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Mamadou Gueye. Tous droits réservés.
+              © {currentYear} {identity.firstName} {identity.lastName}. {footer.rights}
             </p>
             <p className="flex items-center gap-1.5 text-gray-500 text-sm">
-              Fait avec <Heart size={14} className="text-red-400 fill-red-400" /> au Sénégal
+              {footer.madeWith} <Heart size={14} className="text-red-400 fill-red-400" /> {footer.madeIn}
             </p>
           </div>
         </div>

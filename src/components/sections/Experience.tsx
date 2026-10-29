@@ -1,8 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Briefcase, MapPin, ChevronRight } from 'lucide-react';
+import { Calendar, Briefcase, MapPin, ChevronRight, ArrowDownRight, ExternalLink } from 'lucide-react';
 import { Experience as ExperienceType } from '@/types';
 import { SectionHeader } from './SectionHeader';
+import { sections, projectList } from '@/data/profile';
+
+const text = sections.experience;
+
+// Renvoi vers la fiche projet uniquement si elle existe dans la section Projets
+const projectAnchor = (projectId?: string) =>
+  projectId && projectList.some((p) => p.id === projectId) ? `#projet-${projectId}` : null;
 
 interface ExperienceProps {
   items: ExperienceType[];
@@ -12,8 +19,8 @@ export const Experience: React.FC<ExperienceProps> = ({ items }) => (
   <section id="experience" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
     <div className="container mx-auto max-w-4xl">
       <SectionHeader
-        title="Expérience Professionnelle"
-        subtitle="Mon parcours et mes réalisations"
+        title={text.title}
+        subtitle={text.subtitle}
       />
 
       <div className="relative">
@@ -48,40 +55,96 @@ export const Experience: React.FC<ExperienceProps> = ({ items }) => (
                         <Briefcase size={14} />
                         {exp.company}
                       </span>
-                      <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-                      <span className="flex items-center gap-1">
-                        <MapPin size={13} />
-                        {exp.location}
-                      </span>
+                      {exp.location && (
+                        <>
+                          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                          <span className="flex items-center gap-1">
+                            <MapPin size={13} />
+                            {exp.location}
+                          </span>
+                        </>
+                      )}
                     </div>
                   </div>
 
-                  <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full whitespace-nowrap">
+                  <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full">
                     <Calendar size={12} />
                     {exp.date}
                   </span>
                 </div>
 
-                {/* Role */}
-                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                  {exp.role}
-                </p>
+                {/* Résumé */}
+                {exp.summary && (
+                  <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                    {exp.summary}
+                  </p>
+                )}
 
-                {/* Achievements */}
-                <ul className="space-y-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400"
-                    >
-                      <ChevronRight
-                        size={14}
-                        className="mt-0.5 text-blue-500 flex-shrink-0"
-                      />
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Réalisations */}
+                {exp.highlights.length > 0 && (
+                  <ul className="space-y-2">
+                    {exp.highlights.map(({ text: highlight, projectId }, i) => {
+                      const anchor = projectAnchor(projectId);
+                      return (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400"
+                        >
+                          <ChevronRight
+                            size={14}
+                            className="mt-0.5 text-blue-500 flex-shrink-0"
+                          />
+                          <span>
+                            {highlight}
+                            {anchor && (
+                              <a
+                                href={anchor}
+                                className="inline-flex items-center gap-0.5 ml-2 font-medium text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap"
+                              >
+                                {text.detailLabel}
+                                <ArrowDownRight size={13} />
+                              </a>
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+
+                {/* Sites clients */}
+                {exp.clientLinks && exp.clientLinks.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+                    <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{text.clientsLabel}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {exp.clientLinks.map(({ label, url, image }) => (
+                        <a
+                          key={url}
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/client flex items-center gap-3 p-2 rounded-xl border border-gray-200/80 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-800 transition-colors"
+                        >
+                          {image && (
+                            <img
+                              src={image}
+                              alt={label}
+                              loading="lazy"
+                              className="w-20 h-12 object-contain p-1 rounded-lg bg-white flex-shrink-0"
+                            />
+                          )}
+                          <div className="min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{label}</p>
+                            <span className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 dark:text-blue-400 group-hover/client:underline">
+                              {sections.projectLabels.links.site}
+                              <ExternalLink size={12} />
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

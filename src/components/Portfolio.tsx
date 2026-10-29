@@ -1,32 +1,39 @@
 import { Layout } from './layout';
 import {
   HeroSection,
+  About,
   Projects,
+  Products,
+  AiProjects,
+  Archives,
   Skills,
   Education,
   Experience,
+  Distinctions,
   Certifications,
   Contact,
-  References,
 } from './sections';
 
 import {
-  projectList,
   educationList,
   experienceList,
   certificationList,
-} from '@/data';
+} from '@/data/profile';
 
 const Portfolio = () => {
   return (
     <Layout>
       <HeroSection />
-      <Projects projects={projectList} />
+      <About />
+      <Experience items={experienceList} />
+      <Projects />
+      <Products />
+      <AiProjects />
+      <Archives />
       <Skills />
       <Education items={educationList} />
-      <Experience items={experienceList} />
+      <Distinctions />
       <Certifications items={certificationList} />
-      <References />
       <Contact />
     </Layout>
   );

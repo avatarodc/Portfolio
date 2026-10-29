@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun, Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { navItems } from '@/data';
+import { navItems, identity, cv } from '@/data/profile';
 import { useScrollSpy } from '@/hooks';
-import cvPdf from '@/assets/cv/cvMamadouGUEYE.pdf';
+
+const sectionIds = navItems.map((item) => item.href.replace('#', ''));
 
 interface NavbarProps {
   darkMode: boolean;
@@ -14,7 +15,6 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const sectionIds = navItems.map((item) => item.href.replace('#', ''));
   const activeSection = useScrollSpy(sectionIds);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
   // Fermer le menu mobile au resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) setMobileMenuOpen(false);
+      if (window.innerWidth >= 1024) setMobileMenuOpen(false);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -58,15 +58,15 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
           >
             <span className="text-2xl font-black tracking-tight">
               <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 dark:from-blue-400 dark:via-cyan-400 dark:to-teal-400 text-transparent bg-clip-text">
-                MG
+                {identity.logo.main}
               </span>
-              <span className="text-gray-800 dark:text-white">.dev</span>
+              <span className="text-gray-800 dark:text-white">{identity.logo.suffix}</span>
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-full transition-all duration-300" />
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item, i) => {
               const isActive = activeSection === item.href.replace('#', '');
               return (
@@ -98,15 +98,15 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
 
             {/* Bouton CV */}
             <motion.a
-              href={cvPdf}
-              download="CV_Mamadou_GUEYE.pdf"
+              href={cv.file}
+              download={cv.downloadName}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 transition-all duration-300"
             >
               <Download size={16} />
-              CV
+              {cv.labels.navbar}
             </motion.a>
 
             {/* Theme Toggle */}
@@ -137,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
           </div>
 
           {/* Mobile Controls */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <motion.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -185,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="md:hidden fixed inset-0 top-[60px] bg-black/20 dark:bg-black/40 backdrop-blur-sm z-40"
+                className="lg:hidden fixed inset-0 top-[60px] bg-black/20 dark:bg-black/40 backdrop-blur-sm z-40"
                 onClick={() => setMobileMenuOpen(false)}
               />
 
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '100%' }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                className="md:hidden fixed top-[60px] right-0 bottom-0 w-72 bg-white dark:bg-gray-950 shadow-2xl z-50 overflow-y-auto"
+                className="lg:hidden fixed top-[60px] right-0 bottom-0 w-72 bg-white dark:bg-gray-950 shadow-2xl z-50 overflow-y-auto"
               >
                 <div className="p-6 space-y-2">
                   {navItems.map((item, i) => {
@@ -221,13 +221,13 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
 
                   <div className="pt-4 mt-4 border-t border-gray-100 dark:border-gray-800">
                     <a
-                      href={cvPdf}
-                      download="CV_Mamadou_GUEYE.pdf"
+                      href={cv.file}
+                      download={cv.downloadName}
                       className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl hover:shadow-lg transition-all"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <Download size={16} />
-                      Télécharger mon CV
+                      {cv.labels.mobileMenu}
                     </a>
                   </div>
                 </div>

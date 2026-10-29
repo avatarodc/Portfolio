@@ -2,58 +2,77 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowDown,
-  GithubIcon,
-  LinkedinIcon,
   Mail,
   Download,
   FileText,
   MapPin,
   Briefcase,
-  GitBranch,
 } from 'lucide-react';
 import { useTypewriter } from '@/hooks';
+import { identity, hero, cv, socialLinks, contactInfo } from '@/data/profile';
+import { TerminalField } from '@/types';
+
+const stringToken = (value: string) => (
+  <span className="text-amber-600 dark:text-amber-400">"{value}"</span>
+);
+
+// Rend une ligne de la carte terminal (chaîne, liste ou booléen)
+const TerminalLine: React.FC<{ field: TerminalField; last: boolean }> = ({ field, last }) => {
+  const comma = last ? null : <span className="text-gray-500">,</span>;
+
+  if (Array.isArray(field.value)) {
+    const rows: string[][] = [];
+    for (let i = 0; i < field.value.length; i += 2) rows.push(field.value.slice(i, i + 2));
+    return (
+      <>
+        <p className="pl-4">
+          <span className="text-emerald-600 dark:text-emerald-400">{field.key}</span>
+          <span className="text-gray-500">: [</span>
+        </p>
+        {rows.map((row, r) => (
+          <p key={r} className="pl-8">
+            {row.map((v, i) => (
+              <React.Fragment key={v}>
+                {i > 0 && ' '}
+                {stringToken(v)}
+                {(i < row.length - 1 || r < rows.length - 1) && (
+                  <span className="text-gray-500">,</span>
+                )}
+              </React.Fragment>
+            ))}
+          </p>
+        ))}
+        <p className="pl-4">
+          <span className="text-gray-500">]</span>
+          {comma}
+        </p>
+      </>
+    );
+  }
+
+  return (
+    <p className="pl-4">
+      <span className="text-emerald-600 dark:text-emerald-400">{field.key}</span>
+      <span className="text-gray-500">:</span>{' '}
+      {typeof field.value === 'boolean' ? (
+        <span className="text-cyan-600 dark:text-cyan-400">{String(field.value)}</span>
+      ) : (
+        stringToken(field.value)
+      )}
+      {comma}
+    </p>
+  );
+};
 
 const HeroSection: React.FC = () => {
   const { text, cursor } = useTypewriter({
-    words: [
-      'Développeur Backend',
-      'Développeur Full Stack',
-      'Formateur PHP',
-      'Passionné d\'innovation',
-    ],
+    words: hero.typewriterWords,
     typingSpeed: 70,
     deletingSpeed: 40,
     pauseTime: 2500,
   });
 
-  const socialLinks = [
-    {
-      href: 'https://github.com/avatarodc',
-      icon: GithubIcon,
-      label: 'GitHub',
-    },
-    {
-      href: 'https://gitlab.com/odcmamadougueye',
-      icon: GitBranch,
-      label: 'GitLab',
-    },
-    {
-      href: 'https://linkedin.com/in/Mamadou_GUEYE',
-      icon: LinkedinIcon,
-      label: 'LinkedIn',
-    },
-    {
-      href: 'mailto:mamadougueyeoff1@gmail.com',
-      icon: Mail,
-      label: 'Email',
-    },
-  ];
-
-  const stats = [
-    { value: '3+', label: 'Ans d\'expérience' },
-    { value: '10+', label: 'Projets réalisés' },
-    { value: '5+', label: 'Technologies maîtrisées' },
-  ];
+  const { stats } = hero;
 
   // Stagger animations
   const container = {
@@ -90,8 +109,8 @@ const HeroSection: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-purple-400/10 dark:bg-purple-500/5 blur-3xl" />
 
       {/* ── Main content ── */}
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-6 pt-28 pb-24 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
           {/* ── Left: Text content (3 cols) ── */}
           <motion.div
             variants={container}
@@ -106,17 +125,17 @@ const HeroSection: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
               </span>
               <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                Disponible pour des opportunités
+                {contactInfo.availability}
               </span>
             </motion.div>
 
             {/* Headline */}
             <motion.div variants={item} className="space-y-3">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1]">
-                <span className="text-gray-900 dark:text-white">Mamadou</span>
+                <span className="text-gray-900 dark:text-white">{identity.firstName}</span>
                 <br />
                 <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 dark:from-blue-400 dark:via-cyan-400 dark:to-teal-400 text-transparent bg-clip-text">
-                  Gueye
+                  {identity.lastName}
                 </span>
               </h1>
             </motion.div>
@@ -137,25 +156,27 @@ const HeroSection: React.FC = () => {
               variants={item}
               className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl"
             >
-              Développeur Full Stack passionné par l'innovation, spécialisé en{' '}
-              <span className="text-gray-900 dark:text-white font-medium">Java/Spring Boot</span>,{' '}
-              <span className="text-gray-900 dark:text-white font-medium">React</span> et{' '}
-              <span className="text-gray-900 dark:text-white font-medium">Angular</span>.
-              Actuellement développeur backend chez{' '}
-              <span className="text-blue-600 dark:text-blue-400 font-medium">DIOTALI</span> et en
-              Master Génie Logiciel à l'ISI.
+              {hero.bio.map(({ text, style }, i) =>
+                style === 'strong' ? (
+                  <span key={i} className="text-gray-900 dark:text-white font-medium">{text}</span>
+                ) : style === 'accent' ? (
+                  <span key={i} className="text-blue-600 dark:text-blue-400 font-medium">{text}</span>
+                ) : (
+                  <React.Fragment key={i}>{text}</React.Fragment>
+                )
+              )}
             </motion.p>
 
             {/* Location & Company */}
             <motion.div variants={item} className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
               <span className="flex items-center gap-1.5">
                 <MapPin size={15} className="text-blue-500" />
-                Mbao Pikine, Sénégal
+                {contactInfo.address}
               </span>
               <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
               <span className="flex items-center gap-1.5">
                 <Briefcase size={15} className="text-blue-500" />
-                DIOTALI
+                {hero.company}
               </span>
             </motion.div>
 
@@ -167,34 +188,35 @@ const HeroSection: React.FC = () => {
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Mail size={18} className="relative z-10" />
-                <span className="relative z-10">Me contacter</span>
+                <span className="relative z-10">{hero.contactLabel}</span>
               </a>
 
               <a
-                href="https://drive.google.com/file/d/10QMzFWJ3yXcvXNaD-j-le4ixdHuIXxtR/view"
+                href={cv.file}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-500/5 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <FileText size={18} />
-                Voir mon CV
+                {cv.labels.heroView}
               </a>
 
               <a
-                href="https://drive.google.com/uc?export=download&id=10QMzFWJ3yXcvXNaD-j-le4ixdHuIXxtR"
+                href={cv.file}
+                download={cv.downloadName}
                 className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-600 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-500/5 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Download size={18} />
-                Télécharger CV
+                {cv.labels.heroDownload}
               </a>
             </motion.div>
 
             {/* Social Links */}
             <motion.div variants={item} className="flex items-center gap-3 pt-2">
-              {socialLinks.map(({ href, icon: Icon, label }) => (
+              {socialLinks.map(({ id, link, Icon, label }) => (
                 <a
-                  key={label}
-                  href={href}
+                  key={id}
+                  href={link}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
@@ -233,7 +255,7 @@ const HeroSection: React.FC = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
                   </div>
                   <span className="text-xs text-gray-400 dark:text-gray-500 font-mono ml-2">
-                    mamadou@portfolio ~ %
+                    {hero.terminal.prompt}
                   </span>
                 </div>
 
@@ -243,57 +265,17 @@ const HeroSection: React.FC = () => {
                   <div className="font-mono text-sm space-y-1.5">
                     <p>
                       <span className="text-purple-500 dark:text-purple-400">const</span>{' '}
-                      <span className="text-blue-600 dark:text-blue-400">dev</span>{' '}
+                      <span className="text-blue-600 dark:text-blue-400">{hero.terminal.variable}</span>{' '}
                       <span className="text-gray-500">=</span>{' '}
                       <span className="text-gray-500">{'{'}</span>
                     </p>
-                    <p className="pl-4">
-                      <span className="text-emerald-600 dark:text-emerald-400">nom</span>
-                      <span className="text-gray-500">:</span>{' '}
-                      <span className="text-amber-600 dark:text-amber-400">"Mamadou Gueye"</span>
-                      <span className="text-gray-500">,</span>
-                    </p>
-                    <p className="pl-4">
-                      <span className="text-emerald-600 dark:text-emerald-400">rôle</span>
-                      <span className="text-gray-500">:</span>{' '}
-                      <span className="text-amber-600 dark:text-amber-400">"Backend Developer"</span>
-                      <span className="text-gray-500">,</span>
-                    </p>
-                    <p className="pl-4">
-                      <span className="text-emerald-600 dark:text-emerald-400">entreprise</span>
-                      <span className="text-gray-500">:</span>{' '}
-                      <span className="text-amber-600 dark:text-amber-400">"DIOTALI"</span>
-                      <span className="text-gray-500">,</span>
-                    </p>
-                    <p className="pl-4">
-                      <span className="text-emerald-600 dark:text-emerald-400">stack</span>
-                      <span className="text-gray-500">: [</span>
-                    </p>
-                    <p className="pl-8">
-                      <span className="text-amber-600 dark:text-amber-400">"Java"</span>
-                      <span className="text-gray-500">,</span>{' '}
-                      <span className="text-amber-600 dark:text-amber-400">"Spring Boot"</span>
-                      <span className="text-gray-500">,</span>
-                    </p>
-                    <p className="pl-8">
-                      <span className="text-amber-600 dark:text-amber-400">"Angular"</span>
-                      <span className="text-gray-500">,</span>{' '}
-                      <span className="text-amber-600 dark:text-amber-400">"React"</span>
-                      <span className="text-gray-500">,</span>
-                    </p>
-                    <p className="pl-8">
-                      <span className="text-amber-600 dark:text-amber-400">"Docker"</span>
-                      <span className="text-gray-500">,</span>{' '}
-                      <span className="text-amber-600 dark:text-amber-400">"AWS"</span>
-                    </p>
-                    <p className="pl-4">
-                      <span className="text-gray-500">],</span>
-                    </p>
-                    <p className="pl-4">
-                      <span className="text-emerald-600 dark:text-emerald-400">passion</span>
-                      <span className="text-gray-500">:</span>{' '}
-                      <span className="text-cyan-600 dark:text-cyan-400">true</span>
-                    </p>
+                    {hero.terminal.fields.map((field, i) => (
+                      <TerminalLine
+                        key={field.key}
+                        field={field}
+                        last={i === hero.terminal.fields.length - 1}
+                      />
+                    ))}
                     <p>
                       <span className="text-gray-500">{'}'}</span>
                       <span className="text-gray-500">;</span>
@@ -348,7 +330,7 @@ const HeroSection: React.FC = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs text-gray-400 dark:text-gray-500 font-medium tracking-wider uppercase">
-          Découvrir
+          {hero.scrollHint}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

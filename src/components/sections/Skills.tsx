@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { skillCategories } from '@/data';
+import { skillCategories, sections } from '@/data/profile';
 import { Category } from '@/types';
 import { SectionHeader } from './SectionHeader';
 
@@ -16,11 +16,11 @@ export const Skills: React.FC = () => {
     <section id="skills" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
       <div className="container mx-auto max-w-7xl">
         <SectionHeader
-          title="Compétences Techniques"
-          subtitle="Les technologies et outils que je maîtrise"
+          title={sections.skills.title}
+          subtitle={sections.skills.subtitle}
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category: Category, index: number) => {
             const color = cardColors[index % cardColors.length];
             const Icon = category.icon;
@@ -66,7 +66,7 @@ export const Skills: React.FC = () => {
                   {/* Skill count */}
                   <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
                     <span className="text-xs text-gray-400 dark:text-gray-500">
-                      {category.skills.length} technologies
+                      {category.skills.length} {sections.skills.countLabel}
                     </span>
                     <div className="flex gap-0.5">
                       {Array.from({ length: Math.min(category.skills.length, 8) }).map(

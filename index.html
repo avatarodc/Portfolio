@@ -1,12 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="%SEO_LANG%">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpeg" href="/papis.jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAMADOU GUEYE</title>
+
+    <!-- Valeurs injectées depuis src/data/seo.ts (voir vite.config.ts) -->
+    <title>%SEO_TITLE%</title>
+    <meta name="description" content="%SEO_DESCRIPTION%" />
+    <link rel="canonical" href="%SEO_URL%" />
+
+    <!-- Open Graph (LinkedIn, WhatsApp, Facebook…) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="%SEO_LOCALE%" />
+    <meta property="og:site_name" content="%SEO_TITLE%" />
+    <meta property="og:title" content="%SEO_TITLE%" />
+    <meta property="og:description" content="%SEO_DESCRIPTION%" />
+    <meta property="og:url" content="%SEO_URL%" />
+    <meta property="og:image" content="%SEO_IMAGE%" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="%SEO_IMAGE_WIDTH%" />
+    <meta property="og:image:height" content="%SEO_IMAGE_HEIGHT%" />
+    <meta property="og:image:alt" content="%SEO_IMAGE_ALT%" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%SEO_TITLE%" />
+    <meta name="twitter:description" content="%SEO_DESCRIPTION%" />
+    <meta name="twitter:image" content="%SEO_IMAGE%" />
+    <meta name="twitter:image:alt" content="%SEO_IMAGE_ALT%" />
   </head>
-  <body >
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
