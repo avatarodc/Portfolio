@@ -37,7 +37,6 @@ import {
   GraduationCap,
   Users,
 } from 'lucide-react';
-import cvPdf from '@/assets/cv/cvMamadouGUEYE.pdf';
 
 // ─── Identité ───
 export const identity: Identity = {
@@ -109,16 +108,15 @@ export const about: About = {
 };
 
 // ─── CV ───
+// Pour mettre à jour le CV : remplacer public/CV_Mamadou_Gueye.pdf (même nom de fichier).
 export const cv: CvInfo = {
-  file: cvPdf,
-  downloadName: 'CV_Mamadou_GUEYE.pdf',
-  viewUrl: 'https://drive.google.com/file/d/10QMzFWJ3yXcvXNaD-j-le4ixdHuIXxtR/view',
-  downloadUrl: 'https://drive.google.com/uc?export=download&id=10QMzFWJ3yXcvXNaD-j-le4ixdHuIXxtR',
+  file: '/CV_Mamadou_Gueye.pdf',
+  downloadName: 'CV_Mamadou_Gueye.pdf',
   labels: {
     navbar: 'CV',
     mobileMenu: 'Télécharger mon CV',
     heroView: 'Voir mon CV',
-    heroDownload: 'Télécharger CV',
+    heroDownload: 'Télécharger mon CV',
   },
 };
 
@@ -277,8 +275,7 @@ export const projectList: Project[] = [
       'CI/CD GitLab → GitHub → Railway',
       'Déclinaison white-label',
     ],
-    // Supabase / PostgreSQL : à ajouter une fois confirmés
-    stack: ['React', 'Node.js', 'Express', 'Cloudinary', 'Railway'],
+    stack: ['React', 'Node.js', 'Express', 'Supabase', 'Cloudinary', 'Railway'],
     role: 'Fondateur',
     status: 'production',
     links: [{ kind: 'site', url: 'https://rimemba.net' }],
@@ -734,10 +731,12 @@ export const experienceList: Experience[] = [
   {
     id: 'lonase',
     date: 'Sept. – Oct. 2023',
-    title: 'Stagiaire développeur',
+    title: 'Stagiaire développement et administration systèmes',
     company: 'LONASE',
     location: 'Dakar, Sénégal',
-    highlights: []
+    highlights: [
+      { text: 'Développement de flux ETL avec Talend et Python' },
+    ]
   },
   {
     id: 'teqlab',

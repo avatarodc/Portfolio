@@ -192,7 +192,7 @@ const HeroSection: React.FC = () => {
               </a>
 
               <a
-                href={cv.viewUrl}
+                href={cv.file}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-500/5 transition-all duration-300 hover:-translate-y-0.5"
@@ -202,7 +202,8 @@ const HeroSection: React.FC = () => {
               </a>
 
               <a
-                href={cv.downloadUrl}
+                href={cv.file}
+                download={cv.downloadName}
                 className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-600 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-500/5 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Download size={18} />

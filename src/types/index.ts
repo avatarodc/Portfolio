@@ -178,10 +178,9 @@ export interface Hero {
 }
 
 export interface CvInfo {
+  // chemin public du PDF, utilisé pour l'affichage et le téléchargement
   file: string;
   downloadName: string;
-  viewUrl: string;
-  downloadUrl: string;
   labels: {
     navbar: string;
     mobileMenu: string;
