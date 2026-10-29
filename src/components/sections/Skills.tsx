@@ -34,7 +34,7 @@ export const Skills: React.FC = () => {
                 transition={{ delay: index * 0.1, duration: 0.4 }}
                 className="group"
               >
-                <div className="h-full bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="h-full bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20 transition duration-300 hover:-translate-y-1">
                   {/* Icon + Title */}
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-2.5 rounded-xl bg-gradient-to-br ${color.bg}`}>
@@ -56,7 +56,7 @@ export const Skills: React.FC = () => {
                     {category.skills.map((skill: string) => (
                       <span
                         key={skill}
-                        className={`px-3 py-1.5 text-xs font-medium rounded-lg ${color.badge} transition-all duration-200 hover:scale-105`}
+                        className={`px-3 py-1.5 text-xs font-medium rounded-lg ${color.badge} transition duration-200 hover:scale-105`}
                       >
                         {skill}
                       </span>

@@ -5,6 +5,17 @@
     <link rel="icon" type="image/jpeg" href="/papis.jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Thème appliqué avant le premier affichage (même logique que src/hooks/useTheme.tsx) :
+         évite le flash clair → sombre et les transitions de couleur au chargement. -->
+    <script>
+      try {
+        var t = localStorage.getItem('portfolio-theme');
+        var dark = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+      } catch (e) {}
+    </script>
+
     <!-- Valeurs injectées depuis src/data/seo.ts (voir vite.config.ts) -->
     <title>%SEO_TITLE%</title>
     <meta name="description" content="%SEO_DESCRIPTION%" />

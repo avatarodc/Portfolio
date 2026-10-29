@@ -46,7 +46,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
     transition={{ delay: (index % 3) * 0.1, duration: 0.4 }}
     className="group scroll-mt-24"
   >
-    <div className="h-full flex flex-col bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 overflow-hidden hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 hover:-translate-y-1">
+    <div className="h-full flex flex-col bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 overflow-hidden hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 transition duration-300 hover:-translate-y-1">
       {/* Capture d'écran : affichée seulement si elle existe (liste des captures attendues : docs/captures-a-fournir.md) */}
       {project.image && (
         <div className="relative h-44 overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -250,7 +250,7 @@ export const Archives: React.FC = () => {
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-controls="archives-list"
-          className="mt-6 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-500/20 transition-all duration-300"
+          className="mt-6 inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-500/20 transition duration-300"
         >
           {open ? text.hideLabel : `${text.showLabel} (${archiveProjects.length})`}
           <ChevronDown size={16} className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />

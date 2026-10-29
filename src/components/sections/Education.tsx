@@ -37,7 +37,7 @@ export const Education: React.FC<EducationProps> = ({ items }) => (
               </div>
 
               {/* Card */}
-              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-cyan-200 dark:hover:border-cyan-800 hover:shadow-lg hover:shadow-cyan-500/5 transition-all duration-300">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-cyan-200 dark:hover:border-cyan-800 hover:shadow-lg hover:shadow-cyan-500/5 transition duration-300">
                 <div className={`flex flex-wrap items-start justify-between gap-3 ${edu.description ? 'mb-3' : ''}`}>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">

@@ -40,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 w-full z-50 transition duration-500 ${
         scrolled
           ? 'bg-white/85 dark:bg-gray-950/90 backdrop-blur-xl shadow-lg shadow-black/[0.03] dark:shadow-black/20'
           : 'bg-transparent'
@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
               </span>
               <span className="text-gray-800 dark:text-white">{identity.logo.suffix}</span>
             </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-full transition-all duration-300" />
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-full transition duration-300" />
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -76,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: i * 0.05 }}
-                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition duration-300 ${
                     isActive
                       ? 'text-blue-600 dark:text-blue-400'
                       : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 transition duration-300"
             >
               <Download size={16} />
               {cv.labels.navbar}
@@ -115,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.35 }}
               onClick={toggleTheme}
-              className="ml-2 p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 hover:scale-105"
+              className="ml-2 p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 hover:scale-105"
               aria-label="Changer le thème"
             >
               <AnimatePresence mode="wait">
@@ -208,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.05 }}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
+                        className={`block px-4 py-3 rounded-xl text-base font-medium transition duration-200 ${
                           isActive
                             ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400'
                             : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50'
@@ -223,7 +223,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
                     <a
                       href={cv.file}
                       download={cv.downloadName}
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl hover:shadow-lg transition-all"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl hover:shadow-lg transition"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <Download size={16} />

@@ -62,7 +62,7 @@ export const Contact: React.FC = () => {
                   {href ? (
                     <a
                       href={href}
-                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200/80 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md transition-all duration-300"
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200/80 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md transition duration-300"
                     >
                       <div className={`p-2.5 rounded-xl ${color}`}>
                         <Icon size={20} />
@@ -108,7 +108,7 @@ export const Contact: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md transition-all duration-300"
+                    className="flex items-center justify-center w-11 h-11 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md transition duration-300"
                   >
                     <Icon size={18} />
                   </a>
@@ -137,7 +137,7 @@ export const Contact: React.FC = () => {
 
               <a
                 href={mailtoHref}
-                className="mt-8 w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 transition-all duration-300"
+                className="mt-8 w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 transition duration-300"
               >
                 <Send size={18} />
                 {cta.button}

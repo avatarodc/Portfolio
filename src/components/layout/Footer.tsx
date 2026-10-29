@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
       {/* Ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-[radial-gradient(closest-side,rgba(59,130,246,0.15),transparent)] pointer-events-none" />
 
       <div className="container mx-auto px-6 py-16 relative">
         {/* Top Section */}
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:bg-blue-500/20 hover:border-blue-500/30 transition-all duration-300"
+                  className="group flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:bg-blue-500/20 hover:border-blue-500/30 transition duration-300"
                 >
                   <Icon size={18} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
                 </a>
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                   href={item.href}
                   className="group flex items-center gap-1 text-gray-400 hover:text-white text-sm py-1 transition-colors duration-200"
                 >
-                  <span className="w-0 group-hover:w-2 h-px bg-blue-400 transition-all duration-200" />
+                  <span className="w-0 group-hover:w-2 h-px bg-blue-400 transition duration-200" />
                   {item.label}
                 </a>
               ))}

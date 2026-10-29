@@ -65,7 +65,7 @@ const TerminalLine: React.FC<{ field: TerminalField; last: boolean }> = ({ field
 };
 
 const HeroSection: React.FC = () => {
-  const { text, cursor } = useTypewriter({
+  const typewriterRef = useTypewriter({
     words: hero.typewriterWords,
     typingSpeed: 70,
     deletingSpeed: 40,
@@ -104,9 +104,10 @@ const HeroSection: React.FC = () => {
       />
 
       {/* Gradient orbs */}
-      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-blue-400/20 dark:bg-blue-500/10 blur-3xl" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-400/15 dark:bg-cyan-500/8 blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-purple-400/10 dark:bg-purple-500/5 blur-3xl" />
+      {/* Halos : dégradés radiaux plutôt que des éléments floutés (filtre blur coûteux) */}
+      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(closest-side,rgba(96,165,250,0.2),transparent)] dark:bg-[radial-gradient(closest-side,rgba(59,130,246,0.12),transparent)]" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(34,211,238,0.15),transparent)] dark:bg-[radial-gradient(closest-side,rgba(6,182,212,0.09),transparent)]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[radial-gradient(closest-side,rgba(192,132,252,0.1),transparent)] dark:bg-[radial-gradient(closest-side,rgba(168,85,247,0.06),transparent)]" />
 
       {/* ── Main content ── */}
       <div className="relative z-10 container mx-auto px-6 pt-28 pb-24 lg:py-24">
@@ -121,7 +122,7 @@ const HeroSection: React.FC = () => {
             {/* Status badge */}
             <motion.div variants={item} className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="motion-safe:animate-ping [animation-iteration-count:3] absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
               </span>
               <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -144,9 +145,11 @@ const HeroSection: React.FC = () => {
             <motion.div variants={item}>
               <div className="flex items-center gap-3 text-xl sm:text-2xl font-light text-gray-700 dark:text-gray-300">
                 <span className="w-8 h-px bg-blue-500" />
-                <span>
-                  {text}
-                  <span className="text-blue-500 font-normal">{cursor}</span>
+                {/* Texte animé masqué aux lecteurs d'écran : ils lisent la liste complète */}
+                <span className="sr-only">{hero.typewriterWords.join(', ')}</span>
+                <span aria-hidden="true">
+                  <span ref={typewriterRef}>{hero.typewriterWords[0]}</span>
+                  <span className="text-blue-500 font-normal motion-safe:animate-caret">|</span>
                 </span>
               </div>
             </motion.div>
@@ -184,7 +187,7 @@ const HeroSection: React.FC = () => {
             <motion.div variants={item} className="flex flex-wrap gap-4 pt-2">
               <a
                 href="#contact"
-                className="group relative inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5"
+                className="group relative inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl overflow-hidden transition duration-300 hover:shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <Mail size={18} className="relative z-10" />
@@ -195,7 +198,7 @@ const HeroSection: React.FC = () => {
                 href={cv.file}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-500/5 transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-500/5 transition duration-300 hover:-translate-y-0.5"
               >
                 <FileText size={18} />
                 {cv.labels.heroView}
@@ -204,7 +207,7 @@ const HeroSection: React.FC = () => {
               <a
                 href={cv.file}
                 download={cv.downloadName}
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-600 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-500/5 transition-all duration-300 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-600 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/50 dark:hover:bg-emerald-500/5 transition duration-300 hover:-translate-y-0.5"
               >
                 <Download size={18} />
                 {cv.labels.heroDownload}
@@ -220,7 +223,7 @@ const HeroSection: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="group flex items-center justify-center w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/10"
+                  className="group flex items-center justify-center w-11 h-11 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/10"
                 >
                   <Icon
                     size={18}
@@ -240,7 +243,7 @@ const HeroSection: React.FC = () => {
           >
             <div className="relative">
               {/* Glow behind card */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-purple-500/20 dark:from-blue-500/10 dark:via-cyan-500/10 dark:to-purple-500/10 rounded-3xl blur-2xl" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-purple-500/20 dark:from-blue-500/10 dark:via-cyan-500/10 dark:to-purple-500/10 rounded-3xl blur-xl" />
 
               {/* Card */}
               <div className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl border border-gray-200/80 dark:border-gray-800/80 shadow-2xl shadow-black/5 dark:shadow-black/30 overflow-hidden">

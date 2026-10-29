@@ -26,7 +26,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ items }) => (
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
           >
-            <div className="h-full flex flex-col bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-amber-200 dark:hover:border-amber-800 hover:shadow-lg hover:shadow-amber-500/5 transition-all duration-300">
+            <div className="h-full flex flex-col bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-amber-200 dark:hover:border-amber-800 hover:shadow-lg hover:shadow-amber-500/5 transition duration-300">
               {/* Icon + title */}
               <div className="flex items-start gap-3 mb-4">
                 <div className="p-2 rounded-xl bg-amber-50 dark:bg-amber-500/10">

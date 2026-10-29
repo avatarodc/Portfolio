@@ -21,7 +21,7 @@ export const Distinctions: React.FC = () => (
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
           >
-            <div className="h-full flex items-start gap-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
+            <div className="h-full flex items-start gap-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-lg hover:shadow-blue-500/5 transition duration-300">
               <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex-shrink-0">
                 <Icon size={22} className="text-blue-600 dark:text-blue-400" />
               </div>

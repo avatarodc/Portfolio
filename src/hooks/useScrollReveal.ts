@@ -11,7 +11,7 @@ interface ScrollRevealOptions {
  *
  * Usage:
  *   const { ref, isVisible } = useScrollReveal();
- *   <div ref={ref} className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+ *   <div ref={ref} className={`transition duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
  */
 export const useScrollReveal = <T extends HTMLElement = HTMLDivElement>(
   options?: ScrollRevealOptions
