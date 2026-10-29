@@ -647,7 +647,7 @@ export const skillCategories: Category[] = [
 export const educationList: Education[] = [
   {
     id: 'isi-master',
-    date: 'Diplôme prévu en juillet 2027',
+    date: 'Oct. 2024 – juil. 2027',
     title: 'Master Génie Logiciel',
     institution: 'ISI Dakar',
     description: 'M2 en cours.',
@@ -656,7 +656,7 @@ export const educationList: Education[] = [
   {
     id: 'isi-licence',
     date: '2025',
-    title: 'Licence',
+    title: 'Licence Génie Logiciel',
     institution: 'ISI Dakar',
     location: 'Dakar, Sénégal'
   },
@@ -696,7 +696,7 @@ export const experienceList: Experience[] = [
     title: 'Développeur Full Stack',
     company: 'DIOTALI',
     location: 'Dakar, Sénégal',
-    summary: 'Java / Spring Boot · Angular · PostgreSQL',
+    summary: 'Java / Spring Boot · Angular · PostgreSQL · MySQL · Docker · AWS',
     highlights: [
       { text: 'GFA — système de gestion de files d\'attente en production à la BSIC et à la SENEAU', projectId: 'gfa' },
       { text: 'Billetterie de la Fédération Sénégalaise de Football — paiement ORABANK et transfert de tickets', projectId: 'billetterie-fsf' },
