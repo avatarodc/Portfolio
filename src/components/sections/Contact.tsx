@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, ArrowUpRight, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, ArrowUpRight } from 'lucide-react';
 import { socialLinks, contactInfo, sections } from '@/data/profile';
 import { SectionHeader } from './SectionHeader';
 
 const text = sections.contact;
-const { form } = text;
+const { cta } = text;
+const mailtoHref = `mailto:${contactInfo.email}?subject=${encodeURIComponent(cta.mailSubject)}&body=${encodeURIComponent(cta.mailBody)}`;
 
 export const Contact: React.FC = () => {
-  const [submitted, setSubmitted] = useState(false);
-
   const contactItems = [
     {
       icon: Mail,
@@ -39,12 +38,6 @@ export const Contact: React.FC = () => {
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
   return (
     <section id="contact" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
       <div className="container mx-auto max-w-6xl">
@@ -53,7 +46,7 @@ export const Contact: React.FC = () => {
           subtitle={text.subtitle}
         />
 
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Contact Info - 2 cols */}
           <div className="lg:col-span-2 space-y-6">
             {/* Contact cards */}
@@ -124,105 +117,41 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact Form - 3 cols */}
+          {/* Appel à l'action e-mail - 3 cols */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
-                    >
-                      {form.name.label}
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      placeholder={form.name.placeholder}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
-                    >
-                      {form.email.label}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      placeholder={form.email.placeholder}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 text-sm"
-                    />
-                  </div>
-                </div>
+            <div className="h-full flex flex-col justify-center bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 sm:p-10">
+              <div className="p-3 w-fit rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 mb-5">
+                <Mail size={24} className="text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="text-2xl font-black tracking-tight text-gray-900 dark:text-white">
+                {cta.title}
+              </h3>
+              <p className="mt-3 text-gray-600 dark:text-gray-400 leading-relaxed">
+                {cta.text}
+              </p>
 
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
-                  >
-                    {form.subject.label}
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder={form.subject.placeholder}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 text-sm"
-                  />
-                </div>
+              <a
+                href={mailtoHref}
+                className="mt-8 w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <Send size={18} />
+                {cta.button}
+              </a>
 
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
-                  >
-                    {form.message.label}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    placeholder={form.message.placeholder}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 resize-none text-sm"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitted}
-                  className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 ${
-                    submitted
-                      ? 'bg-emerald-500 cursor-default'
-                      : 'bg-gradient-to-r from-blue-600 to-cyan-500 hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-0.5'
-                  }`}
+              <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400 break-words">
+                {cta.hint}{' '}
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
                 >
-                  {submitted ? (
-                    <>
-                      <CheckCircle size={18} />
-                      {form.success}
-                    </>
-                  ) : (
-                    <>
-                      <Send size={18} />
-                      {form.submit}
-                    </>
-                  )}
-                </button>
-              </form>
+                  {contactInfo.email}
+                </a>
+              </p>
             </div>
           </motion.div>
         </div>

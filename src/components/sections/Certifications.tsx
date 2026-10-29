@@ -10,14 +10,14 @@ interface CertificationsProps {
 }
 
 export const Certifications: React.FC<CertificationsProps> = ({ items }) => (
-  <section id="certifications" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
+  <section id="certifications" className="py-24 px-6">
     <div className="container mx-auto max-w-5xl">
       <SectionHeader
         title={sections.certifications.title}
         subtitle={sections.certifications.subtitle}
       />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((cert, index) => (
           <motion.div
             key={cert.id}

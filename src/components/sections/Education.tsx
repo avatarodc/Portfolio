@@ -38,7 +38,7 @@ export const Education: React.FC<EducationProps> = ({ items }) => (
 
               {/* Card */}
               <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 p-6 hover:border-cyan-200 dark:hover:border-cyan-800 hover:shadow-lg hover:shadow-cyan-500/5 transition-all duration-300">
-                <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div className={`flex flex-wrap items-start justify-between gap-3 ${edu.description ? 'mb-3' : ''}`}>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                       {edu.title}
@@ -48,23 +48,29 @@ export const Education: React.FC<EducationProps> = ({ items }) => (
                         <GraduationCap size={14} />
                         {edu.institution}
                       </span>
-                      <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-                      <span className="flex items-center gap-1">
-                        <MapPin size={13} />
-                        {edu.location}
-                      </span>
+                      {edu.location && (
+                        <>
+                          <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                          <span className="flex items-center gap-1">
+                            <MapPin size={13} />
+                            {edu.location}
+                          </span>
+                        </>
+                      )}
                     </div>
                   </div>
 
-                  <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full whitespace-nowrap">
+                  <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-full">
                     <Calendar size={12} />
                     {edu.date}
                   </span>
                 </div>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {edu.description}
-                </p>
+                {edu.description && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {edu.description}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}

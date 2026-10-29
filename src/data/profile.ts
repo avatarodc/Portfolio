@@ -12,12 +12,13 @@ import {
   Experience,
   Certification,
   Contact,
-  Reference,
   Identity,
   Hero,
   CvInfo,
   SectionsContent,
   FooterContent,
+  About,
+  Distinction,
 } from '@/types';
 import {
   GithubIcon,
@@ -27,7 +28,13 @@ import {
   Layout,
   Server,
   Database,
-  Code,
+  Smartphone,
+  Sparkles,
+  Cloud,
+  Network,
+  Trophy,
+  GraduationCap,
+  Users,
 } from 'lucide-react';
 import cvPdf from '@/assets/cv/cvMamadouGUEYE.pdf';
 
@@ -41,22 +48,28 @@ export const identity: Identity = {
 // ─── Hero (haut de page) ───
 export const hero: Hero = {
   typewriterWords: [
-    'Développeur Backend',
     'Développeur Full Stack',
-    'Formateur PHP',
-    'Passionné d\'innovation',
+    'Java / Spring Boot',
+    'PHP / Laravel',
+    'Angular / React',
+    'Flutter',
+    'IA appliquée',
   ],
   // `strong` = mot en gras, `accent` = mot en couleur
   bio: [
-    { text: 'Développeur Full Stack passionné par l\'innovation, spécialisé en ' },
+    { text: 'Développeur Full Stack — ' },
     { text: 'Java/Spring Boot', style: 'strong' },
-    { text: ', ' },
-    { text: 'React', style: 'strong' },
-    { text: ' et ' },
-    { text: 'Angular', style: 'strong' },
-    { text: '. Actuellement développeur backend chez ' },
+    { text: ' · ' },
+    { text: 'PHP/Laravel', style: 'strong' },
+    { text: ' · ' },
+    { text: 'Angular/React', style: 'strong' },
+    { text: ' · ' },
+    { text: 'Flutter', style: 'strong' },
+    { text: ' · ' },
+    { text: 'IA', style: 'strong' },
+    { text: '. Actuellement chez ' },
     { text: 'DIOTALI', style: 'accent' },
-    { text: ' et en Master Génie Logiciel à l\'ISI.' },
+    { text: ' et en Master Génie Logiciel à l\'ISI Dakar.' },
   ],
   company: 'DIOTALI',
   contactLabel: 'Me contacter',
@@ -65,18 +78,33 @@ export const hero: Hero = {
     variable: 'dev',
     fields: [
       { key: 'nom', value: 'Mamadou Gueye' },
-      { key: 'rôle', value: 'Backend Developer' },
+      { key: 'rôle', value: 'Développeur Full Stack' },
       { key: 'entreprise', value: 'DIOTALI' },
-      { key: 'stack', value: ['Java', 'Spring Boot', 'Angular', 'React', 'Docker', 'AWS'] },
+      { key: 'stack', value: ['Java', 'Spring Boot', 'Laravel', 'Angular', 'React', 'Flutter'] },
       { key: 'passion', value: true },
     ],
   },
   stats: [
-    { value: '3+', label: 'Ans d\'expérience' },
-    { value: '10+', label: 'Projets réalisés' },
-    { value: '5+', label: 'Technologies maîtrisées' },
+    { value: '~3', label: 'Ans d\'expérience' },
+    { value: '~30', label: 'Développeurs formés' },
+    { value: '3', label: 'Langues parlées' },
   ],
   scrollHint: 'Découvrir',
+};
+
+// ─── À propos ───
+export const about: About = {
+  paragraphs: [
+    'Développeur Full Stack basé à Dakar, je conçois et livre depuis environ trois ans des applications utilisées en production par des clients réels, du back-end Java/Spring Boot ou PHP/Laravel jusqu\'aux interfaces Angular, React et Flutter.',
+    'En parallèle, je fonde et fais grandir mes propres produits en ligne, de l\'idée jusqu\'au déploiement.',
+    'Venu des sciences — physique-chimie à l\'UCAD, puis statistiques à l\'IRES — j\'ai basculé vers l\'informatique en gardant le goût de la rigueur et de la transmission : je forme des développeurs et j\'enseigne les sciences à des élèves de 3e.',
+  ],
+  languagesTitle: 'Langues',
+  languages: [
+    { name: 'Français', level: 'Courant' },
+    { name: 'Wolof', level: 'Langue maternelle' },
+    { name: 'Anglais', level: 'Intermédiaire (B1)' },
+  ],
 };
 
 // ─── CV ───
@@ -95,6 +123,10 @@ export const cv: CvInfo = {
 
 // ─── Titres des sections et libellés d'interface ───
 export const sections: SectionsContent = {
+  about: {
+    title: 'À propos',
+    subtitle: 'Des sciences au génie logiciel',
+  },
   projects: {
     title: 'Projets Réalisés',
     subtitle: 'Une sélection de mes projets les plus récents',
@@ -105,29 +137,31 @@ export const sections: SectionsContent = {
   },
   skills: {
     title: 'Compétences Techniques',
-    subtitle: 'Les technologies et outils que je maîtrise',
+    subtitle: 'Les technologies et outils que j\'utilise au quotidien',
     countLabel: 'technologies',
   },
   education: {
-    title: 'Formation',
-    subtitle: 'Mon parcours académique',
+    title: 'Formation et parcours',
+    subtitle: 'Des sciences fondamentales au Master Génie Logiciel',
   },
   experience: {
     title: 'Expérience Professionnelle',
-    subtitle: 'Mon parcours et mes réalisations',
+    subtitle: 'Postes occupés et réalisations',
+    detailLabel: 'Voir le détail',
+    clientsLabel: 'Sites clients',
+  },
+  distinctions: {
+    title: 'Distinctions et engagements',
+    subtitle: 'Compétitions, enseignement et transmission',
   },
   certifications: {
     title: 'Certifications',
-    subtitle: 'Formations continues et certifications obtenues',
+    subtitle: 'Formations en ligne complémentaires',
     linkLabel: 'Voir le certificat',
-  },
-  references: {
-    title: 'Références',
-    subtitle: 'Mes recommandations professionnelles',
   },
   contact: {
     title: 'Contact',
-    subtitle: 'N\'hésitez pas à me contacter pour toute opportunité ou collaboration',
+    subtitle: 'Un poste, une mission freelance ou un projet de formation ? Écrivez-moi.',
     labels: {
       email: 'Email',
       phone: 'Téléphone',
@@ -135,23 +169,24 @@ export const sections: SectionsContent = {
       availability: 'Disponibilité',
       social: 'Retrouvez-moi',
     },
-    form: {
-      name: { label: 'Nom complet', placeholder: 'Votre nom' },
-      email: { label: 'Email', placeholder: 'votre@email.com' },
-      subject: { label: 'Sujet', placeholder: 'L\'objet de votre message' },
-      message: { label: 'Message', placeholder: 'Votre message...' },
-      submit: 'Envoyer le message',
-      success: 'Message envoyé !',
+    cta: {
+      title: 'Parlons de votre projet',
+      text: 'Le bouton ci-dessous ouvre votre messagerie avec un e-mail pré-rempli : il ne reste qu\'à décrire votre besoin.',
+      button: 'Écrire un e-mail',
+      mailSubject: 'Prise de contact via votre portfolio',
+      mailBody: 'Bonjour Mamadou,\n\n[Présentez votre projet, la mission ou le poste]\n\nCordialement,\n',
+      hint: 'Pas de messagerie configurée ? Écrivez directement à',
     },
   },
 };
 
 export const navItems: NavItem[] = [
   { label: 'Accueil', href: '#home' },
+  { label: 'À propos', href: '#about' },
+  { label: 'Expérience', href: '#experience' },
   { label: 'Projets', href: '#projects' },
   { label: 'Compétences', href: '#skills' },
   { label: 'Formation', href: '#education' },
-  { label: 'Expérience', href: '#experience' },
   { label: 'Contact', href: '#contact' }
 ];
 
@@ -177,28 +212,8 @@ export const projectList: Project[] = [
     image: 'images/projects/pddproduction.png',
     date: 'Février 2026'
   },
-  // ─── Projets WBCC (2024-2025) ───
+  // ─── Archives ───
   {
-    id: 'rym-holding',
-    title: 'RYMHOLDING - Plateforme IA',
-    description: 'Application web avec intégration IA (ChatGPT) pour RYMHOLDING. Développement fullstack avec interface React et backend PHP, incluant un assistant intelligent pour améliorer l\'expérience utilisateur.',
-    tech: ['PHP', 'JavaScript', 'React.js', 'MySQL', 'ChatGPT API'],
-    link: 'https://job.rymholding.com',
-    category: 'Full Stack',
-    image: 'images/projects/rymholding.jpg',
-    date: 'Décembre 2024 - Novembre 2025'
-  },
-  {
-    id: 'rym-partners',
-    title: 'RYM PARTNERS',
-    description: 'Application web complète pour RYM PARTNERS développée au sein du WBCC (World Business Contact Center). Gestion de contenu et interface professionnelle.',
-    tech: ['PHP', 'JavaScript', 'MySQL'],
-    link: 'https://www.rympartners.com/',
-    category: 'Web App',
-    image: 'images/projects/rympartners.jpg',
-    date: 'Décembre 2024 - Novembre 2025'
-  },
-   {
     id: 'hbassurance',
     title: 'HB ASSURANCE',
     description: 'Application web complète pour HB ASSURANCE développée au sein du WBCC (World Business Contact Center). Gestion d\'assurance.',
@@ -290,16 +305,6 @@ export const projectList: Project[] = [
     date: 'Août 2024'
   },
   {
-    id: 'gestion-apprenants-spring',
-    title: 'Gestion des Apprenants - API',
-    description: 'Application API de gestion des apprenants et des événements de l\'ODC. Authentification sécurisée avec Spring Security.',
-    tech: ['Java', 'Spring Boot', 'Spring Security', 'Docker', 'Render', 'Swagger', 'PostgreSQL', 'Firebase', 'Neon'],
-    link: 'https://github.com/3-mousquetaires/gestion_odc',
-    category: 'Backend',
-    image: 'images/projects/odc.png',
-    date: 'Juillet 2024'
-  },
-  {
     id: 'gestion-cargaison',
     title: 'Gestion de Cargaison Import/Export',
     description: 'Application complète pour la gestion des cargaisons import/export.',
@@ -313,68 +318,85 @@ export const projectList: Project[] = [
 
 export const skillCategories: Category[] = [
   {
-    title: "Frontend",
-    icon: Layout,
-    description: "Développement d'interfaces utilisateur modernes et réactives",
-    skills: [
-      "React.js",
-      "Angular",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "Bootstrap",
-      "Flutter",
-      "Redux",
-      "Vite",
-      "Webpack"
-    ]
-  },
-  {
-    title: "Backend",
+    title: "Back-end",
     icon: Server,
-    description: "Développement de serveurs et APIs robustes", 
+    description: "APIs et logique métier",
     skills: [
-      "Java",
-      "Spring Boot",
-      "Spring Security",
-      "Node.js (Express)",
-      "Laravel",
-      "PHP",
-      "Python",
-      "REST API",
-      "JWT Auth",
+      "Java / Spring Boot",
+      "PHP / Laravel",
+      "Node.js / Express",
+      "Python / FastAPI",
     ]
   },
   {
-    title: "Bases de données",
+    title: "Front-end",
+    icon: Layout,
+    description: "Interfaces web réactives",
+    skills: [
+      "JavaScript",
+      "TypeScript",
+      "HTML / CSS",
+      "Angular",
+      "React",
+      "Tailwind CSS",
+    ]
+  },
+  {
+    title: "Mobile",
+    icon: Smartphone,
+    description: "Applications Flutter",
+    skills: [
+      "Flutter",
+      "Riverpod",
+      "Clean Architecture",
+      "Offline-first",
+    ]
+  },
+  {
+    title: "Données",
     icon: Database,
-    description: "Gestion et optimisation des données",
+    description: "Bases relationnelles, NoSQL et vectorielles",
     skills: [
       "PostgreSQL",
       "MySQL",
+      "Oracle",
       "MongoDB",
-      "Firebase",
+      "pgvector",
       "Supabase",
-      "Neon",
-      "Prisma",
     ]
   },
   {
-    title: "DevOps & Cloud",
-    icon: Code,
-    description: "Déploiement, conteneurisation et infrastructure cloud",
+    title: "IA",
+    icon: Sparkles,
+    description: "Intégration de modèles dans des produits",
+    skills: [
+      "API LLM (OpenAI, Groq, Ollama)",
+      "RAG",
+      "Vision (YOLOv8)",
+    ]
+  },
+  {
+    title: "DevOps",
+    icon: Cloud,
+    description: "Conteneurs, intégration continue et hébergement",
     skills: [
       "Docker",
-      "AWS (S3, Lambda, EC2)",
-      "Git & GitHub",
+      "CI/CD (GitLab, GitHub)",
+      "AWS",
       "Railway",
       "Vercel",
-      "Render",
-      "Cloudinary",
-      "Architecture MVC",
-      "Architecture distribuée",
-      "Méthodologie Agile / Scrum",
-      "Swagger",
+      "SonarQube",
+    ]
+  },
+  {
+    title: "Architecture",
+    icon: Network,
+    description: "Conception de systèmes",
+    skills: [
+      "Microservices",
+      "API REST",
+      "JWT / OAuth2 / OIDC",
+      "WebSocket",
     ]
   }
 ];
@@ -382,34 +404,44 @@ export const skillCategories: Category[] = [
 export const educationList: Education[] = [
   {
     id: 'isi-master',
-    date: 'Octobre 2024 - Aujourd\'hui',
-    title: 'Master en Génie Logiciel',
-    institution: 'Institut Supérieur d\'Informatique (ISI)',
-    description: 'Formation avancée en génie logiciel, architecture des systèmes et management de projets.',
-    location: 'Dakar, Sénégal'
-  },
-  {
-    id: 'sonatel-academy',
-    date: 'Février 2024 - Novembre 2024',
-    title: 'Formation Développement Web & Mobile',
-    institution: 'Sonatel Academy (Orange Digital Center)',
-    description: 'Formation intensive en développement web et mobile, pratiques agiles, et architecture logicielle.',
+    date: 'Diplôme prévu en juillet 2027',
+    title: 'Master Génie Logiciel',
+    institution: 'ISI Dakar',
+    description: 'M2 en cours.',
     location: 'Dakar, Sénégal'
   },
   {
     id: 'isi-licence',
-    date: '2021 - 2023',
-    title: 'Licence en Génie Logiciel',
-    institution: 'Institut Supérieur d\'Informatique (ISI)',
-    description: 'Formation approfondie en génie logiciel, algorithmes et structures de données.',
+    date: '2025',
+    title: 'Licence',
+    institution: 'ISI Dakar',
+    location: 'Dakar, Sénégal'
+  },
+  {
+    id: 'sonatel-academy',
+    date: 'Promotion 2024',
+    title: 'Développeur Web / Mobile',
+    institution: 'Sonatel Academy / Orange Digital Center',
+    location: 'Dakar, Sénégal'
+  },
+  {
+    id: 'simplon',
+    date: '2020',
+    title: '« Les Mains dans la Tech »',
+    institution: 'Simplon Foundation',
+  },
+  {
+    id: 'ucad-ires',
+    date: '2018 – 2020',
+    title: 'Physique-chimie, puis statistiques',
+    institution: 'UCAD, Faculté des Sciences et Techniques, puis IRES',
     location: 'Dakar, Sénégal'
   },
   {
     id: 'bac-s2',
     date: '2018',
     title: 'Baccalauréat S2',
-    institution: 'Lycée Cheikh Hamidou Kane (MBAO)',
-    description: 'Baccalauréat série scientifique S2.',
+    institution: 'Lycée Cheikh Hamidou Kane de Mbao',
     location: 'Mbao, Sénégal'
   }
 ];
@@ -417,83 +449,88 @@ export const educationList: Education[] = [
 export const experienceList: Experience[] = [
   {
     id: 'diotali',
-    date: 'Novembre 2025 - Aujourd\'hui',
-    title: 'Développeur Backend',
+    date: 'Nov. 2025 – Aujourd\'hui',
+    title: 'Développeur Full Stack',
     company: 'DIOTALI',
-    location: 'Sénégal',
-    role: 'Développeur Backend',
-    achievements: [
-      'Développement backend avec Java et Spring Boot',
-      'Développement frontend avec Angular',
-      'Gestion de bases de données MySQL et PostgreSQL',
-      'Déploiement sur AWS (S3, Lambda, EC2)',
-      'Conteneurisation avec Docker'
-    ]
-  },
-  {
-    id: 'telly-tech',
-    date: 'Avril 2025 - Octobre 2025',
-    title: 'Formateur en PHP',
-    company: 'Telly_Tech',
-    location: 'Sénégal',
-    role: 'Formateur PHP',
-    achievements: [
-      'Formation en PHP et bonnes pratiques de développement',
-      'Accompagnement des apprenants sur MySQL et PostgreSQL',
-      'Conception de supports pédagogiques et exercices pratiques'
+    location: 'Dakar, Sénégal',
+    summary: 'Java / Spring Boot · Angular · PostgreSQL',
+    highlights: [
+      { text: 'GFA — système de gestion de files d\'attente en production à la BSIC et à la SENEAU', projectId: 'gfa' },
+      { text: 'Billetterie de la Fédération Sénégalaise de Football — paiement ORABANK et transfert de tickets', projectId: 'billetterie-fsf' },
+      { text: 'ECommune — plateforme de gestion fiscale pour les communes (en cours de déploiement)', projectId: 'ecommune' },
     ]
   },
   {
     id: 'wbcc',
-    date: 'Décembre 2024 - Novembre 2025',
-    title: 'Développeur Web',
-    company: 'WBCC (World Business Contact Center)',
-    location: 'Sénégal',
-    role: 'Développeur Web',
-    achievements: [
-      'Réalisation de l\'application web RYM PARTNERS (PHP, JavaScript, MySQL)',
-      'Réalisation de l\'application web RYMHOLDING avec intégration IA ChatGPT',
-      'Développement frontend avec React.js',
-      'Gestion et optimisation des bases de données MySQL'
+    date: 'Déc. 2024 – Oct. 2025',
+    title: 'Développeur Full Stack PHP / Laravel',
+    company: 'WBCC',
+    summary: 'PHP / Laravel · API ChatGPT',
+    highlights: [
+      { text: 'Intégration de l\'API ChatGPT dans des applications Laravel pour RYM PARTNERS et RYMHOLDING' },
+    ],
+    clientLinks: [
+      { label: 'RYMHOLDING', url: 'https://job.rymholding.com' },
+      { label: 'RYM PARTNERS', url: 'https://www.rympartners.com/' },
     ]
   },
   {
-    id: 'orange-digital-center',
-    date: 'Février 2024 - Novembre 2024',
-    title: 'Développeur Fullstack',
-    company: 'Orange Digital Center (ODC)',
-    location: 'Dakar, Sénégal',
-    role: 'Développeur Full Stack',
-    achievements: [
-      'Développement d\'applications web modernes',
-      'Travail en équipe avec méthodologie Agile/Scrum',
-      'Participation à des projets innovants dans le domaine digital'
+    id: 'telly-tech',
+    date: 'Avr. – Oct. 2025',
+    title: 'Formateur PHP / JavaScript / bases de données',
+    company: 'Telly Tech',
+    summary: 'En parallèle du poste chez WBCC',
+    highlights: [
+      { text: 'Formation d\'une trentaine de développeurs en PHP, JavaScript et bases de données' },
     ]
   },
   {
     id: 'lonase',
-    date: 'Août 2023 - Novembre 2023',
-    title: 'Développeur Web Front-End & Admin Systèmes',
+    date: 'Sept. – Oct. 2023',
+    title: 'Stagiaire développeur',
     company: 'LONASE',
     location: 'Dakar, Sénégal',
-    role: 'Développeur Front-End & Admin Sys/Réseaux',
-    achievements: [
-      'Administration système et réseau',
-      'Développement ETL avec TALEND et Python',
-      'Maintenance et optimisation des systèmes'
-    ]
+    highlights: []
   },
   {
     id: 'teqlab',
-    date: 'Juillet 2023 - Septembre 2023',
-    title: 'Analyste Concepteur',
+    date: 'Juil. – Sept. 2023',
+    title: 'Analyste concepteur',
     company: 'TEQLAB',
-    location: 'Sénégal',
-    role: 'Analyste Concepteur',
-    achievements: [
-      'Analyse des besoins utilisateurs et rédaction des spécifications',
-      'Modélisation UML et création de diagrammes de conception',
+    summary: 'Analyse et conception',
+    highlights: [
+      { text: 'Rédaction des spécifications' },
+      { text: 'Modélisation UML' },
     ]
+  },
+];
+
+export const distinctions: Distinction[] = [
+  {
+    id: 'cadev',
+    icon: Trophy,
+    title: 'CADEV 2026',
+    description: 'Coupe d\'Afrique des Développeurs.',
+    date: '2026',
+  },
+  {
+    id: 'hackathon-sonatel',
+    icon: Trophy,
+    title: 'Hackathon Sonatel',
+    description: 'Participation au hackathon organisé par Sonatel.',
+  },
+  {
+    id: 'formation-devs',
+    icon: Users,
+    title: 'Formation de développeurs',
+    description: 'Une trentaine de développeurs formés en PHP, JavaScript et bases de données chez Telly Tech.',
+    date: '2025',
+  },
+  {
+    id: 'enseignement',
+    icon: GraduationCap,
+    title: 'Enseignement des sciences',
+    description: 'Cours de mathématiques et de physique-chimie à des élèves de 3e depuis environ trois ans.',
   },
 ];
 
@@ -537,7 +574,7 @@ export const socialLinks: SocialLink[] = [
     id: 'linkedin',
     Icon: LinkedinIcon,
     label: 'LinkedIn',
-    link: 'https://linkedin.com/in/Mamadou_GUEYE',
+    link: 'https://www.linkedin.com/in/mamadou-gueye-997b24200',
     color: 'hover:text-blue-700'
   },
   {
@@ -552,13 +589,13 @@ export const socialLinks: SocialLink[] = [
 export const contactInfo: Contact = {
   email: 'mamadougueyeoff1@gmail.com',
   phone: '+221 78 311 66 55',
-  address: 'Mbao Pikine, Sénégal',
+  address: 'Dakar, Sénégal',
   availability: 'Disponible pour des opportunités'
 };
 
 // ─── Pied de page ───
 export const footer: FooterContent = {
-  bio: 'Développeur Full Stack passionné par l\'innovation et les solutions digitales durables. Toujours en quête d\'apprentissage.',
+  bio: 'Développeur Full Stack à Dakar — Java/Spring Boot · PHP/Laravel · Angular/React · Flutter · IA.',
   navigationTitle: 'Navigation',
   contactTitle: 'Contact',
   contactLabel: 'Me contacter',
@@ -566,30 +603,3 @@ export const footer: FooterContent = {
   madeWith: 'Fait avec',
   madeIn: 'au Sénégal',
 };
-
-export const references: Reference[] = [
-  {
-    id: 'ref1',
-    name: "BIRANE BAILA WANE",
-    title: "Architecte Logiciel, Consultant Java Micro-service, Co-founder Ecole 221, Développeur FullStack, Formateur en Développement Web Mobile",
-    email: "douvewane85@gmail.com",
-    linkedin: "https://www.linkedin.com/in/birane-baila-wane/",
-    phone: "+221 77 766 95 95"
-  },
-  {
-    id: 'ref2',
-    name: "MAKHMADANE LÔ",
-    title: "Senior Software Developer - FullStack Java/Spring Boot & Angular/React - DevOps | Cloud - IT Trainer, Formateur en Développement Web Mobile",
-    email: "dl7781775@gmail.com",
-    linkedin: "https://www.linkedin.com/in/makhmadane-lo/",
-    phone: "+221 77 302 21 50"
-  },
-  {
-    id: 'ref3',
-    name: "ALY TALL NIANG",
-    title: "Formateur en développement Web et mobile",
-    email: "niangalytall@gmail.com",
-    linkedin: "https://www.linkedin.com/in/aly-tall-niang-sonatel-academy/",
-    phone: "+221 77 182 54 14"
-  }
-];

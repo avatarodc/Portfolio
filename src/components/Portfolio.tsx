@@ -1,13 +1,14 @@
 import { Layout } from './layout';
 import {
   HeroSection,
+  About,
   Projects,
   Skills,
   Education,
   Experience,
+  Distinctions,
   Certifications,
   Contact,
-  References,
 } from './sections';
 
 import {
@@ -21,12 +22,13 @@ const Portfolio = () => {
   return (
     <Layout>
       <HeroSection />
+      <About />
+      <Experience items={experienceList} />
       <Projects projects={projectList} />
       <Skills />
       <Education items={educationList} />
-      <Experience items={experienceList} />
+      <Distinctions />
       <Certifications items={certificationList} />
-      <References />
       <Contact />
     </Layout>
   );

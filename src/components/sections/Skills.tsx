@@ -20,7 +20,7 @@ export const Skills: React.FC = () => {
           subtitle={sections.skills.subtitle}
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category: Category, index: number) => {
             const color = cardColors[index % cardColors.length];
             const Icon = category.icon;

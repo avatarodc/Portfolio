@@ -62,7 +62,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         </div>
 
         {/* Project grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {visibleProjects.map((project, index) => (
               <motion.div

@@ -109,8 +109,8 @@ const HeroSection: React.FC = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-purple-400/10 dark:bg-purple-500/5 blur-3xl" />
 
       {/* ── Main content ── */}
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 container mx-auto px-6 pt-28 pb-24 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
           {/* ── Left: Text content (3 cols) ── */}
           <motion.div
             variants={container}

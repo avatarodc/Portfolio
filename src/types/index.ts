@@ -28,8 +28,19 @@ export interface Education {
   date: string;
   title: string;
   institution: string;
-  description: string;
-  location: string;
+  description?: string;
+  location?: string;
+}
+
+export interface ExternalLinkItem {
+  label: string;
+  url: string;
+}
+
+export interface ExperienceHighlight {
+  text: string;
+  // id d'un projet détaillé dans la section Projets : affiche un renvoi vers sa fiche
+  projectId?: string;
 }
 
 export interface Experience {
@@ -37,9 +48,12 @@ export interface Experience {
   date: string;
   title: string;
   company: string;
-  location: string;
-  role: string;
-  achievements: string[];
+  location?: string;
+  // ligne affichée sous l'entreprise (stack ou précision du poste)
+  summary?: string;
+  highlights: ExperienceHighlight[];
+  // sites des clients livrés pendant ce poste
+  clientLinks?: ExternalLinkItem[];
 }
 
 export interface Certification {
@@ -67,13 +81,23 @@ export interface Contact {
   availability: string;
 }
 
-export interface Reference {
-  id: string;
+export interface Language {
   name: string;
+  level: string;
+}
+
+export interface About {
+  paragraphs: string[];
+  languagesTitle: string;
+  languages: Language[];
+}
+
+export interface Distinction {
+  id: string;
+  icon: LucideIcon;
   title: string;
-  email: string;
-  linkedin: string;
-  phone: string;
+  description: string;
+  date?: string;
 }
 
 export interface Identity {
@@ -129,11 +153,6 @@ export interface SectionText {
   subtitle: string;
 }
 
-export interface FormField {
-  label: string;
-  placeholder: string;
-}
-
 export interface SectionsContent {
   projects: SectionText & {
     allLabel: string;
@@ -142,10 +161,11 @@ export interface SectionsContent {
     privateLabel: string;
   };
   skills: SectionText & { countLabel: string };
+  about: SectionText;
   education: SectionText;
-  experience: SectionText;
+  experience: SectionText & { detailLabel: string; clientsLabel: string };
+  distinctions: SectionText;
   certifications: SectionText & { linkLabel: string };
-  references: SectionText;
   contact: SectionText & {
     labels: {
       email: string;
@@ -154,13 +174,14 @@ export interface SectionsContent {
       availability: string;
       social: string;
     };
-    form: {
-      name: FormField;
-      email: FormField;
-      subject: FormField;
-      message: FormField;
-      submit: string;
-      success: string;
+    // carte d'appel à l'action : ouvre la messagerie avec un e-mail pré-rempli
+    cta: {
+      title: string;
+      text: string;
+      button: string;
+      mailSubject: string;
+      mailBody: string;
+      hint: string;
     };
   };
 }
