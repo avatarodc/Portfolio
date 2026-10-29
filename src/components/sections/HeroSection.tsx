@@ -11,6 +11,7 @@ import {
 import { useTypewriter } from '@/hooks';
 import { identity, hero, cv, socialLinks, contactInfo } from '@/data/profile';
 import { TerminalField } from '@/types';
+import { HeroNetworkSlot } from './HeroNetworkSlot';
 
 const stringToken = (value: string) => (
   <span className="text-amber-600 dark:text-amber-400">"{value}"</span>
@@ -108,6 +109,9 @@ const HeroSection: React.FC = () => {
       <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[radial-gradient(closest-side,rgba(96,165,250,0.2),transparent)] dark:bg-[radial-gradient(closest-side,rgba(59,130,246,0.12),transparent)]" />
       <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-[radial-gradient(closest-side,rgba(34,211,238,0.15),transparent)] dark:bg-[radial-gradient(closest-side,rgba(6,182,212,0.09),transparent)]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[radial-gradient(closest-side,rgba(192,132,252,0.1),transparent)] dark:bg-[radial-gradient(closest-side,rgba(168,85,247,0.06),transparent)]" />
+
+      {/* Réseau des compétences (canvas chargé au repos du navigateur) */}
+      <HeroNetworkSlot />
 
       {/* ── Main content ── */}
       <div className="relative z-10 container mx-auto px-6 pt-28 pb-24 lg:py-24">
