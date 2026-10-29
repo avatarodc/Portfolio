@@ -19,6 +19,7 @@ Les fiches sans capture s'affichent sans zone image. Pour en ajouter une :
 | Système de diagnostic ECG | IA et projets techniques | `diagnostic-ecg.png` |
 | Détecteur de téléphones | IA et projets techniques | `detecteur-telephones.png` |
 | Architecture microservices GestionProduits | IA et projets techniques | `gestion-produits.png` |
+| Ce portfolio | IA et projets techniques | `portfolio.png` |
 
 Déjà en place : Rimemba (`rimemba.png`), RYMHOLDING (`rymholding.jpg`), RYM PARTNERS (`rympartners.jpg`).
 
