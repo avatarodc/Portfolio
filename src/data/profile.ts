@@ -696,7 +696,7 @@ export const experienceList: Experience[] = [
     title: 'Développeur Full Stack',
     company: 'DIOTALI',
     location: 'Dakar, Sénégal',
-    summary: 'Java / Spring Boot · Angular · PostgreSQL · MySQL · Docker · AWS',
+    stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'MySQL', 'Docker', 'AWS'],
     highlights: [
       { text: 'GFA — système de gestion de files d\'attente en production à la BSIC et à la SENEAU', projectId: 'gfa' },
       { text: 'Billetterie de la Fédération Sénégalaise de Football — paiement ORABANK et transfert de tickets', projectId: 'billetterie-fsf' },
@@ -709,7 +709,7 @@ export const experienceList: Experience[] = [
     date: 'Déc. 2024 – Oct. 2025',
     title: 'Développeur Full Stack PHP / Laravel',
     company: 'WBCC',
-    summary: 'PHP / Laravel · API ChatGPT',
+    stack: ['PHP', 'Laravel', 'JavaScript', 'React', 'MySQL', 'API ChatGPT'],
     highlights: [
       { text: 'Intégration de l\'API ChatGPT dans des applications Laravel pour RYM PARTNERS et RYMHOLDING' },
     ],
@@ -723,7 +723,8 @@ export const experienceList: Experience[] = [
     date: 'Avr. – Oct. 2025',
     title: 'Formateur PHP / JavaScript / bases de données',
     company: 'Telly Tech',
-    summary: 'En parallèle du poste chez WBCC',
+    stack: ['PHP', 'JavaScript', 'MySQL', 'PostgreSQL'],
+    note: 'En parallèle du poste chez WBCC',
     highlights: [
       { text: 'Formation d\'une trentaine de développeurs en PHP, JavaScript et bases de données' },
     ]
@@ -743,7 +744,7 @@ export const experienceList: Experience[] = [
     date: 'Juil. – Sept. 2023',
     title: 'Analyste concepteur',
     company: 'TEQLAB',
-    summary: 'Analyse et conception',
+    note: 'Analyse et conception',
     highlights: [
       { text: 'Rédaction des spécifications' },
       { text: 'Modélisation UML' },

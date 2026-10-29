@@ -91,8 +91,10 @@ export interface Experience {
   title: string;
   company: string;
   location?: string;
-  // ligne affichée sous l'entreprise (stack ou précision du poste)
-  summary?: string;
+  // technologies du poste : affichées sous l'entreprise et reliées dans la constellation
+  stack?: string[];
+  // précision affichée sous la stack (ex. « En parallèle du poste chez WBCC »)
+  note?: string;
   highlights: ExperienceHighlight[];
   // sites des clients livrés pendant ce poste
   clientLinks?: ExternalLinkItem[];

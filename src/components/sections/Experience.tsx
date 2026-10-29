@@ -73,11 +73,14 @@ export const Experience: React.FC<ExperienceProps> = ({ items }) => (
                   </span>
                 </div>
 
-                {/* Résumé */}
-                {exp.summary && (
+                {/* Stack et précision du poste */}
+                {exp.stack && exp.stack.length > 0 && (
                   <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                    {exp.summary}
+                    {exp.stack.join(' · ')}
                   </p>
+                )}
+                {exp.note && (
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{exp.note}</p>
                 )}
 
                 {/* Réalisations */}
