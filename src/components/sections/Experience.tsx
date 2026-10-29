@@ -114,20 +114,35 @@ export const Experience: React.FC<ExperienceProps> = ({ items }) => (
 
                 {/* Sites clients */}
                 {exp.clientLinks && exp.clientLinks.length > 0 && (
-                  <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-                    <span className="text-xs text-gray-400 dark:text-gray-500">{text.clientsLabel}</span>
-                    {exp.clientLinks.map(({ label, url }) => (
-                      <a
-                        key={url}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-3 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-500/20 transition-colors"
-                      >
-                        {label}
-                        <ExternalLink size={12} />
-                      </a>
-                    ))}
+                  <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+                    <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{text.clientsLabel}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {exp.clientLinks.map(({ label, url, image }) => (
+                        <a
+                          key={url}
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/client flex items-center gap-3 p-2 rounded-xl border border-gray-200/80 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-800 transition-colors"
+                        >
+                          {image && (
+                            <img
+                              src={image}
+                              alt={label}
+                              loading="lazy"
+                              className="w-20 h-12 object-contain p-1 rounded-lg bg-white flex-shrink-0"
+                            />
+                          )}
+                          <div className="min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{label}</p>
+                            <span className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 dark:text-blue-400 group-hover/client:underline">
+                              {sections.projectLabels.links.site}
+                              <ExternalLink size={12} />
+                            </span>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

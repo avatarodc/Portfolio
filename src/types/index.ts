@@ -5,7 +5,47 @@ export interface NavItem {
   href: string;
 }
 
+export type ProjectGroup = 'production' | 'produits' | 'ia';
+
+export type ProjectStatus =
+  | 'production'
+  | 'deploiement'
+  | 'developpement'
+  | 'encours'
+  | 'terrain'
+  | 'pilote'
+  | 'prototype'
+  | 'academique';
+
+export interface ProjectLink {
+  kind: 'site' | 'code' | 'demo';
+  url: string;
+}
+
 export interface Project {
+  id: string;
+  group: ProjectGroup;
+  title: string;
+  // cadre du projet : employeur, fondateur, freelance, école…
+  context: string;
+  // renvoi interne vers une autre section (ex. le poste correspondant)
+  contextAnchor?: string;
+  problem: string;
+  details?: string[];
+  stack: string[];
+  role: string;
+  status: ProjectStatus;
+  // précision affichée après le statut (ex. « BSIC, SENEAU »)
+  statusNote?: string;
+  links: ProjectLink[];
+  // true : affiche « Code privé — démo sur demande » au lieu d'un lien vers le code
+  privateCode?: boolean;
+  // capture d'écran dans public/ ; absente : un emplacement réservé est affiché
+  image?: string;
+}
+
+// Anciens projets (formation, premiers sites) affichés dans le bloc Archives
+export interface ArchiveProject {
   id: string;
   title: string;
   description: string;
@@ -35,6 +75,8 @@ export interface Education {
 export interface ExternalLinkItem {
   label: string;
   url: string;
+  // capture du site dans public/
+  image?: string;
 }
 
 export interface ExperienceHighlight {
@@ -154,11 +196,17 @@ export interface SectionText {
 }
 
 export interface SectionsContent {
-  projects: SectionText & {
-    allLabel: string;
-    showAllLabel: string;
-    codeLabel: string;
-    privateLabel: string;
+  projects: SectionText;
+  products: SectionText;
+  ai: SectionText & { workflowTitle: string; workflowText: string };
+  archives: SectionText & { showLabel: string; hideLabel: string };
+  projectLabels: {
+    statuses: Record<ProjectStatus, string>;
+    links: Record<ProjectLink['kind'], string>;
+    code: string;
+    privateCode: string;
+    role: string;
+    contextLink: string;
   };
   skills: SectionText & { countLabel: string };
   about: SectionText;

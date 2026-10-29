@@ -6,6 +6,7 @@
 import {
   NavItem,
   Project,
+  ArchiveProject,
   Category,
   SocialLink,
   Education,
@@ -128,12 +129,45 @@ export const sections: SectionsContent = {
     subtitle: 'Des sciences au génie logiciel',
   },
   projects: {
-    title: 'Projets Réalisés',
-    subtitle: 'Une sélection de mes projets les plus récents',
-    allLabel: 'Tous',
-    showAllLabel: 'Voir tous les projets',
-    codeLabel: 'Code',
-    privateLabel: 'Privé',
+    title: 'Réalisations en production',
+    subtitle: 'Applications livrées et utilisées par de vrais clients',
+  },
+  products: {
+    title: 'Produits',
+    subtitle: 'Produits que j\'ai fondés ou développés en freelance',
+  },
+  ai: {
+    title: 'IA et projets techniques',
+    subtitle: 'Projets d\'équipe réalisés pendant le Master à l\'ISI',
+    workflowTitle: 'Développement assisté par IA',
+    workflowText: 'J\'utilise Claude Code au quotidien, avec relecture et tests systématiques du code généré.',
+  },
+  archives: {
+    title: 'Archives',
+    subtitle: 'Premiers sites et projets de formation (2024 – 2026)',
+    showLabel: 'Afficher les archives',
+    hideLabel: 'Masquer les archives',
+  },
+  projectLabels: {
+    statuses: {
+      production: 'En production',
+      deploiement: 'En cours de déploiement',
+      developpement: 'En développement',
+      encours: 'En cours',
+      terrain: 'Testé sur le terrain',
+      pilote: 'Phase pilote',
+      prototype: 'Prototype',
+      academique: 'Académique',
+    },
+    links: {
+      site: 'Site',
+      code: 'Code',
+      demo: 'Démo',
+    },
+    code: 'Code',
+    privateCode: 'Code privé — démo sur demande',
+    role: 'Rôle',
+    contextLink: 'Voir le poste',
   },
   skills: {
     title: 'Compétences Techniques',
@@ -190,18 +224,232 @@ export const navItems: NavItem[] = [
   { label: 'Contact', href: '#contact' }
 ];
 
+// Projets classés du plus fort au plus modeste : production réelle > produits > académique.
+// Pour ajouter une capture : déposer le fichier dans public/images/projects/ puis renseigner `image`
+// (liste des captures attendues : docs/captures-a-fournir.md). Sans `image`, la fiche s'affiche sans zone image.
 export const projectList: Project[] = [
-  // ─── Projets Freelance ───
+  // ─── Réalisations en production ───
+  {
+    id: 'gfa',
+    group: 'production',
+    title: 'GFA — Gestion de files d\'attente',
+    context: 'DIOTALI',
+    contextAnchor: '#experience',
+    problem: 'Système de gestion de files d\'attente en production à la BSIC et à la SENEAU.',
+    details: [
+      'Correction d\'une fuite de connexions HikariCP',
+      'Notifications temps réel par WebSocket',
+      'Optimisation des index de la base de données',
+    ],
+    stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'WebSocket'],
+    role: 'Développeur Full Stack',
+    status: 'production',
+    statusNote: 'BSIC, SENEAU',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'billetterie-fsf',
+    group: 'production',
+    title: 'Billetterie de la Fédération Sénégalaise de Football',
+    context: 'DIOTALI',
+    contextAnchor: '#experience',
+    problem: 'Plateforme de billetterie de la Fédération Sénégalaise de Football.',
+    details: [
+      'Intégration du paiement ORABANK',
+      'Transfert de tickets',
+      'Configuration des partenaires',
+      'Refactoring guidé par SonarQube',
+    ],
+    stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'SonarQube'],
+    role: 'Développeur Full Stack',
+    status: 'production',
+    links: [],
+    privateCode: true,
+  },
   {
     id: 'rimemba',
-    title: 'Rimemba — Albums Numériques d\'Événements',
-    description: 'Plateforme SaaS de création d\'albums numériques pour événements (mariage, baptême, anniversaire, remise de diplôme...). Galerie photos plein écran avec lightbox et swipe mobile, thèmes visuels personnalisés, protection PIN, livre d\'or invités, dashboard admin complet avec audit logs. Déploiement continu via Railway.',
-    tech: ['React.js', 'Vite', 'Node.js', 'Express.js', 'Supabase', 'PostgreSQL', 'Cloudinary', 'Railway', 'Vercel'],
-    link: 'https://rimemba.net',
-    category: 'Full Stack',
+    group: 'production',
+    title: 'Rimemba',
+    context: 'Produit personnel',
+    problem: 'SaaS de sites d\'événements personnalisés avec partage de photos et de vidéos, décliné en marque blanche.',
+    details: [
+      'CI/CD GitLab → GitHub → Railway',
+      'Déclinaison white-label',
+    ],
+    // Supabase / PostgreSQL : à ajouter une fois confirmés
+    stack: ['React', 'Node.js', 'Express', 'Cloudinary', 'Railway'],
+    role: 'Fondateur',
+    status: 'production',
+    links: [{ kind: 'site', url: 'https://rimemba.net' }],
+    privateCode: true,
     image: 'images/projects/rimemba.png',
-    date: 'Mars 2026'
   },
+  {
+    id: 'ecommune',
+    group: 'production',
+    title: 'ECommune',
+    context: 'DIOTALI',
+    contextAnchor: '#experience',
+    problem: 'Plateforme de gestion fiscale pour les communes.',
+    stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL'],
+    role: 'Développeur Full Stack',
+    status: 'deploiement',
+    links: [],
+    privateCode: true,
+  },
+
+  {
+    id: 'diotali-events',
+    group: 'production',
+    title: 'Diotali Events',
+    context: 'DIOTALI',
+    contextAnchor: '#experience',
+    problem: 'Plateforme de billetterie événementielle.',
+    // points techniques (details) et stack : à compléter une fois confirmés
+    stack: [],
+    role: 'Développeur backend (API de l\'application mobile)',
+    status: 'encours',
+    links: [{ kind: 'site', url: 'https://event.diotali.com' }],
+    privateCode: true,
+  },
+
+  // ─── Produits ───
+  {
+    id: 'coskas',
+    group: 'produits',
+    title: 'COSKAS',
+    context: 'Mission freelance',
+    problem: 'Gestion des cotisations multi-niveaux.',
+    details: [
+      'Moteur de calcul des cotisations (pattern Strategy)',
+      'Quittances avec QR code, exports PDF et Excel',
+      'Tableaux de bord temps réel par WebSocket',
+      'Notifications SMS, WhatsApp et e-mail',
+      'Authentification JWT / OAuth2',
+    ],
+    stack: ['Java 21', 'Spring Boot 3', 'MySQL', 'Flyway', 'Angular 18', 'Tailwind CSS', 'Docker', 'Railway'],
+    role: 'Développeur Full Stack',
+    status: 'developpement',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'boryi',
+    group: 'produits',
+    title: 'BorYi',
+    context: 'Produit personnel',
+    problem: 'Carnet de crédit digital pour les boutiquiers.',
+    details: [
+      'Fonctionne hors connexion (offline-first)',
+      'Authentification par OTP',
+      'Interface bilingue français / wolof',
+    ],
+    stack: ['Flutter', 'Riverpod', 'Clean Architecture', 'Drift', 'PowerSync', 'Supabase'],
+    role: 'Fondateur',
+    status: 'terrain',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'samadahira',
+    group: 'produits',
+    title: 'SamaDahira',
+    context: 'Produit personnel',
+    problem: 'Gestion des cotisations des dahiras.',
+    details: [
+      'Architecture multi-tenant avec Row Level Security',
+      'Authentification par OTP',
+      'Import CSV des membres',
+    ],
+    stack: ['Flutter', 'Supabase'],
+    role: 'Fondateur',
+    status: 'pilote',
+    statusNote: 'avec de vrais utilisateurs',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'verifia',
+    group: 'produits',
+    title: 'Verifia',
+    context: 'Projet collectif',
+    problem: 'Détection de désinformation en français et en wolof.',
+    details: ['Présenté dans un cadre UNESCO'],
+    stack: [],
+    role: 'Co-créateur',
+    status: 'prototype',
+    links: [],
+    privateCode: true,
+  },
+
+  // ─── IA et projets techniques ───
+  {
+    id: 'chatbot-rag',
+    group: 'ia',
+    title: 'Chatbot RAG de recherche documentaire',
+    context: 'ISI',
+    problem: 'Recherche dans la documentation de l\'ISI par questions en langage naturel.',
+    details: [
+      'Recherche vectorielle avec pgvector',
+      'Double fournisseur LLM : Groq en ligne, Ollama en local',
+    ],
+    stack: ['FastAPI', 'sentence-transformers', 'pgvector', 'Supabase', 'Groq', 'Ollama'],
+    role: 'Membre de l\'équipe de développement',
+    status: 'academique',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'diagnostic-ecg',
+    group: 'ia',
+    title: 'Système de diagnostic ECG',
+    context: 'ISI · projet Scrum',
+    problem: 'Analyse d\'électrocardiogrammes multi-dérivations et classification d\'anomalies.',
+    details: [
+      'Microservice d\'analyse FastAPI',
+      '42 tests automatisés',
+    ],
+    stack: ['Python', 'FastAPI', 'neurokit2'],
+    role: 'Membre de l\'équipe de développement',
+    status: 'academique',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'detecteur-telephones',
+    group: 'ia',
+    title: 'Détecteur de téléphones',
+    context: 'ISI',
+    problem: 'Détection de téléphones par vision par ordinateur.',
+    stack: ['Python', 'YOLOv8'],
+    role: 'Membre de l\'équipe de développement',
+    status: 'academique',
+    links: [],
+    privateCode: true,
+  },
+  {
+    id: 'gestion-produits',
+    group: 'ia',
+    title: 'Architecture microservices GestionProduits',
+    context: 'ISI',
+    problem: 'Architecture microservices complète avec authentification centralisée et entrepôt de données.',
+    details: [
+      'Passerelle YARP devant 3 microservices',
+      'Schémas PostgreSQL isolés par service',
+      'Stockage de fichiers MinIO',
+      'Authentification Keycloak (OIDC)',
+    ],
+    stack: ['YARP', 'PostgreSQL', 'MinIO', 'Keycloak'],
+    role: 'Membre de l\'équipe de développement',
+    status: 'academique',
+    links: [],
+    privateCode: true,
+  },
+];
+
+// ─── Archives (bloc repliable) ───
+export const archiveProjects: ArchiveProject[] = [
   {
     id: 'pdd-production',
     title: 'PDD Production - Site Vitrine',
@@ -212,7 +460,6 @@ export const projectList: Project[] = [
     image: 'images/projects/pddproduction.png',
     date: 'Février 2026'
   },
-  // ─── Archives ───
   {
     id: 'hbassurance',
     title: 'HB ASSURANCE',
@@ -221,7 +468,7 @@ export const projectList: Project[] = [
     link: 'https://hbassurance.com/',
     category: 'Web App',
     image: 'images/projects/hbassurance.png',
-    date: 'Décembre 2024 - Novembre 2025'
+    date: 'Déc. 2024 – Oct. 2025'
   },
   // ─── Projets Sonatel Académie (2024) ───
   {
@@ -271,7 +518,6 @@ export const projectList: Project[] = [
     tech: ['Figma'],
     link: '',
     category: 'UI/UX Design',
-    image: 'images/projects/social.png',
     date: 'Septembre 2024'
   },
   {
@@ -458,6 +704,7 @@ export const experienceList: Experience[] = [
       { text: 'GFA — système de gestion de files d\'attente en production à la BSIC et à la SENEAU', projectId: 'gfa' },
       { text: 'Billetterie de la Fédération Sénégalaise de Football — paiement ORABANK et transfert de tickets', projectId: 'billetterie-fsf' },
       { text: 'ECommune — plateforme de gestion fiscale pour les communes (en cours de déploiement)', projectId: 'ecommune' },
+      { text: 'Diotali Events — plateforme de billetterie événementielle : backend (API) de l\'application mobile', projectId: 'diotali-events' },
     ]
   },
   {
@@ -470,8 +717,8 @@ export const experienceList: Experience[] = [
       { text: 'Intégration de l\'API ChatGPT dans des applications Laravel pour RYM PARTNERS et RYMHOLDING' },
     ],
     clientLinks: [
-      { label: 'RYMHOLDING', url: 'https://job.rymholding.com' },
-      { label: 'RYM PARTNERS', url: 'https://www.rympartners.com/' },
+      { label: 'RYMHOLDING', url: 'https://job.rymholding.com', image: 'images/projects/rymholding.jpg' },
+      { label: 'RYM PARTNERS', url: 'https://www.rympartners.com/', image: 'images/projects/rympartners.jpg' },
     ]
   },
   {

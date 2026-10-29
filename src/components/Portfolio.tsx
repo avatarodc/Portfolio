@@ -3,6 +3,9 @@ import {
   HeroSection,
   About,
   Projects,
+  Products,
+  AiProjects,
+  Archives,
   Skills,
   Education,
   Experience,
@@ -12,7 +15,6 @@ import {
 } from './sections';
 
 import {
-  projectList,
   educationList,
   experienceList,
   certificationList,
@@ -24,7 +26,10 @@ const Portfolio = () => {
       <HeroSection />
       <About />
       <Experience items={experienceList} />
-      <Projects projects={projectList} />
+      <Projects />
+      <Products />
+      <AiProjects />
+      <Archives />
       <Skills />
       <Education items={educationList} />
       <Distinctions />
