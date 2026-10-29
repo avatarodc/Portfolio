@@ -1,4 +1,3 @@
-// src/hooks/useScrollSpy.ts
 import { useState, useEffect, useRef } from 'react';
 
 /**
@@ -13,7 +12,7 @@ export const useScrollSpy = (
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const { threshold = 0.3, rootMargin = '0px 0px -40% 0px' } = options || {};
+    const { rootMargin = '0px 0px -40% 0px' } = options || {};
 
     // Map pour stocker les ratios de visibilité de chaque section
     const visibilityMap = new Map<string, number>();

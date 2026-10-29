@@ -75,3 +75,102 @@ export interface Reference {
   linkedin: string;
   phone: string;
 }
+
+export interface Identity {
+  firstName: string;
+  lastName: string;
+  logo: { main: string; suffix: string };
+}
+
+export interface RichTextSegment {
+  text: string;
+  style?: 'strong' | 'accent';
+}
+
+export interface TerminalField {
+  key: string;
+  value: string | string[] | boolean;
+}
+
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export interface Hero {
+  typewriterWords: string[];
+  bio: RichTextSegment[];
+  company: string;
+  contactLabel: string;
+  terminal: {
+    prompt: string;
+    variable: string;
+    fields: TerminalField[];
+  };
+  stats: Stat[];
+  scrollHint: string;
+}
+
+export interface CvInfo {
+  file: string;
+  downloadName: string;
+  viewUrl: string;
+  downloadUrl: string;
+  labels: {
+    navbar: string;
+    mobileMenu: string;
+    heroView: string;
+    heroDownload: string;
+  };
+}
+
+export interface SectionText {
+  title: string;
+  subtitle: string;
+}
+
+export interface FormField {
+  label: string;
+  placeholder: string;
+}
+
+export interface SectionsContent {
+  projects: SectionText & {
+    allLabel: string;
+    showAllLabel: string;
+    codeLabel: string;
+    privateLabel: string;
+  };
+  skills: SectionText & { countLabel: string };
+  education: SectionText;
+  experience: SectionText;
+  certifications: SectionText & { linkLabel: string };
+  references: SectionText;
+  contact: SectionText & {
+    labels: {
+      email: string;
+      phone: string;
+      location: string;
+      availability: string;
+      social: string;
+    };
+    form: {
+      name: FormField;
+      email: FormField;
+      subject: FormField;
+      message: FormField;
+      submit: string;
+      success: string;
+    };
+  };
+}
+
+export interface FooterContent {
+  bio: string;
+  navigationTitle: string;
+  contactTitle: string;
+  contactLabel: string;
+  rights: string;
+  madeWith: string;
+  madeIn: string;
+}

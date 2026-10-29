@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Calendar, Briefcase, MapPin, ChevronRight } from 'lucide-react';
 import { Experience as ExperienceType } from '@/types';
 import { SectionHeader } from './SectionHeader';
+import { sections } from '@/data/profile';
 
 interface ExperienceProps {
   items: ExperienceType[];
@@ -12,8 +13,8 @@ export const Experience: React.FC<ExperienceProps> = ({ items }) => (
   <section id="experience" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
     <div className="container mx-auto max-w-4xl">
       <SectionHeader
-        title="Expérience Professionnelle"
-        subtitle="Mon parcours et mes réalisations"
+        title={sections.experience.title}
+        subtitle={sections.experience.subtitle}
       />
 
       <div className="relative">

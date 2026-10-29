@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Calendar, GraduationCap, MapPin } from 'lucide-react';
 import { Education as EducationType } from '@/types';
 import { SectionHeader } from './SectionHeader';
+import { sections } from '@/data/profile';
 
 interface EducationProps {
   items: EducationType[];
@@ -12,8 +13,8 @@ export const Education: React.FC<EducationProps> = ({ items }) => (
   <section id="education" className="py-24 px-6">
     <div className="container mx-auto max-w-4xl">
       <SectionHeader
-        title="Formation"
-        subtitle="Mon parcours académique"
+        title={sections.education.title}
+        subtitle={sections.education.subtitle}
       />
 
       <div className="relative">

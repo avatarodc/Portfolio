@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Phone, Quote } from 'lucide-react';
-import { references } from '@/data/references';
+import { references, sections } from '@/data/profile';
 import { Reference } from '@/types';
 import { SectionHeader } from './SectionHeader';
 
@@ -67,8 +67,8 @@ const References: React.FC = () => (
   <section id="references" className="py-24 px-6">
     <div className="container mx-auto max-w-5xl">
       <SectionHeader
-        title="Références"
-        subtitle="Mes recommandations professionnelles"
+        title={sections.references.title}
+        subtitle={sections.references.subtitle}
       />
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

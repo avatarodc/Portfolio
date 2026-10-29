@@ -1,25 +1,28 @@
 import { useState, useMemo } from 'react';
 import { Project } from '@/types';
-import { Github, ExternalLink, Calendar, ChevronDown } from 'lucide-react';
+import { Github, Calendar, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeader } from './SectionHeader';
+import { sections } from '@/data/profile';
+
+const text = sections.projects;
 
 interface ProjectsProps {
   projects: Project[];
 }
 
 export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
-  const [activeCategory, setActiveCategory] = useState('Tous');
+  const [activeCategory, setActiveCategory] = useState(text.allLabel);
   const [showAll, setShowAll] = useState(false);
 
   const categories = useMemo(() => {
     const unique = Array.from(new Set(projects.map((p) => p.category)));
-    return ['Tous', ...unique];
+    return [text.allLabel, ...unique];
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
     const filtered =
-      activeCategory === 'Tous'
+      activeCategory === text.allLabel
         ? [...projects]
         : projects.filter((p) => p.category === activeCategory);
 
@@ -34,8 +37,8 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
     <section id="projects" className="py-24 px-6">
       <div className="container mx-auto max-w-7xl">
         <SectionHeader
-          title="Projets Réalisés"
-          subtitle="Une sélection de mes projets les plus récents"
+          title={text.title}
+          subtitle={text.subtitle}
         />
 
         {/* Filter tabs */}
@@ -132,13 +135,13 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
                           className="flex items-center gap-1.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                         >
                           <Github size={16} />
-                          Code
+                          {text.codeLabel}
                         </a>
                       )}
                       {!project.link && (
                         <span className="flex items-center gap-1.5 text-sm text-gray-400 dark:text-gray-500">
                           <Github size={16} />
-                          Privé
+                          {text.privateLabel}
                         </span>
                       )}
                     </div>
@@ -160,7 +163,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
               onClick={() => setShowAll(true)}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-500/20 transition-all duration-300"
             >
-              Voir tous les projets ({filteredProjects.length})
+              {text.showAllLabel} ({filteredProjects.length})
               <ChevronDown size={16} />
             </button>
           </motion.div>

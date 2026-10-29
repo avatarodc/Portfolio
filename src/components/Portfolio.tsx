@@ -15,7 +15,7 @@ import {
   educationList,
   experienceList,
   certificationList,
-} from '@/data';
+} from '@/data/profile';
 
 const Portfolio = () => {
   return (

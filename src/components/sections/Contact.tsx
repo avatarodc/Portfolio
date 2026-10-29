@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, ArrowUpRight, CheckCircle } from 'lucide-react';
-import { socialLinks, contactInfo } from '@/data';
+import { socialLinks, contactInfo, sections } from '@/data/profile';
 import { SectionHeader } from './SectionHeader';
+
+const text = sections.contact;
+const { form } = text;
 
 export const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -10,27 +13,27 @@ export const Contact: React.FC = () => {
   const contactItems = [
     {
       icon: Mail,
-      label: 'Email',
+      label: text.labels.email,
       value: contactInfo.email,
       href: `mailto:${contactInfo.email}`,
       color: 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400',
     },
     {
       icon: Phone,
-      label: 'Téléphone',
+      label: text.labels.phone,
       value: contactInfo.phone,
-      href: `tel:${contactInfo.phone}`,
+      href: `tel:${contactInfo.phone.replace(/\s/g, '')}`,
       color: 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
     },
     {
       icon: MapPin,
-      label: 'Localisation',
+      label: text.labels.location,
       value: contactInfo.address,
       color: 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400',
     },
     {
       icon: Clock,
-      label: 'Disponibilité',
+      label: text.labels.availability,
       value: contactInfo.availability,
       color: 'bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400',
     },
@@ -46,8 +49,8 @@ export const Contact: React.FC = () => {
     <section id="contact" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
       <div className="container mx-auto max-w-6xl">
         <SectionHeader
-          title="Contact"
-          subtitle="N'hésitez pas à me contacter pour toute opportunité ou collaboration"
+          title={text.title}
+          subtitle={text.subtitle}
         />
 
         <div className="grid lg:grid-cols-5 gap-8">
@@ -102,7 +105,7 @@ export const Contact: React.FC = () => {
             {/* Social */}
             <div className="pt-4">
               <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                Retrouvez-moi
+                {text.labels.social}
               </p>
               <div className="flex gap-2">
                 {socialLinks.map(({ id, Icon, link, label }) => (
@@ -136,14 +139,14 @@ export const Contact: React.FC = () => {
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                     >
-                      Nom complet
+                      {form.name.label}
                     </label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
-                      placeholder="Votre nom"
+                      placeholder={form.name.placeholder}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 text-sm"
                     />
                   </div>
@@ -152,14 +155,14 @@ export const Contact: React.FC = () => {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                     >
-                      Email
+                      {form.email.label}
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      placeholder="votre@email.com"
+                      placeholder={form.email.placeholder}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 text-sm"
                     />
                   </div>
@@ -170,13 +173,13 @@ export const Contact: React.FC = () => {
                     htmlFor="subject"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                   >
-                    Sujet
+                    {form.subject.label}
                   </label>
                   <input
                     type="text"
                     id="subject"
                     name="subject"
-                    placeholder="L'objet de votre message"
+                    placeholder={form.subject.placeholder}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 text-sm"
                   />
                 </div>
@@ -186,14 +189,14 @@ export const Contact: React.FC = () => {
                     htmlFor="message"
                     className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
                   >
-                    Message
+                    {form.message.label}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={5}
-                    placeholder="Votre message..."
+                    placeholder={form.message.placeholder}
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 dark:focus:border-blue-500 outline-none transition-all duration-200 resize-none text-sm"
                   />
                 </div>
@@ -210,12 +213,12 @@ export const Contact: React.FC = () => {
                   {submitted ? (
                     <>
                       <CheckCircle size={18} />
-                      Message envoyé !
+                      {form.success}
                     </>
                   ) : (
                     <>
                       <Send size={18} />
-                      Envoyer le message
+                      {form.submit}
                     </>
                   )}
                 </button>

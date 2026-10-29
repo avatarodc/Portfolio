@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Award, Calendar, ExternalLink } from 'lucide-react';
 import { Certification } from '@/types';
 import { SectionHeader } from './SectionHeader';
+import { sections } from '@/data/profile';
 
 interface CertificationsProps {
   items: Certification[];
@@ -12,8 +13,8 @@ export const Certifications: React.FC<CertificationsProps> = ({ items }) => (
   <section id="certifications" className="py-24 px-6 bg-gray-50/50 dark:bg-gray-900/50">
     <div className="container mx-auto max-w-5xl">
       <SectionHeader
-        title="Certifications"
-        subtitle="Formations continues et certifications obtenues"
+        title={sections.certifications.title}
+        subtitle={sections.certifications.subtitle}
       />
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -71,7 +72,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ items }) => (
                 rel="noopener noreferrer"
                 className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
               >
-                Voir le certificat
+                {sections.certifications.linkLabel}
                 <ExternalLink
                   size={14}
                   className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
