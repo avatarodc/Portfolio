@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun, Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { navItems, identity, cv } from '@/data/profile';
+import { navItems, identity, cv, ui } from '@/data/profile';
 import { useScrollSpy } from '@/hooks';
 
 const sectionIds = navItems.map((item) => item.href.replace('#', ''));
@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
               transition={{ duration: 0.3, delay: 0.35 }}
               onClick={toggleTheme}
               className="ml-2 p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 hover:scale-105"
-              aria-label="Changer le thème"
+              aria-label={ui.themeToggle}
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -143,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
               animate={{ opacity: 1 }}
               onClick={toggleTheme}
               className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Changer le thème"
+              aria-label={ui.themeToggle}
             >
               {darkMode ? (
                 <Sun size={18} className="text-yellow-400" />
@@ -155,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Menu"
+              aria-label={ui.menu}
             >
               <AnimatePresence mode="wait">
                 <motion.div

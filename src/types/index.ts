@@ -270,3 +270,12 @@ export interface FooterContent {
   madeWith: string;
   madeIn: string;
 }
+
+export interface UiLabels {
+  themeToggle: string;
+  menu: string;
+  backToTop: string;
+  // lien vers l'autre langue (ex. « Read in English ») et son code court (EN / FR)
+  languageSwitch: string;
+  otherLanguage: string;
+}
