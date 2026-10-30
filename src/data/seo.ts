@@ -8,7 +8,6 @@
  */
 export const seo = {
   siteUrl: 'https://mamadou-gueye.vercel.app',
-  image: '/og-image.png',
   imageWidth: 1200,
   imageHeight: 630,
   // 160 caractères maximum pour chaque description (vérifié au build)
@@ -16,6 +15,7 @@ export const seo = {
     lang: 'fr',
     locale: 'fr_FR',
     path: '/',
+    image: '/og-image.png',
     title: 'Mamadou Gueye — Développeur Full Stack',
     description:
       'Développeur Full Stack à Dakar : Java/Spring Boot, PHP/Laravel, Angular/React, Flutter et IA. Applications en production, produits SaaS et projets.',
@@ -25,6 +25,7 @@ export const seo = {
     lang: 'en',
     locale: 'en_US',
     path: '/en/',
+    image: '/og-image-en.png',
     title: 'Mamadou Gueye — Full Stack Developer',
     description:
       'Full Stack Developer in Dakar: Java/Spring Boot, PHP/Laravel, Angular/React, Flutter and AI. Applications in production, SaaS products and projects.',

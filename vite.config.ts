@@ -51,7 +51,7 @@ const fillSeo = (html: string, lang: SeoLang) => {
     URL: `${seo.siteUrl}${page.path}`,
     URL_FR: `${seo.siteUrl}${seo.fr.path}`,
     URL_EN: `${seo.siteUrl}${seo.en.path}`,
-    IMAGE: `${seo.siteUrl}${seo.image}`,
+    IMAGE: `${seo.siteUrl}${page.image}`,
     IMAGE_WIDTH: String(seo.imageWidth),
     IMAGE_HEIGHT: String(seo.imageHeight),
     IMAGE_ALT: page.imageAlt,
