@@ -353,7 +353,8 @@ const allProjects: Project[] = t<Project[]>([
     stack: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'SonarQube'],
     role: { fr: 'Développeur Full Stack', en: 'Full Stack Developer' },
     status: 'production',
-    links: [],
+    // racine du site (la page /e renvoie 404)
+    links: [{ kind: 'site', url: 'https://billetterie.ticketfoot.sn/' }],
     privateCode: true,
   },
   {
