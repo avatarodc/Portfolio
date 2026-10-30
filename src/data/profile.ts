@@ -59,25 +59,14 @@ export const identity: Identity = {
 
 // ─── Hero (haut de page) ───
 export const hero: Hero = {
-  typewriterWords: [
-    'Développeur Full Stack',
-    'Java / Spring Boot',
-    'PHP / Laravel',
-    'Angular / React',
-    'Flutter',
-    'IA appliquée',
-  ],
+  title: 'Développeur Full Stack Java / Spring Boot & Angular',
   // `strong` = mot en gras, `accent` = mot en couleur
   bio: [
-    { text: 'Développeur Full Stack — ' },
-    { text: 'Java/Spring Boot', style: 'strong' },
-    { text: ' · ' },
-    { text: 'PHP/Laravel', style: 'strong' },
-    { text: ' · ' },
-    { text: 'Angular/React', style: 'strong' },
-    { text: ' · ' },
+    { text: 'Également ' },
+    { text: 'PHP / Laravel', style: 'strong' },
+    { text: ', ' },
     { text: 'Flutter', style: 'strong' },
-    { text: ' · ' },
+    { text: ' et ' },
     { text: 'IA', style: 'strong' },
     { text: '. Actuellement chez ' },
     { text: 'DIOTALI', style: 'accent' },
@@ -85,21 +74,14 @@ export const hero: Hero = {
   ],
   company: 'DIOTALI',
   contactLabel: 'Me contacter',
-  terminal: {
-    prompt: 'mamadou@portfolio ~ %',
-    variable: 'dev',
-    fields: [
-      { key: 'nom', value: 'Mamadou Gueye' },
-      { key: 'rôle', value: 'Développeur Full Stack' },
-      { key: 'entreprise', value: 'DIOTALI' },
-      { key: 'stack', value: ['Java', 'Spring Boot', 'Laravel', 'Angular', 'React', 'Flutter'] },
-      { key: 'passion', value: true },
-    ],
+  production: {
+    title: 'En production',
+    projectIds: ['gfa', 'billetterie-fsf', 'rimemba'],
   },
   stats: [
-    { value: '~3', label: 'Ans d\'expérience' },
-    { value: '~30', label: 'Développeurs formés' },
-    { value: '3', label: 'Langues parlées' },
+    { value: '3', label: 'Ans d\'expérience' },
+    { value: '3', label: 'Systèmes en production' },
+    { value: '30', label: 'Développeurs formés' },
   ],
   scrollHint: 'Découvrir',
 };

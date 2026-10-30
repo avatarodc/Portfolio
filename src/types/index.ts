@@ -160,25 +160,21 @@ export interface RichTextSegment {
   style?: 'strong' | 'accent';
 }
 
-export interface TerminalField {
-  key: string;
-  value: string | string[] | boolean;
-}
-
 export interface Stat {
   value: string;
   label: string;
 }
 
 export interface Hero {
-  typewriterWords: string[];
+  // rôle principal affiché sous le nom
+  title: string;
   bio: RichTextSegment[];
   company: string;
   contactLabel: string;
-  terminal: {
-    prompt: string;
-    variable: string;
-    fields: TerminalField[];
+  // carte « En production » : fiches mises en avant, reliées à leur détail
+  production: {
+    title: string;
+    projectIds: string[];
   };
   stats: Stat[];
   scrollHint: string;

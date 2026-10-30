@@ -2,77 +2,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowDown,
+  ArrowDownRight,
   Mail,
   Download,
   FileText,
   MapPin,
   Briefcase,
 } from 'lucide-react';
-import { useTypewriter } from '@/hooks';
-import { identity, hero, cv, socialLinks, contactInfo } from '@/data/profile';
-import { TerminalField } from '@/types';
+import { identity, hero, cv, socialLinks, contactInfo, projectList } from '@/data/profile';
 import { HeroNetworkSlot } from './HeroNetworkSlot';
 
-const stringToken = (value: string) => (
-  <span className="text-amber-600 dark:text-amber-400">"{value}"</span>
-);
-
-// Rend une ligne de la carte terminal (chaîne, liste ou booléen)
-const TerminalLine: React.FC<{ field: TerminalField; last: boolean }> = ({ field, last }) => {
-  const comma = last ? null : <span className="text-gray-500">,</span>;
-
-  if (Array.isArray(field.value)) {
-    const rows: string[][] = [];
-    for (let i = 0; i < field.value.length; i += 2) rows.push(field.value.slice(i, i + 2));
-    return (
-      <>
-        <p className="pl-4">
-          <span className="text-emerald-600 dark:text-emerald-400">{field.key}</span>
-          <span className="text-gray-500">: [</span>
-        </p>
-        {rows.map((row, r) => (
-          <p key={r} className="pl-8">
-            {row.map((v, i) => (
-              <React.Fragment key={v}>
-                {i > 0 && ' '}
-                {stringToken(v)}
-                {(i < row.length - 1 || r < rows.length - 1) && (
-                  <span className="text-gray-500">,</span>
-                )}
-              </React.Fragment>
-            ))}
-          </p>
-        ))}
-        <p className="pl-4">
-          <span className="text-gray-500">]</span>
-          {comma}
-        </p>
-      </>
-    );
-  }
-
-  return (
-    <p className="pl-4">
-      <span className="text-emerald-600 dark:text-emerald-400">{field.key}</span>
-      <span className="text-gray-500">:</span>{' '}
-      {typeof field.value === 'boolean' ? (
-        <span className="text-cyan-600 dark:text-cyan-400">{String(field.value)}</span>
-      ) : (
-        stringToken(field.value)
-      )}
-      {comma}
-    </p>
-  );
-};
+// Fiches mises en avant dans la carte « En production » (ordre de hero.production.projectIds)
+const productionProjects = hero.production.projectIds
+  .map((id) => projectList.find((p) => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
 const HeroSection: React.FC = () => {
-  const typewriterRef = useTypewriter({
-    words: hero.typewriterWords,
-    typingSpeed: 70,
-    deletingSpeed: 40,
-    pauseTime: 2500,
-  });
-
   const { stats } = hero;
 
   // Stagger animations
@@ -145,17 +90,12 @@ const HeroSection: React.FC = () => {
               </h1>
             </motion.div>
 
-            {/* Typewriter role */}
+            {/* Rôle principal */}
             <motion.div variants={item}>
-              <div className="flex items-center gap-3 text-xl sm:text-2xl font-light text-gray-700 dark:text-gray-300">
-                <span className="w-8 h-px bg-blue-500" />
-                {/* Texte animé masqué aux lecteurs d'écran : ils lisent la liste complète */}
-                <span className="sr-only">{hero.typewriterWords.join(', ')}</span>
-                <span aria-hidden="true">
-                  <span ref={typewriterRef}>{hero.typewriterWords[0]}</span>
-                  <span className="text-blue-500 font-normal motion-safe:animate-caret">|</span>
-                </span>
-              </div>
+              <p className="flex items-center gap-3 text-xl sm:text-2xl font-light text-gray-700 dark:text-gray-300">
+                <span className="w-8 h-px bg-blue-500 flex-shrink-0" />
+                {hero.title}
+              </p>
             </motion.div>
 
             {/* Description */}
@@ -243,7 +183,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-            className="lg:col-span-2 hidden lg:block"
+            className="lg:col-span-2"
           >
             <div className="relative">
               {/* Glow behind card */}
@@ -254,40 +194,42 @@ const HeroSection: React.FC = () => {
                 {/* Card header accent */}
                 <div className="h-1.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500" />
 
-                {/* Terminal-style header */}
+                {/* En-tête */}
                 <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 dark:border-gray-800">
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                  </div>
-                  <span className="text-xs text-gray-400 dark:text-gray-500 font-mono ml-2">
-                    {hero.terminal.prompt}
-                  </span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="text-sm font-semibold text-gray-900 dark:text-white">{hero.production.title}</span>
                 </div>
 
                 {/* Card content */}
                 <div className="p-6 space-y-5">
-                  {/* Code block */}
-                  <div className="font-mono text-sm space-y-1.5">
-                    <p>
-                      <span className="text-purple-500 dark:text-purple-400">const</span>{' '}
-                      <span className="text-blue-600 dark:text-blue-400">{hero.terminal.variable}</span>{' '}
-                      <span className="text-gray-500">=</span>{' '}
-                      <span className="text-gray-500">{'{'}</span>
-                    </p>
-                    {hero.terminal.fields.map((field, i) => (
-                      <TerminalLine
-                        key={field.key}
-                        field={field}
-                        last={i === hero.terminal.fields.length - 1}
-                      />
-                    ))}
-                    <p>
-                      <span className="text-gray-500">{'}'}</span>
-                      <span className="text-gray-500">;</span>
-                    </p>
-                  </div>
+                  {/* Systèmes en production, chacun relié à sa fiche */}
+                  <ul className="space-y-2">
+                    {productionProjects.map((project) => {
+                      const Icon = project.coverIcon;
+                      return (
+                        <li key={project.id}>
+                          <a
+                            href={`#projet-${project.id}`}
+                            className="group/item flex items-center gap-3 p-3 rounded-xl border border-gray-100 dark:border-gray-800 hover:border-blue-200 dark:hover:border-blue-800 hover:bg-blue-50/50 dark:hover:bg-blue-500/5 transition"
+                          >
+                            <span className="p-2 rounded-lg bg-blue-50 dark:bg-blue-500/10 flex-shrink-0">
+                              <Icon size={18} className="text-blue-600 dark:text-blue-400" />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block text-sm font-semibold text-gray-900 dark:text-white">
+                                {project.shortTitle ?? project.title}
+                              </span>
+                              <span className="block text-xs text-gray-500 dark:text-gray-400 truncate">
+                                {project.context}
+                                {project.statusNote && ` · ${project.statusNote}`}
+                              </span>
+                            </span>
+                            <ArrowDownRight size={16} className="text-gray-400 group-hover/item:text-blue-500 flex-shrink-0" />
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
 
                   {/* Divider */}
                   <div className="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent" />
@@ -311,22 +253,6 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* ── Mobile stats (visible on small screens) ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="lg:hidden grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-gray-200 dark:border-gray-800"
-        >
-          {stats.map(({ value, label }) => (
-            <div key={label} className="text-center">
-              <p className="text-2xl font-black bg-gradient-to-b from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 text-transparent bg-clip-text">
-                {value}
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{label}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
       {/* ── Scroll indicator ── */}
