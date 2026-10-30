@@ -17,7 +17,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ items }) => (
         subtitle={sections.certifications.subtitle}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
         {items.map((cert, index) => (
           <motion.div
             key={cert.id}

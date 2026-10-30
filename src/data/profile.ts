@@ -201,8 +201,8 @@ export const sections: SectionsContent = {
   },
   certifications: {
     title: 'Certifications',
-    subtitle: 'Formations en ligne complémentaires',
-    linkLabel: 'Voir le certificat',
+    subtitle: 'Projets guidés Coursera, vérifiables en ligne',
+    linkLabel: 'Vérifier le certificat',
   },
   contact: {
     title: 'Contact',
@@ -845,22 +845,24 @@ export const distinctions: Distinction[] = [
 
 export const certificationList: Certification[] = [
   {
-    id: 'web-dev-cert',
-    title: 'Web Development',
-    platform: 'Coursera',
+    id: 'coursera-php-mysql',
+    title: 'Using MySQL Database with PHP',
+    platform: 'Coursera — projet guidé',
+    // TODO(date) : date reprise de l'ancien site, à confirmer sur la page de vérification
     date: '2024',
-    link: 'https://coursera.org/share/c6368640a4932a7783ce75b38936860b',
-    description: 'Formation complète en développement web moderne',
-    skills: ['HTML5', 'CSS3', 'JavaScript', 'React']
+    link: 'https://www.coursera.org/account/accomplishments/verify/5C5JV4PODFHB',
+    description: 'Certificat de réussite vérifiable sur Coursera.',
+    skills: ['PHP', 'MySQL']
   },
   {
-    id: 'db-cert',
-    title: 'Database Management',
-    platform: 'Coursera',
+    id: 'coursera-node-api',
+    title: 'APIs in Node.js: Write a RESTful API Backend Application',
+    platform: 'Coursera — projet guidé',
+    // TODO(date) : date reprise de l'ancien site, à confirmer sur la page de vérification
     date: '2024',
-    link: 'https://coursera.org/share/c194bbfccea24c3d3ac8901a3d76b739',
-    description: 'Gestion avancée des bases de données',
-    skills: ['SQL', 'NoSQL', 'Database Design']
+    link: 'https://www.coursera.org/account/accomplishments/verify/CIZ7RQ1VDYUM',
+    description: 'Certificat de réussite vérifiable sur Coursera.',
+    skills: ['Node.js', 'API REST']
   }
 ];
 
