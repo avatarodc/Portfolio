@@ -520,7 +520,8 @@ export const techAliases: Record<string, string[]> = {
 export const archiveProjects: ArchiveProject[] = [
   {
     id: 'pdd-production',
-    title: 'PDD Production - Site Vitrine',
+    // TODO(cadre) : préciser « Site client — freelance » ou « Site client — WBCC »
+    title: 'PDD Production — site client',
     description: 'Site vitrine one-page pour PDD Production, agence de communication événementielle à Dakar. Animations au scroll, filtres portfolio, lightbox, carrousel de témoignages, formulaire de contact et déploiement GitLab Pages via CI/CD.',
     tech: ['HTML', 'CSS', 'JavaScript', 'GitLab', 'CI/CD'],
     link: 'https://pddproduction-f5a5bd.gitlab.io',
@@ -530,8 +531,8 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     id: 'hbassurance',
-    title: 'HB ASSURANCE',
-    description: 'Application web complète pour HB ASSURANCE développée au sein du WBCC (World Business Contact Center). Gestion d\'assurance.',
+    title: 'HB Assurance — site client réalisé chez WBCC',
+    description: 'Site d\'une compagnie d\'assurance, réalisé pour un client du WBCC (World Business Contact Center).',
     tech: ['WordPress'],
     link: 'https://hbassurance.com/',
     category: 'Web App',
@@ -541,12 +542,12 @@ export const archiveProjects: ArchiveProject[] = [
   // ─── Projets Sonatel Académie (2024) ───
   {
     id: 'wave-senegal-flutter',
-    title: 'Wave Sénégal Mobile',
-    description: 'Version mobile de Wave Sénégal développée avec Flutter. Application cross-platform permettant les transferts d\'argent et paiements avec une expérience utilisateur native.',
+    title: 'Clone pédagogique inspiré de Wave (mobile) — projet Sonatel Academy',
+    description: 'Exercice de formation : application mobile de transfert d\'argent et de paiement inspirée de Wave, réalisée avec Flutter. Sans lien avec l\'entreprise Wave.',
     tech: ['Flutter', 'Dart', 'Firebase', 'GetX', 'API REST', 'Google Maps API'],
     link: 'https://github.com/avatarodc/Flutter-Transfert-App',
     category: 'Mobile App',
-    image: 'images/projects/wave.png',
+    // pas d'image : wave.png reprend le visuel officiel de Wave (ambigu pour un exercice)
     date: 'Octobre 2024'
   },
   {
@@ -561,8 +562,8 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     id: 'wave-senegal-refonte',
-    title: 'Refonte Wave Sénégal',
-    description: 'Amélioration de la plateforme Wave Sénégal avec de nouvelles fonctionnalités innovantes incluant un système d\'envoi programmé et périodique automatique pour optimiser les transactions des utilisateurs.',
+    title: 'Clone pédagogique inspiré de Wave — projet Sonatel Academy',
+    description: 'Exercice de formation : interface web de transfert d\'argent inspirée de Wave, avec envoi programmé et périodique. Sans lien avec l\'entreprise Wave.',
     tech: ['Angular', 'TypeScript', 'HTML', 'CSS', 'PostgreSQL', 'Docker', 'Redis', 'Swagger'],
     link: 'https://github.com/avatarodc/money_transfert_angular',
     category: 'Full Stack',
