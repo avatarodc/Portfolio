@@ -44,6 +44,8 @@ export interface Project {
   links: ProjectLink[];
   // true : affiche « Code privé — démo sur demande » au lieu d'un lien vers le code
   privateCode?: boolean;
+  // false : fiche masquée partout (fiches, constellation, renvois) tant qu'elle est incomplète
+  visible?: boolean;
   // capture d'écran explicite ; sinon public/images/projects/<id>.(png|jpg|webp) si présent,
   // sinon couverture générée
   image?: string;

@@ -240,7 +240,7 @@ export const navItems: NavItem[] = [
 // Projets classés du plus fort au plus modeste : production réelle > produits > académique.
 // Pour ajouter une capture : déposer le fichier dans public/images/projects/ puis renseigner `image`
 // (liste des captures attendues : docs/captures-a-fournir.md). Sans `image`, la fiche s'affiche sans zone image.
-export const projectList: Project[] = [
+const allProjects: Project[] = [
   // ─── Réalisations en production ───
   {
     id: 'gfa',
@@ -322,6 +322,8 @@ export const projectList: Project[] = [
 
   {
     id: 'diotali-events',
+    // TODO(fiche) : points techniques (details) et stack à renseigner, puis retirer visible: false
+    visible: false,
     group: 'production',
     coverIcon: Ticket,
     title: 'Diotali Events',
@@ -398,6 +400,8 @@ export const projectList: Project[] = [
   },
   {
     id: 'verifia',
+    // TODO(fiche) : stack et points techniques à renseigner, puis retirer visible: false
+    visible: false,
     group: 'produits',
     coverIcon: ShieldCheck,
     title: 'Verifia',
@@ -496,6 +500,9 @@ export const projectList: Project[] = [
     privateCode: true,
   },
 ];
+
+// Fiches affichées sur le site (les fiches visible: false sont masquées partout)
+export const projectList: Project[] = allProjects.filter((p) => p.visible !== false);
 
 // Équivalences entre technologies, utilisées pour relier les compétences dans la constellation
 // (ex. « API ChatGPT » chez WBCC compte comme OpenAI et API LLM).
