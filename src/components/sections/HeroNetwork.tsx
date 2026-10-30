@@ -3,9 +3,7 @@ import {
   skillCategories,
   projectList,
   experienceList,
-  archiveProjects,
   techAliases,
-  sections,
 } from '@/data/profile';
 import { buildSkillGraph } from '@/lib/skillGraph';
 import { watchFrameRate } from '@/lib/devicePerf';
@@ -36,8 +34,6 @@ const buildNetwork = () => {
     skillCategories,
     projects: projectList,
     experiences: experienceList,
-    archives: archiveProjects,
-    archivesLabel: sections.constellation.archivesLabel,
     aliases: techAliases,
   });
   const skills = graph.nodes.filter((n) => n.kind === 'skill');

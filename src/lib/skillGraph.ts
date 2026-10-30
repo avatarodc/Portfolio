@@ -1,12 +1,13 @@
 /**
  * Construit le graphe de la constellation à partir des données de profile.ts :
- * compétences (section Compétences) reliées aux projets, postes et archives
+ * compétences (section Compétences) reliées aux projets et aux postes
+ * (les archives de formation n'y figurent pas).
  * qui les utilisent. Aucune donnée n'est saisie deux fois.
  */
-import { ArchiveProject, Category, Experience, Project } from '@/types';
+import { Category, Experience, Project } from '@/types';
 import { expandSkillLabel, techKey } from './skills';
 
-export type GraphNodeKind = 'skill' | 'project' | 'company' | 'archives';
+export type GraphNodeKind = 'skill' | 'project' | 'company';
 
 export interface GraphNode {
   id: string;
@@ -36,8 +37,6 @@ interface GraphInput {
   skillCategories: Category[];
   projects: Project[];
   experiences: Experience[];
-  archives: ArchiveProject[];
-  archivesLabel: string;
   aliases: Record<string, string[]>;
 }
 
@@ -45,8 +44,6 @@ export const buildSkillGraph = ({
   skillCategories,
   projects,
   experiences,
-  archives,
-  archivesLabel,
   aliases,
 }: GraphInput): SkillGraph => {
   // Nœuds compétences : les libellés de la section Compétences, décomposés
@@ -85,10 +82,6 @@ export const buildSkillGraph = ({
       node: { id: `company:${e.id}`, kind: 'company' as const, label: e.company, anchor: '#experience', degree: 0 },
       keys: skillKeysOf(e.stack || []),
     })),
-    {
-      node: { id: 'archives', kind: 'archives' as const, label: archivesLabel, anchor: '#archives', degree: 0 },
-      keys: skillKeysOf(archives.flatMap((a) => a.tech)),
-    },
   ].filter((owner) => owner.keys.size > 0);
 
   const links: GraphLink[] = [];

@@ -2,9 +2,7 @@ import {
   skillCategories,
   projectList,
   experienceList,
-  archiveProjects,
   techAliases,
-  sections,
 } from '@/data/profile';
 import { buildSkillGraph, SkillGraph } from '@/lib/skillGraph';
 import { Project } from '@/types';
@@ -18,8 +16,6 @@ const getGraph = () =>
     skillCategories,
     projects: projectList,
     experiences: experienceList,
-    archives: archiveProjects,
-    archivesLabel: sections.constellation.archivesLabel,
     aliases: techAliases,
   }));
 

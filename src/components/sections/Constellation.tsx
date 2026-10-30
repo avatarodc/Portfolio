@@ -6,7 +6,6 @@ import {
   skillCategories,
   projectList,
   experienceList,
-  archiveProjects,
   techAliases,
 } from '@/data/profile';
 import { buildSkillGraph, GraphNode } from '@/lib/skillGraph';
@@ -16,7 +15,7 @@ const text = sections.constellation;
 
 // Mêmes teintes que les cartes de la section Compétences (cycle de 4 couleurs)
 const categoryColors = ['#3b82f6', '#10b981', '#a855f7', '#f59e0b'];
-const kindColors = { project: '#64748b', company: '#06b6d4', archives: '#94a3b8' };
+const kindColors = { project: '#64748b', company: '#06b6d4' };
 
 const nodeColor = (node: GraphNode) =>
   node.kind === 'skill' ? categoryColors[(node.category ?? 0) % categoryColors.length] : kindColors[node.kind];
@@ -24,7 +23,6 @@ const nodeColor = (node: GraphNode) =>
 const nodeRadius = (node: GraphNode) => {
   if (node.kind === 'skill') return 4 + Math.min(node.degree, 6);
   if (node.kind === 'company') return 10;
-  if (node.kind === 'archives') return 9;
   return 6;
 };
 
@@ -42,9 +40,6 @@ const NodeShape: React.FC<{ node: GraphNode; r: number }> = ({ node, r }) => {
   if (node.kind === 'company') {
     return <rect x={-r * 0.75} y={-r * 0.75} width={r * 1.5} height={r * 1.5} rx={2} transform="rotate(45)" fill={fill} />;
   }
-  if (node.kind === 'archives') {
-    return <circle r={r} fill="none" stroke={fill} strokeWidth={2} strokeDasharray="3 3" />;
-  }
   return <circle r={r} fill={fill} />;
 };
 
@@ -55,8 +50,6 @@ const Constellation: React.FC = () => {
         skillCategories,
         projects: projectList,
         experiences: experienceList,
-        archives: archiveProjects,
-        archivesLabel: text.archivesLabel,
         aliases: techAliases,
       }),
     []
@@ -85,7 +78,7 @@ const Constellation: React.FC = () => {
       // Simulation dans un carré, en anneaux : entreprises au centre, projets autour,
       // compétences à l'extérieur ; le résultat est ensuite étiré au format du cadre.
       const size = 600;
-      const ring = { company: 70, archives: 150, project: 150, skill: 265 };
+      const ring = { company: 70, project: 150, skill: 265 };
       const kindOf = new Map(graph.nodes.map((n) => [n.id, n.kind]));
       // Départ régulier sur chaque anneau : les compétences dans l'ordre des catégories,
       // puis chaque projet / entreprise trié selon l'angle moyen de ses compétences,
@@ -108,7 +101,7 @@ const Constellation: React.FC = () => {
         const sorted = nodes.map((n) => ({ n, a: meanAngle(n) })).sort((p, q) => p.a - q.a);
         spread(sorted.map((p) => p.n), sorted[0]?.a);
       };
-      spreadByMeanAngle(graph.nodes.filter((n) => n.kind === 'project' || n.kind === 'archives'));
+      spreadByMeanAngle(graph.nodes.filter((n) => n.kind === 'project'));
       spreadByMeanAngle(graph.nodes.filter((n) => n.kind === 'company'));
 
       const simNodes: SimNode[] = graph.nodes.map((n) => {
@@ -214,7 +207,7 @@ const Constellation: React.FC = () => {
     if (!positions) return placed;
     const rank = (n: GraphNode) =>
       (n.id === active ? 0 : lit?.has(n.id) ? 1 : 2) * 10 +
-      ({ company: 0, project: 1, archives: 2, skill: 3 } as const)[n.kind];
+      ({ company: 0, project: 1, skill: 2 } as const)[n.kind];
     const lineHeight = fontSize + 3;
     // les points sont des obstacles, comme les libellés déjà placés
     const boxes = graph.nodes.map((n) => {
@@ -359,7 +352,6 @@ const Constellation: React.FC = () => {
           <li className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-500" />{text.legend.skill}</li>
           <li className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-slate-500" />{text.legend.project}</li>
           <li className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rotate-45 rounded-sm bg-cyan-500" />{text.legend.company}</li>
-          <li className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full border-2 border-dashed border-slate-400" />{text.legend.archives}</li>
         </ul>
       </div>
 
@@ -389,7 +381,7 @@ const Constellation: React.FC = () => {
             {selectedNode.kind === 'skill' ? (
               <>
                 {[
-                  { label: text.projectsLabel, items: related.filter((n) => n.kind === 'project' || n.kind === 'archives') },
+                  { label: text.projectsLabel, items: related.filter((n) => n.kind === 'project') },
                   { label: text.companiesLabel, items: related.filter((n) => n.kind === 'company') },
                 ]
                   .filter((group) => group.items.length > 0)

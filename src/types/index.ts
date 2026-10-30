@@ -222,13 +222,12 @@ export interface SectionsContent {
     graphLabel: string;
     skillsTitle: string;
     ownersTitle: string;
-    archivesLabel: string;
     projectsLabel: string;
     companiesLabel: string;
     linkedSkillsLabel: string;
     detailLink: string;
     clearLabel: string;
-    legend: { skill: string; project: string; company: string; archives: string };
+    legend: { skill: string; project: string; company: string };
   };
   about: SectionText;
   education: SectionText;
