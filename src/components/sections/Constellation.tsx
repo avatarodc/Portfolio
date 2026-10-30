@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
-import { X, ArrowDownRight } from 'lucide-react';
+import { X, ArrowDownRight, MousePointerClick } from 'lucide-react';
 import {
   sections,
   skillCategories,
@@ -9,7 +9,8 @@ import {
   techAliases,
 } from '@/data/profile';
 import { buildSkillGraph, GraphNode } from '@/lib/skillGraph';
-import { shouldStayStatic, watchFrameRate } from '@/lib/devicePerf';
+import { prefersReducedMotion, shouldStayStatic, watchFrameRate } from '@/lib/devicePerf';
+import { techKey } from '@/lib/skills';
 
 const text = sections.constellation;
 
@@ -168,14 +169,62 @@ const Constellation: React.FC = () => {
     };
   }, [graph, constrained, width, height]);
 
-  // Nœud actif : sélection, ou survol en l'absence de sélection
-  const active = selected ?? hovered;
+  // Démonstration : une compétence allumée 3 s au premier affichage (sans annonce
+  // aux lecteurs d'écran, absente en mouvement réduit, annulée à la première interaction)
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [demo, setDemo] = useState<string | null>(null);
+  const [interacted, setInteracted] = useState(false);
+  const demoId = `skill:${techKey(text.demoSkill)}`;
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!positions || interacted || !svg || !byId.has(demoId) || prefersReducedMotion()) return;
+    let timer = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        setDemo(demoId);
+        timer = window.setTimeout(() => setDemo(null), 3000);
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(svg);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+    };
+    // une seule démonstration, dès que la disposition est prête
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [positions === null]);
+  const interact = () => {
+    if (!interacted) setInteracted(true);
+    setDemo(null);
+  };
+
+  // Compétences « principales » : seules leurs liaisons restent visibles au repos
+  const hubs = useMemo(
+    () =>
+      new Set(
+        graph.nodes
+          .filter((n) => n.kind === 'skill')
+          .sort((a, b) => b.degree - a.degree)
+          .slice(0, text.hubCount)
+          .map((n) => n.id)
+      ),
+    [graph]
+  );
+
+  // Nœud actif : sélection, survol, ou démonstration
+  const active = selected ?? hovered ?? demo;
   const lit = useMemo(() => {
     if (!active) return null;
     return new Set([active, ...(graph.neighbors.get(active) || [])]);
   }, [active, graph]);
 
-  const toggle = (id: string) => setSelected((current) => (current === id ? null : id));
+  const toggle = (id: string) => {
+    interact();
+    setSelected((current) => (current === id ? null : id));
+  };
 
   const selectedNode = selected ? byId.get(selected) : undefined;
   const related = selectedNode
@@ -227,7 +276,8 @@ const Constellation: React.FC = () => {
         const preferred = labelAnchor(node, p, r);
         const other: 'start' | 'end' = preferred === 'end' ? 'start' : 'end';
         const w = labelWidth(node);
-        const tries = [0, -lineHeight, lineHeight, -2 * lineHeight, 2 * lineHeight].flatMap((dy) =>
+        // décalage limité pour que le libellé reste collé à son point
+        const tries = [0, -0.7 * lineHeight, 0.7 * lineHeight].flatMap((dy) =>
           [preferred, other].map((anchor) => ({ anchor, dy }))
         );
         for (const { anchor, dy } of tries) {
@@ -278,10 +328,14 @@ const Constellation: React.FC = () => {
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="w-full h-auto block select-none"
+          ref={svgRef}
           role="img"
           data-motion={motion}
           aria-label={text.graphLabel}
-          onClick={() => setSelected(null)}
+          onClick={() => {
+            interact();
+            setSelected(null);
+          }}
         >
           {positions && (
             <>
@@ -290,6 +344,8 @@ const Constellation: React.FC = () => {
                   const a = positions.get(link.source)!;
                   const b = positions.get(link.target)!;
                   const on = active && (link.source === active || link.target === active);
+                  // au repos : seulement les liaisons des compétences principales
+                  const shown = lit ? on : hubs.has(link.target) || hubs.has(link.source);
                   return (
                     <line
                       key={`${link.source}-${link.target}`}
@@ -300,7 +356,7 @@ const Constellation: React.FC = () => {
                       stroke={on ? '#3b82f6' : 'currentColor'}
                       strokeWidth={on ? 1.6 : 0.8}
                       className={`text-gray-300 dark:text-gray-700 motion-safe:transition-opacity motion-safe:duration-300 ${
-                        lit && !on ? 'opacity-10' : 'opacity-70'
+                        shown ? 'opacity-70' : 'opacity-0'
                       }`}
                     />
                   );
@@ -321,7 +377,10 @@ const Constellation: React.FC = () => {
                         e.stopPropagation();
                         toggle(node.id);
                       }}
-                      onMouseEnter={() => setHovered(node.id)}
+                      onMouseEnter={() => {
+                        interact();
+                        setHovered(node.id);
+                      }}
                       onMouseLeave={() => setHovered(null)}
                     >
                       {/* zone de clic élargie pour le tactile */}
@@ -346,6 +405,13 @@ const Constellation: React.FC = () => {
             </>
           )}
         </svg>
+
+        {!interacted && !selected && (
+          <p className="pointer-events-none absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-500/20">
+            <MousePointerClick size={14} />
+            {text.clickHint}
+          </p>
+        )}
 
         {/* Légende */}
         <ul className="flex flex-wrap gap-x-4 gap-y-1 px-4 py-3 border-t border-gray-100 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400">

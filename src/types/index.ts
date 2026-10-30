@@ -218,6 +218,12 @@ export interface SectionsContent {
   constellation: SectionText & {
     // texte affiché tant que rien n'est sélectionné
     hint: string;
+    // indication visible sur le graphe jusqu'à la première interaction
+    clickHint: string;
+    // compétence allumée 3 s au premier affichage, pour montrer l'interaction
+    demoSkill: string;
+    // nombre de compétences dont les liens restent visibles au repos
+    hubCount: number;
     loading: string;
     graphLabel: string;
     skillsTitle: string;
