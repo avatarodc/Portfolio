@@ -226,7 +226,7 @@ export const sections: SectionsContent = {
   },
   contact: {
     title: 'Contact',
-    subtitle: 'Un poste, une mission freelance ou un projet de formation ? Écrivez-moi.',
+    subtitle: 'Une mission, un projet ou simplement un échange ? Écrivez-moi.',
     labels: {
       email: 'Email',
       phone: 'Téléphone',
@@ -907,7 +907,7 @@ export const contactInfo: Contact = {
   email: 'mamadougueyeoff1@gmail.com',
   phone: '+221 78 311 66 55',
   address: 'Dakar, Sénégal',
-  availability: 'Disponible pour des opportunités'
+  availability: 'Ouvert aux échanges'
 };
 
 // ─── Pied de page ───
