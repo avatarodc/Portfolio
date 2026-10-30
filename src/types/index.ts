@@ -5,7 +5,7 @@ export interface NavItem {
   href: string;
 }
 
-export type ProjectGroup = 'production' | 'produits' | 'ia';
+export type ProjectGroup = 'production' | 'produits' | 'ia' | 'academique';
 
 export type ProjectStatus =
   | 'production'
@@ -205,6 +205,7 @@ export interface SectionsContent {
   projects: SectionText;
   products: SectionText;
   ai: SectionText & { workflowTitle: string; workflowText: string };
+  academic: SectionText;
   archives: SectionText & { showLabel: string; hideLabel: string };
   projectLabels: {
     statuses: Record<ProjectStatus, string>;

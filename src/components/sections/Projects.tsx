@@ -187,7 +187,12 @@ const ProjectGroupSection: React.FC<ProjectGroupSectionProps> = ({ id, group, te
       <div className="container mx-auto max-w-7xl">
         <SectionHeader title={text.title} subtitle={text.subtitle} />
         {children}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* deux fiches : grille de deux colonnes centrée, sinon trois colonnes */}
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${
+            projects.length === 2 ? 'max-w-4xl mx-auto' : 'lg:grid-cols-3'
+          }`}
+        >
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -203,6 +208,10 @@ export const Projects: React.FC = () => (
 
 export const Products: React.FC = () => (
   <ProjectGroupSection id="produits" group="produits" text={sections.products} shaded />
+);
+
+export const AcademicProjects: React.FC = () => (
+  <ProjectGroupSection id="academique" group="academique" text={sections.academic} shaded />
 );
 
 export const AiProjects: React.FC = () => (

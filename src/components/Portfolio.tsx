@@ -5,6 +5,7 @@ import {
   Projects,
   Products,
   AiProjects,
+  AcademicProjects,
   Archives,
   Skills,
   Education,
@@ -29,6 +30,7 @@ const Portfolio = () => {
       <Projects />
       <Products />
       <AiProjects />
+      <AcademicProjects />
       <Archives />
       <Skills />
       <Education items={educationList} />

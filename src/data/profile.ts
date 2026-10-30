@@ -48,6 +48,7 @@ import {
   ScanSearch,
   Boxes,
   CodeXml,
+  MessageSquareText,
 } from 'lucide-react';
 
 // ─── Identité ───
@@ -129,10 +130,14 @@ export const sections: SectionsContent = {
     subtitle: 'Produits que j\'ai fondés ou développés en freelance',
   },
   ai: {
-    title: 'IA et projets techniques',
-    subtitle: 'Projets d\'équipe du Master à l\'ISI, et ce portfolio',
+    title: 'IA',
+    subtitle: 'Intégrations d\'IA en production et en projet',
     workflowTitle: 'Développement assisté par IA',
     workflowText: 'J\'utilise Claude Code au quotidien, avec relecture et tests systématiques du code généré.',
+  },
+  academic: {
+    title: 'Projets académiques',
+    subtitle: 'Projets d\'équipe du Master à l\'ISI, et ce portfolio',
   },
   archives: {
     title: 'Archives',
@@ -416,7 +421,22 @@ const allProjects: Project[] = [
     privateCode: true,
   },
 
-  // ─── IA et projets techniques ───
+  // ─── IA ───
+  {
+    id: 'chatgpt-wbcc',
+    group: 'ia',
+    coverIcon: MessageSquareText,
+    title: 'Intégration de l\'API ChatGPT — WBCC',
+    shortTitle: 'ChatGPT · WBCC',
+    context: 'WBCC',
+    contextAnchor: '#experience',
+    problem: 'Intégration de l\'API ChatGPT dans des applications Laravel pour RYM PARTNERS et RYMHOLDING.',
+    stack: ['PHP', 'Laravel', 'API ChatGPT'],
+    role: 'Développeur Full Stack PHP / Laravel',
+    status: 'production',
+    links: [],
+    privateCode: true,
+  },
   {
     id: 'chatbot-rag',
     group: 'ia',
@@ -435,9 +455,11 @@ const allProjects: Project[] = [
     links: [],
     privateCode: true,
   },
+
+  // ─── Projets académiques ───
   {
     id: 'diagnostic-ecg',
-    group: 'ia',
+    group: 'academique',
     coverIcon: HeartPulse,
     title: 'Système de diagnostic ECG',
     shortTitle: 'Diagnostic ECG',
@@ -455,7 +477,7 @@ const allProjects: Project[] = [
   },
   {
     id: 'detecteur-telephones',
-    group: 'ia',
+    group: 'academique',
     coverIcon: ScanSearch,
     title: 'Détecteur de téléphones',
     shortTitle: 'Détecteur YOLOv8',
@@ -469,7 +491,7 @@ const allProjects: Project[] = [
   },
   {
     id: 'gestion-produits',
-    group: 'ia',
+    group: 'academique',
     coverIcon: Boxes,
     title: 'Architecture microservices GestionProduits',
     shortTitle: 'GestionProduits',
@@ -489,7 +511,7 @@ const allProjects: Project[] = [
   },
   {
     id: 'portfolio',
-    group: 'ia',
+    group: 'academique',
     coverIcon: CodeXml,
     title: 'Ce portfolio',
     context: 'Projet personnel',
@@ -776,7 +798,7 @@ export const experienceList: Experience[] = [
     company: 'WBCC',
     stack: ['PHP', 'Laravel', 'JavaScript', 'React', 'MySQL', 'API ChatGPT'],
     highlights: [
-      { text: 'Intégration de l\'API ChatGPT dans des applications Laravel pour RYM PARTNERS et RYMHOLDING' },
+      { text: 'Intégration de l\'API ChatGPT dans des applications Laravel pour RYM PARTNERS et RYMHOLDING', projectId: 'chatgpt-wbcc' },
     ],
     clientLinks: [
       { label: 'RYMHOLDING', url: 'https://job.rymholding.com', image: 'images/projects/rymholding.jpg' },

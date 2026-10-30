@@ -19,11 +19,12 @@ Les fiches sans capture affichent une couverture générée (nom du projet, icô
 | BorYi | Produits | `boryi.png` |
 | SamaDahira | Produits | `samadahira.png` |
 | Verifia | Produits | `verifia.png` |
-| Chatbot RAG de recherche documentaire | IA et projets techniques | `chatbot-rag.png` |
-| Système de diagnostic ECG | IA et projets techniques | `diagnostic-ecg.png` |
-| Détecteur de téléphones | IA et projets techniques | `detecteur-telephones.png` |
-| Architecture microservices GestionProduits | IA et projets techniques | `gestion-produits.png` |
-| Ce portfolio | IA et projets techniques | `portfolio.png` |
+| Intégration de l'API ChatGPT — WBCC | IA | `chatgpt-wbcc.png` |
+| Chatbot RAG de recherche documentaire | IA | `chatbot-rag.png` |
+| Système de diagnostic ECG | Projets académiques | `diagnostic-ecg.png` |
+| Détecteur de téléphones | Projets académiques | `detecteur-telephones.png` |
+| Architecture microservices GestionProduits | Projets académiques | `gestion-produits.png` |
+| Ce portfolio | Projets académiques | `portfolio.png` |
 
 Déjà en place : Rimemba (`rimemba.png`), RYMHOLDING (`rymholding.jpg`), RYM PARTNERS (`rympartners.jpg`).
 

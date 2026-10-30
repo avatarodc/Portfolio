@@ -1,7 +1,7 @@
 export { default as HeroSection } from './HeroSection';
 export { About } from './About';
 export { Distinctions } from './Distinctions';
-export { Projects, Products, AiProjects, Archives } from './Projects';
+export { Projects, Products, AiProjects, AcademicProjects, Archives } from './Projects';
 export { Skills } from './Skills';
 export { Experience } from './Experience';
 export { Education } from './Education';
