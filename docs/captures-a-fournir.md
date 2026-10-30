@@ -1,11 +1,15 @@
 # Captures d'écran à fournir
 
-Les fiches sans capture s'affichent sans zone image. Pour en ajouter une :
+Les fiches sans capture affichent une couverture générée (nom du projet, icône du domaine
+`coverIcon` et motif tiré de la constellation). Pour la remplacer par une vraie capture :
 
-1. Déposer le fichier dans `public/images/projects/` (format conseillé : PNG ou JPG, ratio ~16:9, ≤ 300 Ko).
-2. Dans `src/data/profile.ts`, renseigner `image: 'images/projects/<fichier>'` sur le projet.
+1. Déposer le fichier dans `public/images/projects/` sous le nom indiqué ci-dessous
+   (`.png`, `.jpg` ou `.webp`, ratio ~16:9, ≤ 300 Ko).
+2. C'est tout : au build suivant, la capture remplace la couverture automatiquement
+   (aucune modification de `profile.ts` nécessaire ; le champ `image` reste possible
+   pour un autre nom de fichier).
 
-| Projet | Section | Fichier suggéré |
+| Projet | Section | Fichier attendu |
 |---|---|---|
 | GFA — Gestion de files d'attente | Réalisations en production | `gfa.png` |
 | Billetterie FSF | Réalisations en production | `billetterie-fsf.png` |

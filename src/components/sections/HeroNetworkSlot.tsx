@@ -1,17 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { shouldStayStatic } from '@/lib/devicePerf';
 
 // Réseau du Hero chargé quand le navigateur est au repos, après l'affichage du texte
 const HeroNetwork = lazy(() => import('./HeroNetwork'));
-
-// Image fixe si mouvement réduit, appareil faible ou économie de données
-const canAnimate = () => {
-  const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
-  return (
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-    (navigator.hardwareConcurrency || 8) > 4 &&
-    !nav.connection?.saveData
-  );
-};
 
 export const HeroNetworkSlot: React.FC = () => {
   const [ready, setReady] = useState(false);
@@ -29,7 +20,8 @@ export const HeroNetworkSlot: React.FC = () => {
   if (!ready) return null;
   return (
     <Suspense fallback={null}>
-      <HeroNetwork animate={canAnimate()} />
+      {/* image fixe d'emblée si mouvement réduit, peu de mémoire ou économie de données */}
+      <HeroNetwork animate={!shouldStayStatic()} />
     </Suspense>
   );
 };

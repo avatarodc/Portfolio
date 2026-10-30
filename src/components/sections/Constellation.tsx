@@ -10,6 +10,7 @@ import {
   techAliases,
 } from '@/data/profile';
 import { buildSkillGraph, GraphNode } from '@/lib/skillGraph';
+import { shouldStayStatic, watchFrameRate } from '@/lib/devicePerf';
 
 const text = sections.constellation;
 
@@ -30,15 +31,8 @@ const nodeRadius = (node: GraphNode) => {
 interface Point { x: number; y: number }
 type SimNode = SimulationNodeDatum & { id: string; r: number };
 
-const isConstrained = () => {
-  const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
-  return (
-    window.matchMedia('(max-width: 767px)').matches ||
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    (navigator.hardwareConcurrency || 8) <= 4 ||
-    Boolean(nav.connection?.saveData)
-  );
-};
+// Disposition figée d'emblée : petit écran, mouvement réduit, peu de mémoire ou économie de données
+const isConstrained = () => window.matchMedia('(max-width: 767px)').matches || shouldStayStatic();
 
 const NodeShape: React.FC<{ node: GraphNode; r: number }> = ({ node, r }) => {
   const fill = nodeColor(node);
@@ -75,6 +69,8 @@ const Constellation: React.FC = () => {
   const fontSize = constrained ? 13 : 11;
 
   const [positions, setPositions] = useState<Map<string, Point> | null>(null);
+  // état exposé dans le DOM (diagnostic) : animated | static
+  const [motion, setMotion] = useState<'animated' | 'static'>(constrained ? 'static' : 'animated');
   const [selected, setSelected] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -157,7 +153,17 @@ const Constellation: React.FC = () => {
           setPositions(snapshot());
         });
       });
+      // Fluidité réelle : si l'appareil peine (> ~25 ms par image), on termine
+      // le calcul d'un coup et on fige la disposition
+      const stopWatching = watchFrameRate(() => {
+        simulation.stop();
+        cancelAnimationFrame(frame);
+        while (simulation.alpha() > simulation.alphaMin()) simulation.tick();
+        setPositions(snapshot());
+        setMotion('static');
+      });
       stop = () => {
+        stopWatching();
         simulation.stop();
         cancelAnimationFrame(frame);
       };
@@ -188,14 +194,64 @@ const Constellation: React.FC = () => {
     !constrained ||
     (lit ? lit.has(node.id) : node.kind === 'company' || (node.kind === 'skill' && node.degree >= 4));
 
+  const labelWidth = (node: GraphNode) => node.label.length * fontSize * (node.kind === 'skill' ? 0.6 : 0.66);
+
   // Libellé orienté vers l'extérieur, retourné s'il sortirait du cadre
-  const labelAnchor = (node: GraphNode, p: Point, r: number) => {
-    const w = node.label.length * fontSize * 0.55 + r + 4;
+  const labelAnchor = (node: GraphNode, p: Point, r: number): 'start' | 'end' => {
+    const w = labelWidth(node) + r + 4;
     const outward = p.x < width / 2 ? 'end' : 'start';
     if (outward === 'end' && p.x - w < 0) return 'start';
     if (outward === 'start' && p.x + w > width) return 'end';
     return outward;
   };
+
+  // Placement sans chevauchement : par ordre d'importance (sélection, entreprises,
+  // projets, compétences les plus reliées), chaque libellé essaie l'autre côté de son
+  // point puis des décalages verticaux s'il touche un libellé déjà placé ou un point ;
+  // faute de place, il est masqué au repos.
+  const labels = useMemo(() => {
+    const placed = new Map<string, { anchor: 'start' | 'end'; dy: number }>();
+    if (!positions) return placed;
+    const rank = (n: GraphNode) =>
+      (n.id === active ? 0 : lit?.has(n.id) ? 1 : 2) * 10 +
+      ({ company: 0, project: 1, archives: 2, skill: 3 } as const)[n.kind];
+    const lineHeight = fontSize + 3;
+    // les points sont des obstacles, comme les libellés déjà placés
+    const boxes = graph.nodes.map((n) => {
+      const p = positions.get(n.id)!;
+      const r = nodeRadius(n);
+      return { x0: p.x - r, x1: p.x + r, y0: p.y - r, y1: p.y + r };
+    });
+    const free = (box: (typeof boxes)[number]) =>
+      box.x0 >= 0 && box.x1 <= width &&
+      boxes.every((b) => box.x1 <= b.x0 || box.x0 >= b.x1 || box.y1 <= b.y0 || box.y0 >= b.y1);
+    [...graph.nodes]
+      .filter(showLabel)
+      .sort((a, b) => rank(a) - rank(b) || b.degree - a.degree)
+      .forEach((node) => {
+        const p = positions.get(node.id)!;
+        const r = nodeRadius(node);
+        const preferred = labelAnchor(node, p, r);
+        const other: 'start' | 'end' = preferred === 'end' ? 'start' : 'end';
+        const w = labelWidth(node);
+        const tries = [0, -lineHeight, lineHeight, -2 * lineHeight, 2 * lineHeight].flatMap((dy) =>
+          [preferred, other].map((anchor) => ({ anchor, dy }))
+        );
+        for (const { anchor, dy } of tries) {
+          const x0 = anchor === 'end' ? p.x - r - 4 - w : p.x + r + 4;
+          const box = { x0, x1: x0 + w, y0: p.y + dy - lineHeight / 2, y1: p.y + dy + lineHeight / 2 };
+          if (free(box)) {
+            boxes.push(box);
+            placed.set(node.id, { anchor, dy });
+            return;
+          }
+        }
+        // sans place libre : affiché quand même s'il fait partie de la sélection
+        if (lit?.has(node.id)) placed.set(node.id, { anchor: preferred, dy: 0 });
+      });
+    return placed;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [positions, lit, active, graph, constrained]);
 
   const skillNodes = graph.nodes.filter((n) => n.kind === 'skill');
   const ownerNodes = graph.nodes.filter((n) => n.kind !== 'skill');
@@ -230,6 +286,7 @@ const Constellation: React.FC = () => {
           viewBox={`0 0 ${width} ${height}`}
           className="w-full h-auto block select-none"
           role="img"
+          data-motion={motion}
           aria-label={text.graphLabel}
           onClick={() => setSelected(null)}
         >
@@ -261,6 +318,7 @@ const Constellation: React.FC = () => {
                   const p = positions.get(node.id)!;
                   const r = nodeRadius(node);
                   const dim = lit && !lit.has(node.id);
+                  const label = labels.get(node.id);
                   return (
                     <g
                       key={node.id}
@@ -277,11 +335,11 @@ const Constellation: React.FC = () => {
                       <circle r={Math.max(r + 6, 12)} fill="transparent" />
                       {selected === node.id && <circle r={r + 5} fill="none" stroke="#3b82f6" strokeWidth={2} />}
                       <NodeShape node={node} r={r} />
-                      {showLabel(node) && (
+                      {label && (
                         <text
-                          x={labelAnchor(node, p, r) === 'end' ? -(r + 4) : r + 4}
-                          textAnchor={labelAnchor(node, p, r)}
-                          y={4}
+                          x={label.anchor === 'end' ? -(r + 4) : r + 4}
+                          textAnchor={label.anchor}
+                          y={4 + label.dy}
                           className={`fill-gray-600 dark:fill-gray-300 ${node.kind === 'skill' ? '' : 'font-semibold'}`}
                           fontSize={fontSize}
                         >

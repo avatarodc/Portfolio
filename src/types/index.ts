@@ -42,8 +42,11 @@ export interface Project {
   links: ProjectLink[];
   // true : affiche « Code privé — démo sur demande » au lieu d'un lien vers le code
   privateCode?: boolean;
-  // capture d'écran dans public/ ; absente : un emplacement réservé est affiché
+  // capture d'écran explicite ; sinon public/images/projects/<id>.(png|jpg|webp) si présent,
+  // sinon couverture générée
   image?: string;
+  // icône du domaine, affichée sur la couverture générée
+  coverIcon: LucideIcon;
 }
 
 // Anciens projets (formation, premiers sites) affichés dans le bloc Archives

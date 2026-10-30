@@ -8,6 +8,7 @@ import {
   sections,
 } from '@/data/profile';
 import { buildSkillGraph } from '@/lib/skillGraph';
+import { watchFrameRate } from '@/lib/devicePerf';
 
 // Mêmes teintes que la constellation et les cartes Compétences
 const categoryColors = ['59,130,246', '16,185,129', '168,85,247', '245,158,11'];
@@ -85,6 +86,10 @@ const HeroNetwork: React.FC<{ animate: boolean }> = ({ animate }) => {
     let frame = 0;
     let last = 0;
     let visible = true;
+    // passe à false si l'appareil se révèle trop lent pendant la 1re seconde
+    let moving = animate;
+    // état exposé dans le DOM (diagnostic) : animated | static
+    canvas.dataset.motion = moving ? 'animated' : 'static';
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -106,8 +111,8 @@ const HeroNetwork: React.FC<{ animate: boolean }> = ({ animate }) => {
       const ox = pointer.active ? (pointer.x - width / 2) / width : 0;
       const oy = pointer.active ? (pointer.y - height / 2) / height : 0;
       const points = dots.map((d) => ({
-        x: d.bx * width + ox * 28 * d.depth + (animate ? Math.sin(time / 2600 + d.phase) * 7 : 0),
-        y: d.by * height + oy * 20 * d.depth + (animate ? Math.cos(time / 3100 + d.phase) * 6 : 0),
+        x: d.bx * width + ox * 28 * d.depth + (moving ? Math.sin(time / 2600 + d.phase) * 7 : 0),
+        y: d.by * height + oy * 20 * d.depth + (moving ? Math.cos(time / 3100 + d.phase) * 6 : 0),
       }));
       const near = (p: { x: number; y: number }) =>
         pointer.active ? Math.max(0, 1 - Math.hypot(p.x - pointer.x, p.y - pointer.y) / 180) : 0;
@@ -191,7 +196,17 @@ const HeroNetwork: React.FC<{ animate: boolean }> = ({ animate }) => {
     visibility.observe(canvas);
     frame = requestAnimationFrame(loop);
 
+    // Fluidité réelle : au-delà de ~25 ms par image en moyenne, image fixe
+    const stopWatching = watchFrameRate(() => {
+      moving = false;
+      canvas.dataset.motion = 'static';
+      cancelAnimationFrame(frame);
+      pointer.active = false;
+      draw(0);
+    });
+
     return () => {
+      stopWatching();
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
       visibility.disconnect();

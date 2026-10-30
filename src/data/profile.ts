@@ -20,7 +20,7 @@ import {
   FooterContent,
   About,
   Distinction,
-} from '@/types';
+  } from '@/types';
 import {
   GithubIcon,
   GitBranch,
@@ -36,6 +36,18 @@ import {
   Trophy,
   GraduationCap,
   Users,
+  ListOrdered,
+  Ticket,
+  CalendarDays,
+  Landmark,
+  HandCoins,
+  NotebookPen,
+  ShieldCheck,
+  Bot,
+  HeartPulse,
+  ScanSearch,
+  Boxes,
+  CodeXml,
 } from 'lucide-react';
 
 // ─── Identité ───
@@ -251,6 +263,7 @@ export const projectList: Project[] = [
   {
     id: 'gfa',
     group: 'production',
+    coverIcon: ListOrdered,
     title: 'GFA — Gestion de files d\'attente',
     shortTitle: 'GFA',
     context: 'DIOTALI',
@@ -271,6 +284,7 @@ export const projectList: Project[] = [
   {
     id: 'billetterie-fsf',
     group: 'production',
+    coverIcon: Ticket,
     title: 'Billetterie de la Fédération Sénégalaise de Football',
     shortTitle: 'Billetterie FSF',
     context: 'DIOTALI',
@@ -291,6 +305,7 @@ export const projectList: Project[] = [
   {
     id: 'rimemba',
     group: 'production',
+    coverIcon: CalendarDays,
     title: 'Rimemba',
     context: 'Produit personnel',
     problem: 'SaaS de sites d\'événements personnalisés avec partage de photos et de vidéos, décliné en marque blanche.',
@@ -308,6 +323,7 @@ export const projectList: Project[] = [
   {
     id: 'ecommune',
     group: 'production',
+    coverIcon: Landmark,
     title: 'ECommune',
     context: 'DIOTALI',
     contextAnchor: '#experience',
@@ -322,6 +338,7 @@ export const projectList: Project[] = [
   {
     id: 'diotali-events',
     group: 'production',
+    coverIcon: Ticket,
     title: 'Diotali Events',
     context: 'DIOTALI',
     contextAnchor: '#experience',
@@ -338,6 +355,7 @@ export const projectList: Project[] = [
   {
     id: 'coskas',
     group: 'produits',
+    coverIcon: HandCoins,
     title: 'COSKAS',
     context: 'Mission freelance',
     problem: 'Gestion des cotisations multi-niveaux.',
@@ -357,6 +375,7 @@ export const projectList: Project[] = [
   {
     id: 'boryi',
     group: 'produits',
+    coverIcon: NotebookPen,
     title: 'BorYi',
     context: 'Produit personnel',
     problem: 'Carnet de crédit digital pour les boutiquiers.',
@@ -374,6 +393,7 @@ export const projectList: Project[] = [
   {
     id: 'samadahira',
     group: 'produits',
+    coverIcon: Users,
     title: 'SamaDahira',
     context: 'Produit personnel',
     problem: 'Gestion des cotisations des dahiras.',
@@ -392,6 +412,7 @@ export const projectList: Project[] = [
   {
     id: 'verifia',
     group: 'produits',
+    coverIcon: ShieldCheck,
     title: 'Verifia',
     context: 'Projet collectif',
     problem: 'Détection de désinformation en français et en wolof.',
@@ -407,6 +428,7 @@ export const projectList: Project[] = [
   {
     id: 'chatbot-rag',
     group: 'ia',
+    coverIcon: Bot,
     title: 'Chatbot RAG de recherche documentaire',
     shortTitle: 'Chatbot RAG',
     context: 'ISI',
@@ -424,6 +446,7 @@ export const projectList: Project[] = [
   {
     id: 'diagnostic-ecg',
     group: 'ia',
+    coverIcon: HeartPulse,
     title: 'Système de diagnostic ECG',
     shortTitle: 'Diagnostic ECG',
     context: 'ISI · projet Scrum',
@@ -441,6 +464,7 @@ export const projectList: Project[] = [
   {
     id: 'detecteur-telephones',
     group: 'ia',
+    coverIcon: ScanSearch,
     title: 'Détecteur de téléphones',
     shortTitle: 'Détecteur YOLOv8',
     context: 'ISI',
@@ -454,6 +478,7 @@ export const projectList: Project[] = [
   {
     id: 'gestion-produits',
     group: 'ia',
+    coverIcon: Boxes,
     title: 'Architecture microservices GestionProduits',
     shortTitle: 'GestionProduits',
     context: 'ISI',
@@ -473,6 +498,7 @@ export const projectList: Project[] = [
   {
     id: 'portfolio',
     group: 'ia',
+    coverIcon: CodeXml,
     title: 'Ce portfolio',
     context: 'Projet personnel',
     problem: 'Le site que vous consultez : tout son contenu provient d\'un fichier de données unique.',
@@ -647,7 +673,6 @@ export const skillCategories: Category[] = [
     skills: [
       "PostgreSQL",
       "MySQL",
-      "Oracle",
       "MongoDB",
       "pgvector",
       "Supabase",

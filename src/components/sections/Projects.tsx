@@ -13,6 +13,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeader } from './SectionHeader';
 import { sections, projectList, archiveProjects } from '@/data/profile';
+import projectImages from 'virtual:project-images';
+import { ProjectCover } from './ProjectCover';
 
 const labels = sections.projectLabels;
 
@@ -37,7 +39,17 @@ const StatusBadge: React.FC<{ project: Project; className?: string }> = ({ proje
   </span>
 );
 
-const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => (
+// Capture du projet : `image` explicite, sinon fichier <id>.(webp|png|jpg) déposé dans
+// public/images/projects (liste fournie au build), sinon null -> couverture générée
+const imageOf = (project: Project) => {
+  if (project.image) return project.image;
+  const file = projectImages.find((f) => f.replace(/\.[^.]+$/, '') === project.id);
+  return file ? `images/projects/${file}` : null;
+};
+
+const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+  const image = imageOf(project);
+  return (
   <motion.article
     id={`projet-${project.id}`}
     initial={{ opacity: 0, y: 20 }}
@@ -47,22 +59,25 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
     className="group scroll-mt-24"
   >
     <div className="h-full flex flex-col bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/80 dark:border-gray-800 overflow-hidden hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-xl hover:shadow-blue-500/5 transition duration-300 hover:-translate-y-1">
-      {/* Capture d'écran : affichée seulement si elle existe (liste des captures attendues : docs/captures-a-fournir.md) */}
-      {project.image && (
-        <div className="relative h-44 overflow-hidden bg-gray-100 dark:bg-gray-800">
-          <img
-            src={project.image}
-            alt={project.title}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-          <StatusBadge project={project} className="absolute top-3 left-3 backdrop-blur-sm" />
-        </div>
-      )}
+      {/* Capture d'écran si disponible, sinon couverture générée (docs/captures-a-fournir.md) */}
+      <div className="relative h-44 overflow-hidden bg-gray-100 dark:bg-gray-800">
+        {image ? (
+          <>
+            <img
+              src={image}
+              alt={project.title}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          </>
+        ) : (
+          <ProjectCover project={project} />
+        )}
+        <StatusBadge project={project} className="absolute top-3 left-3 backdrop-blur-sm" />
+      </div>
 
       <div className="flex-1 p-5 flex flex-col">
-        {!project.image && <StatusBadge project={project} className="self-start mb-3" />}
 
         {/* Cadre du projet */}
         <p className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1">
@@ -140,7 +155,8 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
       </div>
     </div>
   </motion.article>
-);
+  );
+};
 
 interface ProjectGroupSectionProps {
   id: string;
