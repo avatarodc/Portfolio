@@ -638,19 +638,6 @@ export const archiveProjects: ArchiveProject[] = t<ArchiveProject[]>([
     image: 'images/projects/pddproduction.png',
     date: { fr: 'Février 2026', en: 'February 2026' },
   },
-  {
-    id: 'hbassurance',
-    title: { fr: 'HB Assurance — site client réalisé chez WBCC', en: 'HB Assurance — client website built at WBCC' },
-    description: {
-      fr: 'Site d\'une compagnie d\'assurance, réalisé pour un client du WBCC (World Business Contact Center).',
-      en: 'Website for an insurance company, built for a client of WBCC (World Business Contact Center).',
-    },
-    tech: ['WordPress'],
-    link: 'https://hbassurance.com/',
-    category: 'Web App',
-    image: 'images/projects/hbassurance.png',
-    date: { fr: 'Déc. 2024 – Oct. 2025', en: 'Dec 2024 – Oct 2025' },
-  },
   // ─── Projets Sonatel Académie (2024) ───
   {
     id: 'wave-senegal-flutter',
@@ -918,10 +905,24 @@ export const experienceList: Experience[] = t<Experience[]>([
         },
         projectId: 'chatgpt-wbcc',
       },
+      {
+        text: {
+          fr: 'HB ASSURANCE — application web complète de gestion d\'assurance, développée chez WBCC',
+          en: 'HB ASSURANCE — complete insurance management web application, built at WBCC',
+        },
+      },
     ],
+    // `stack` d'un site client : le relie à ses compétences dans la constellation
     clientLinks: [
       { label: 'RYMHOLDING', url: 'https://job.rymholding.com', image: 'images/projects/rymholding.jpg' },
       { label: 'RYM PARTNERS', url: 'https://www.rympartners.com/', image: 'images/projects/rympartners.jpg' },
+      {
+        label: 'HB ASSURANCE',
+        url: 'https://hbassurance.com/',
+        image: 'images/projects/hbassurance.png',
+        // TODO(stack) : Laravel non confirmé (le site public est un WordPress) ; seuls PHP et MySQL sont affichés
+        stack: ['PHP', 'MySQL'],
+      },
     ],
   },
   {

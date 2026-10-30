@@ -444,26 +444,19 @@ const Constellation: React.FC = () => {
                 {text.clearLabel}
               </button>
             </div>
-            {selectedNode.kind === 'skill' ? (
-              <>
-                {[
-                  { label: text.projectsLabel, items: related.filter((n) => n.kind === 'project') },
-                  { label: text.companiesLabel, items: related.filter((n) => n.kind === 'company') },
-                ]
-                  .filter((group) => group.items.length > 0)
-                  .map((group) => (
-                    <div key={group.label} className="flex flex-wrap items-center gap-1.5">
-                      <span className="text-gray-500 dark:text-gray-400 mr-1">{group.label} ({group.items.length}) :</span>
-                      {group.items.map(chip)}
-                    </div>
-                  ))}
-              </>
-            ) : (
-              <div className="flex flex-wrap items-center gap-1.5">
-                <span className="text-gray-500 dark:text-gray-400 mr-1">{text.linkedSkillsLabel} ({related.length}) :</span>
-                {related.map(chip)}
-              </div>
-            )}
+            {/* éléments liés, groupés par nature (une entreprise peut être reliée à ses sites clients) */}
+            {[
+              { label: text.linkedSkillsLabel, items: related.filter((n) => n.kind === 'skill') },
+              { label: text.projectsLabel, items: related.filter((n) => n.kind === 'project') },
+              { label: text.companiesLabel, items: related.filter((n) => n.kind === 'company') },
+            ]
+              .filter((group) => group.items.length > 0)
+              .map((group) => (
+                <div key={group.label} className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-gray-500 dark:text-gray-400 mr-1">{group.label} ({group.items.length}) :</span>
+                  {group.items.map(chip)}
+                </div>
+              ))}
           </div>
         ) : (
           <p className="text-gray-500 dark:text-gray-400">{text.hint}</p>

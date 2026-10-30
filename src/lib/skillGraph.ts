@@ -73,7 +73,8 @@ export const buildSkillGraph = ({
     return keys;
   };
 
-  const owners: { node: GraphNode; keys: Set<string> }[] = [
+  // companyId : entreprise qui a réalisé le site client
+  const owners: { node: GraphNode; keys: Set<string>; companyId?: string }[] = [
     ...projects.map((p) => ({
       node: { id: `project:${p.id}`, kind: 'project' as const, label: p.shortTitle ?? p.title, anchor: `#projet-${p.id}`, degree: 0 },
       keys: skillKeysOf(p.stack),
@@ -82,9 +83,27 @@ export const buildSkillGraph = ({
       node: { id: `company:${e.id}`, kind: 'company' as const, label: e.company, anchor: '#experience', degree: 0 },
       keys: skillKeysOf(e.stack || []),
     })),
+    // sites clients avec une stack renseignée (ex. réalisations WBCC) : traités comme des projets
+    ...experiences.flatMap((e) =>
+      (e.clientLinks || [])
+        .filter((c) => c.stack && c.stack.length > 0)
+        .map((c) => ({
+          node: { id: `client:${e.id}:${techKey(c.label)}`, kind: 'project' as const, label: c.label, anchor: '#experience', degree: 0 },
+          keys: skillKeysOf(c.stack!),
+          companyId: `company:${e.id}`,
+        }))
+    ),
   ].filter((owner) => owner.keys.size > 0);
 
   const links: GraphLink[] = [];
+  // site client relié à l'entreprise qui l'a réalisé
+  owners.forEach((owner) => {
+    const company = owner.companyId ? owners.find((o) => o.node.id === owner.companyId) : undefined;
+    if (!company) return;
+    links.push({ source: company.node.id, target: owner.node.id });
+    company.node.degree += 1;
+    owner.node.degree += 1;
+  });
   owners.forEach(({ node, keys }) => {
     keys.forEach((key) => {
       const skill = skills.get(key)!;

@@ -86,6 +86,8 @@ export interface ExternalLinkItem {
   url: string;
   // capture du site dans public/
   image?: string;
+  // technologies du site client : nœud relié à l'entreprise dans la constellation
+  stack?: string[];
 }
 
 export interface ExperienceHighlight {
