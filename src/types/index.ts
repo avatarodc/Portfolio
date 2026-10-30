@@ -33,6 +33,8 @@ export interface Project {
   // renvoi interne vers une autre section (ex. le poste correspondant)
   contextAnchor?: string;
   problem: string;
+  // chiffres d'impact réels, affichés en avant sur la fiche (absent : rien d'affiché)
+  impact?: string[];
   details?: string[];
   stack: string[];
   role: string;

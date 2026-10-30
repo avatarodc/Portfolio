@@ -101,6 +101,20 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
           {project.problem}
         </p>
 
+        {/* Chiffres d'impact, mis en avant quand ils sont renseignés */}
+        {project.impact && project.impact.length > 0 && (
+          <ul className="flex flex-wrap gap-2 mb-4">
+            {project.impact.map((figure) => (
+              <li
+                key={figure}
+                className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+              >
+                {figure}
+              </li>
+            ))}
+          </ul>
+        )}
+
         {project.details && project.details.length > 0 && (
           <ul className="space-y-1.5 mb-4">
             {project.details.map((detail) => (

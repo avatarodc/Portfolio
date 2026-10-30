@@ -244,6 +244,7 @@ export const projectList: Project[] = [
   // ─── Réalisations en production ───
   {
     id: 'gfa',
+    // TODO(impact) : nombre d'agences, tickets par jour, gain mesuré après la correction HikariCP — renseigner impact: ['…'] (rien n'est affiché tant que c'est vide)
     group: 'production',
     coverIcon: ListOrdered,
     title: 'GFA — Gestion de files d\'attente',
@@ -265,6 +266,7 @@ export const projectList: Project[] = [
   },
   {
     id: 'billetterie-fsf',
+    // TODO(impact) : billets vendus, matchs couverts — renseigner impact: ['…'] (rien n'est affiché tant que c'est vide)
     group: 'production',
     coverIcon: Ticket,
     title: 'Billetterie de la Fédération Sénégalaise de Football',
@@ -286,6 +288,7 @@ export const projectList: Project[] = [
   },
   {
     id: 'rimemba',
+    // TODO(impact) : événements créés, photos et vidéos partagées — renseigner impact: ['…'] (rien n'est affiché tant que c'est vide)
     group: 'production',
     coverIcon: CalendarDays,
     title: 'Rimemba',
@@ -356,6 +359,7 @@ export const projectList: Project[] = [
   },
   {
     id: 'boryi',
+    // TODO(impact) : nombre de boutiquiers testeurs — renseigner impact: ['…'] (rien n'est affiché tant que c'est vide)
     group: 'produits',
     coverIcon: NotebookPen,
     title: 'BorYi',
@@ -374,6 +378,7 @@ export const projectList: Project[] = [
   },
   {
     id: 'samadahira',
+    // TODO(impact) : nombre de dahiras pilotes — renseigner impact: ['…'] (rien n'est affiché tant que c'est vide)
     group: 'produits',
     coverIcon: Users,
     title: 'SamaDahira',
