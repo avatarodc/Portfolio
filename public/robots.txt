@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mamadou-gueye.vercel.app/sitemap.xml

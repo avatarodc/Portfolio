@@ -16,7 +16,18 @@
       } catch (e) {}
     </script>
 
-    <!-- Valeurs injectées depuis src/data/seo.ts (voir vite.config.ts) -->
+    <!-- Langue mémorisée : arrivée sur / alors que l'anglais a été choisi -> /en/
+         (l'URL reste prioritaire : /en/ n'est jamais redirigée). -->
+    <script>
+      try {
+        if (location.pathname === '/' && localStorage.getItem('portfolio-lang') === 'en') {
+          location.replace('/en/' + location.hash);
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- seo:start -->
+    <!-- Valeurs injectées depuis src/data/seo.ts, par langue (voir vite.config.ts) -->
     <title>%SEO_TITLE%</title>
     <meta name="description" content="%SEO_DESCRIPTION%" />
     <link rel="canonical" href="%SEO_URL%" />
@@ -40,6 +51,13 @@
     <meta name="twitter:description" content="%SEO_DESCRIPTION%" />
     <meta name="twitter:image" content="%SEO_IMAGE%" />
     <meta name="twitter:image:alt" content="%SEO_IMAGE_ALT%" />
+
+    <!-- Versions linguistiques -->
+    <meta property="og:locale:alternate" content="%SEO_LOCALE_ALT%" />
+    <link rel="alternate" hreflang="fr" href="%SEO_URL_FR%" />
+    <link rel="alternate" hreflang="en" href="%SEO_URL_EN%" />
+    <link rel="alternate" hreflang="x-default" href="%SEO_URL_FR%" />
+    <!-- seo:end -->
   </head>
   <body>
     <div id="root"></div>

@@ -1,10 +1,31 @@
 import { useState, useEffect } from 'react';
 import { Moon, Sun, Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { navItems, identity, cv, ui } from '@/data/profile';
+import { navItems, identity, cv, ui, lang } from '@/data/profile';
+import { Lang, pathFor, rememberLang } from '@/lib/i18n';
 import { useScrollSpy } from '@/hooks';
 
 const sectionIds = navItems.map((item) => item.href.replace('#', ''));
+
+const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
+
+// Lien vers la même page dans l'autre langue (ancre conservée, choix mémorisé)
+const LanguageSwitch: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <a
+    href={pathFor(otherLang)}
+    hrefLang={otherLang}
+    lang={otherLang}
+    aria-label={ui.languageSwitch}
+    title={ui.languageSwitch}
+    onClick={(e) => {
+      rememberLang(otherLang);
+      e.currentTarget.href = pathFor(otherLang) + window.location.hash;
+    }}
+    className={`px-2.5 py-2 rounded-xl text-sm font-semibold bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition ${className}`}
+  >
+    {ui.otherLanguage}
+  </a>
+);
 
 interface NavbarProps {
   darkMode: boolean;
@@ -109,6 +130,9 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
               {cv.labels.navbar}
             </motion.a>
 
+            {/* Langue */}
+            <LanguageSwitch className="ml-2" />
+
             {/* Theme Toggle */}
             <motion.button
               initial={{ opacity: 0, scale: 0.5 }}
@@ -138,6 +162,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleTheme }) => {
 
           {/* Mobile Controls */}
           <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitch />
             <motion.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
